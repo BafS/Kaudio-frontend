@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { RouterModule } from '@angular/router';
+import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { ROUTES } from './app.routes';
 
@@ -12,6 +12,9 @@ import { HomeComponent } from './+home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
+
+import { RestService } from './shared/services/rest.service';
+import { SocketService } from './shared/services/socket.service';
 
 @NgModule({
   declarations: [
@@ -28,8 +31,13 @@ import { LoginComponent } from './login/login.component';
     RouterModule.forRoot(ROUTES, { useHash: true }),
     AlertModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  // providers: [],
+  providers: [ SocketService, RestService ],
+  bootstrap: [AppComponent, [
+    // RestService,
+    // SocketService,
+    // MessageService
+  ]]
 })
 export class AppModule {
 }
