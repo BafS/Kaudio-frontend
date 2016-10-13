@@ -11,9 +11,14 @@ export class MessageService {
     private _socketService: SocketService,
     private _restService: RestService
   ) {
-    // Let's get both the socket.io and REST feathers services for messages!
+    // TODO use socket only for feed ?
     this._rest = _restService.getService('messages');
     this._socket = _socketService.getService('messages');
+
+    this._socket.on('created', function (message) {
+      console.log('-- New Message [socket] --')
+      console.log(message)
+    });
   }
 
   find(query?: any) {
@@ -25,7 +30,8 @@ export class MessageService {
   }
 
   create(message: any) {
-    return this._rest.create(message);
+    // app.get('token')
+    return this._socket.create(message);
   }
 
   remove(id: string, query: any) {
