@@ -21,6 +21,8 @@ class User {
 export class LoginComponent implements OnInit {
   private _messages: any[] = [];
   // private _messageService: MessageService;
+  user = new User('test@test.com', 'test')
+  token = this._authService.getToken()
 
   constructor (
     private _messageService: MessageService,
@@ -30,7 +32,6 @@ export class LoginComponent implements OnInit {
     this._authService = _authService;
   }
 
-  user = new User('test@test.com', 'test')
 
   // constructor(fb: FormBuilder) {
     // this.loginForm = fb.group({
@@ -41,16 +42,31 @@ export class LoginComponent implements OnInit {
 
   onSubmit(event) {
     console.log(`do login (${this.user.email})`);
-    this._authService.auth(this.user.email, this.user.password);
-    this._messageService.create({
-      message: `User ${this.user.email} is logged (or try to...)`
-    });
+
+    this._authService.auth(this.user.email, this.user.password).then((result) => {
+      console.log('Authenticated!', result);
+
+      this.token = this._authService.getToken();
+
+      this._messageService.create({
+        message: `User ${this.user.email} is logged (or try to...)`
+      });
+    }).catch((error) => {
+      console.error('Error authenticating!', error);
+    })
 
     // TODO
     // If logged, redirection
     // if not, alert message
 
     return false;
+  }
+
+  onLogout() {
+    console.log('logout');
+    this._authService.logout().then(() => {
+      this.token = this._authService.getToken();
+    })
   }
 
   // @DEV

@@ -20,11 +20,12 @@ export class AuthenticationService {
         type: 'local',
         email: email,
         password: password
-      }).then((result) => {
-        console.log('Authenticated!', result);
-      }).catch((error) => {
-        console.error('Error authenticating!', error);
       })
+  }
+
+  getToken() {
+    console.log(this._socket.getApp().get('token'))
+    return this._socket.getApp().get('token')
   }
 
   logout() {

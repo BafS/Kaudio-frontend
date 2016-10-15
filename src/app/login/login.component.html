@@ -1,5 +1,10 @@
 <h2>Login</h2>
 
+<!-- dev -->
+<div *ngIf="token">
+  Your are already logged ! (token: <code>{{token}}</code>)
+</div>
+
 <form (ngSubmit)="onSubmit()" #userForm="ngForm">
   <div class="form-group">
     <label for="email">Email</label>
@@ -29,3 +34,6 @@
 
 <br>
 <button class="btn btn-sm btn-outline-default" (click)="sendMessage()">Send a message to your friends [dev]</button>
+
+<br>
+<button class="btn btn-default-outline" (click)="onLogout()">Logout</button>
