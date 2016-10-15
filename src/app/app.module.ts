@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 
 import { RestService } from './shared/services/rest.service';
 import { SocketService } from './shared/services/socket.service';
+import { NavigationComponent } from './shared/components/navigation/navigation.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SocketService } from './shared/services/socket.service';
     AboutComponent,
     HomeComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
