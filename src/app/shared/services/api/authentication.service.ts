@@ -15,8 +15,8 @@ export class AuthenticationService {
     this._socket = _socketService;
   }
 
-  auth(email: string, password: string) {
-    return this._socket.app.authenticate({
+  auth(email: string, password: string): Promise<any> {
+    return this._socket.getApp().authenticate({
         type: 'local',
         email: email,
         password: password
@@ -28,7 +28,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    return this._socket.app.logout();
+    return this._socket.getApp().logout();
   }
 }
 

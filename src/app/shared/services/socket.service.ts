@@ -21,22 +21,22 @@ const HOST = 'http://localhost:3030';
 @Injectable()
 export class SocketService {
   public socket: any; // SocketIOClient.Socket;
-  public app: any;
+  private _app: any;
 
   constructor(
   ) {
     this.socket = io(HOST);
-    this.app = feathers()
+    this._app = feathers()
       .configure(socketio(this.socket))
       .configure(hooks())
       .configure(authentication({ storage: window.localStorage }))
   }
 
   getService(service: string) {
-    return this.app.service(service);
+    return this._app.service(service);
   }
 
   getApp() {
-    return this.app;
+    return this._app;
   }
 }
