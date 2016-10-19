@@ -14,7 +14,8 @@ import { LoginComponent } from './login/login.component';
 
 import { RestService } from './shared/services/rest.service';
 import { SocketService } from './shared/services/socket.service';
-import { NavigationComponent } from './shared/components/navigation/navigation.component'
+import { NavigationComponent } from './shared/components/navigation/navigation.component';
+import { RegisterComponent } from './register/register.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavigationComponent } from './shared/components/navigation/navigation.c
     AboutComponent,
     HomeComponent,
     LoginComponent,
-    NavigationComponent
+    NavigationComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
