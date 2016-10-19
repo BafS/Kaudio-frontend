@@ -9,6 +9,5 @@ export const ROUTES: Routes = [
   { path: 'home',  component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'test', loadChildren: () => System.import('./+detail') },
   // { path: '**', component: PageNotFoundComponent }
 ];

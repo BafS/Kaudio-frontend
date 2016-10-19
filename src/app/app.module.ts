@@ -10,7 +10,6 @@ import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './+home/home.component';
 import { AboutComponent } from './about/about.component';
-import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 
 import { RestService } from './shared/services/rest.service';
@@ -22,7 +21,6 @@ import { NavigationComponent } from './shared/components/navigation/navigation.c
     AppComponent,
     AboutComponent,
     HomeComponent,
-    ProfileComponent,
     LoginComponent,
     NavigationComponent
   ],
