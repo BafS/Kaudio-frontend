@@ -3,8 +3,10 @@
 <form (ngSubmit)="onSubmit()" #userForm="ngForm">
   <div class="form-group">
     <label for="email">Email</label>
-    <input type="text" class="form-control" id="email"
+    <input type="email" class="form-control" id="email"
+            ngControl="email"
             required
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
             [(ngModel)]="user.email" name="email"
             #email="ngModel">
     <alert [hidden]="email.valid || email.pristine">
