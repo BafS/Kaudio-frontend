@@ -2,15 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from './../shared/services/api/message.service'
 import { AuthenticationService } from './../shared/services/api/authentication.service'
+import {User} from '../models/user'
 
-class User {
-  constructor(
-    // public id: number,
-    public email: string,
-    public password: string,
-    // public username?: string
-  ) {  }
-}
 
 @Component({
   selector: 'app-login',
@@ -62,12 +55,7 @@ export class LoginComponent implements OnInit {
     return false;
   }
 
-  onLogout() {
-    console.log('logout');
-    this._authService.logout().then(() => {
-      this.token = this._authService.getToken();
-    })
-  }
+
 
   // @DEV
   sendMessage() {

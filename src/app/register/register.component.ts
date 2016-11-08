@@ -2,16 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../shared/services/api/user.service'
 
 import {MessageService} from '../shared/services/api/message.service'
+import {User} from '../models/user'
 
-// TODO factorisee 'User' (ds login et ds register)
-class User {
-  constructor(
-    // public id: number,
-    public email: string,
-    public password: string,
-    // public username?: string
-  ) {  }
-}
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
