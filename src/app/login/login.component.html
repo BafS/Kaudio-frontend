@@ -1,40 +1,44 @@
-<h2>Login</h2>
+<div class="wrapper">
+  <div class="container">
+    <h2>Login</h2>
 
-<!-- dev -->
-<div *ngIf="token">
-  Your are already logged ! (token: <code>{{token}}</code>)
+    <!-- dev -->
+    <div *ngIf="token">
+      Your are already logged ! (token: <code>{{token}}</code>)
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email"
+                ngControl="email"
+                required
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                [(ngModel)]="user.email" name="email"
+                #email="ngModel">
+        <alert [hidden]="email.valid || email.pristine">
+          Email is required
+        </alert>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" class="form-control" id="password"
+                required minlength="3"
+                [(ngModel)]="user.password" name="password"
+                #password="ngModel">
+        <alert
+          [hidden]="password.valid || password.pristine">
+          A password longer than 3 characters is required
+        </alert>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-default" [disabled]="!userForm.form.valid">Login</button>
+        <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+      </div>
+      <br>
+      <button class="btn btn-sm btn-outline-default" (click)="sendMessage()">Send a message to your friends [dev]</button>
+
+    </form>
+  </div>
 </div>
-
-<form (ngSubmit)="onSubmit()" #userForm="ngForm">
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" class="form-control" id="email"
-            ngControl="email"
-            required
-            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-            [(ngModel)]="user.email" name="email"
-            #email="ngModel">
-    <alert [hidden]="email.valid || email.pristine">
-      Email is required
-    </alert>
-  </div>
-
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="text" class="form-control" id="password"
-            required minlength="3"
-            [(ngModel)]="user.password" name="password"
-            #password="ngModel">
-    <alert
-      [hidden]="password.valid || password.pristine">
-      A password longer than 3 characters is required
-    </alert>
-  </div>
-  <div>
-    <button type="submit" class="btn btn-default" [disabled]="!userForm.form.valid">Login</button>
-    <a [routerLink]="['/register']" class="btn btn-link">Register</a>
-  </div>
-  <br>
-  <button class="btn btn-sm btn-outline-default" (click)="sendMessage()">Send a message to your friends [dev]</button>
-
-</form>

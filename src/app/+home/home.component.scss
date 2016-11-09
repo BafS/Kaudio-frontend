@@ -1,16 +1,18 @@
 .wrapper {
   display: flex;
   flex-flow: row wrap;
+  clear: both;
+  content: '';
 }
 
 .sidebar {
   flex: 1;
-  max-width: 300px;
-  background: #fee;
+  max-width: 240px;
+  // background: #fee;
 }
 
 .main {
   flex: 1;
   width: 100%;
-  background: #eef;
+  background: #f8f8f8;
 }

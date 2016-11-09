@@ -1,2 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
-@import '../node_modules/bootstrap/scss/bootstrap.scss'
+$border-radius:          0;
+$border-radius-lg:       0;
+$border-radius-sm:       0;
+
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  // background: #f6f6f6;
+}
+
+.wrapper {
+  padding-top: 54px;
+  min-height: 100%;
+  height: 100%;
+  width: 100%;
+  // background: #eaa; // Debug only
+  position: absolute;
+}
