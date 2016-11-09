@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './+home/home.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 import { RestService } from './shared/services/rest.service';
 import { SocketService } from './shared/services/socket.service';
@@ -24,7 +25,8 @@ import { RegisterComponent } from './register/register.component'
     HomeComponent,
     LoginComponent,
     NavigationComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
