@@ -20,11 +20,11 @@ export class RegisterComponent implements OnInit {
     ) {
     this._messageService = _messageService;
     this._userService = _userService;
-  }
+  }s
   onSubmit(event) {
     console.log(`do register (${this.user.email})`);
 
-    this._userService.create(this.user.email, this.user.password).then((result) => {
+    this._userService.create(this.user).then((result) => {
       console.log('Registered!', result);
 
 
