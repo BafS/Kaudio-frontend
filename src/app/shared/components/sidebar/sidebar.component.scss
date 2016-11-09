@@ -1,5 +1,11 @@
-.sidebar {
-  max-width: 300px;
-  background: #ddd;
-  min-height: 100%;
+nav {
+  font-size: 90%;
+}
+
+a {
+  color: #546E7A;
+
+  &.title {
+    font-weight: bold;
+  }
 }
