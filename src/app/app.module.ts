@@ -16,7 +16,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { RestService } from './shared/services/rest.service';
 import { SocketService } from './shared/services/socket.service';
 import { NavigationComponent } from './shared/components/navigation/navigation.component';
-import { RegisterComponent } from './register/register.component'
+import { RegisterComponent } from './register/register.component';
+import { PlaylistComponent } from './shared/components/playlist/playlist.component';
+import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { RegisterComponent } from './register/register.component'
     LoginComponent,
     NavigationComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    PlaylistComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
