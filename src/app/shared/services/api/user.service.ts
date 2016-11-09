@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RestService } from './../rest.service';
-import { SocketService } from './../socket.service';
+// import { SocketService } from './../socket.service';
 
 @Injectable()
 export class UserService {
@@ -8,12 +8,11 @@ export class UserService {
   private _rest;
 
   constructor(
-    private _socketService: SocketService,
     private _restService: RestService
   ) {
 
     this._rest = _restService.getService('user');
-    this._socket = _socketService.getService('user');
+    // this._socket = _socketService.getService('user');
   }
   find(query?: any) {
     return this._rest.find(query);
@@ -24,11 +23,10 @@ export class UserService {
   }
 
   create(email:string, password:string) {
-    // app.get('token')
-    return this._socket.create(email,password);
+    return this._rest.create(email, password);
   }
 
   remove(id: string, query: any) {
-    return this._socket.remove(id, query);
+    return this._rest.remove(id, query);
   }
 }

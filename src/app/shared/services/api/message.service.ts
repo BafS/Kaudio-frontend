@@ -15,6 +15,7 @@ export class MessageService {
     this._rest = _restService.getService('messages');
     this._socket = _socketService.getService('messages');
 
+    // TODO add observer
     this._socket.on('created', function (message) {
       console.log('-- New Message [socket] --')
       console.log(message)
