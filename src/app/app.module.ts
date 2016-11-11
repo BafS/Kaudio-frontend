@@ -18,7 +18,8 @@ import { SocketService } from './shared/services/socket.service';
 import { NavigationComponent } from './shared/components/navigation/navigation.component';
 import { RegisterComponent } from './register/register.component';
 import { PlaylistComponent } from './shared/components/playlist/playlist.component';
-import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
+import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+import { PlaylistsComponent } from './playlists/playlists.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
     RegisterComponent,
     ProfileComponent,
     PlaylistComponent,
-    SidebarComponent
+    SidebarComponent,
+    PlaylistsComponent
   ],
   imports: [
     BrowserModule,

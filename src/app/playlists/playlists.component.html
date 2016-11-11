@@ -1,14 +1,14 @@
-<div class="wrapper">
+<div class="playlists">
   <div class="sidebar">
     <app-sidebar></app-sidebar>
   </div>
 
   <div class="main">
     <p>
-      [selected playlist]
+      selected playlist: xxx
     </p>
 
-    <app-playlist></app-playlist>
+    <app-playlist [title]="'childTitle'"></app-playlist>
 
     <button class="btn btn-default-outline" (click)="onLogout()">Logout</button>
   </div>

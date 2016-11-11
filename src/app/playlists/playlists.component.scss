@@ -1,0 +1,19 @@
+.playlists {
+  display: flex;
+  flex-flow: row wrap;
+  clear: both;
+  content: '';
+  height: 100%;
+}
+
+.sidebar {
+  flex: 1;
+  max-width: 240px;
+  // background: #fee;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  background: #f8f8f8;
+}
