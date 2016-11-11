@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Playlist } from '../shared/models/playlist';
-import { Piece } from '../shared/models/piece';
+import { Playlist, Piece } from '../shared/models';
 
 @Component({
   selector: 'app-playlists',
@@ -63,7 +62,6 @@ export class PlaylistsComponent implements OnInit {
           album: 'Trio	Guitar On The Go'
         }
       ]
-    }
+    };
   }
-
 }

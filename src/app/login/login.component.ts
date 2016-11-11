@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MessageService } from './../shared/services/api/message.service'
-import { AuthenticationService } from './../shared/services/api/authentication.service'
-import {User} from '../models/user'
+import { MessageService } from './../shared/services/api/message.service';
+import { AuthenticationService } from './../shared/services/api/authentication.service';
+import { User } from '../shared/models/user';
 
 
 @Component({
@@ -25,13 +25,18 @@ export class LoginComponent implements OnInit {
     this._authService = _authService;
   }
 
-
   // constructor(fb: FormBuilder) {
     // this.loginForm = fb.group({
     //   email: ["", Validators.required],
     //   password: ["", Validators.required]
     // });
   // }
+
+  ngOnInit() {
+    // this._messageService.find().then(messages => {
+      //  this._messages = messages;
+    // });
+  }
 
   onSubmit(event) {
     console.log(`do login (${this.user.email})`);
@@ -55,19 +60,11 @@ export class LoginComponent implements OnInit {
     return false;
   }
 
-
-
   // @DEV
   sendMessage() {
     console.log('send a message....')
     this._messageService.create({
       message: `User ${this.user.email} send a message`
     });
-  }
-
-  ngOnInit() {
-    // this._messageService.find().then(messages => {
-      //  this._messages = messages;
-    // });
   }
 }

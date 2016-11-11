@@ -6,7 +6,7 @@ export class FeathersService {
   private _app: any;
 
   constructor() {
-    this._app = feathers()
+    this._app = feathers();
   }
 
   getApp() {

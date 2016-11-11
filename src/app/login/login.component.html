@@ -33,8 +33,8 @@
         </alert>
       </div>
       <div>
-        <button type="submit" class="btn btn-default" [disabled]="!userForm.form.valid">Login</button>
-        <a [routerLink]="['/register']" class="btn btn-link">Register</a>
+        <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid">Login</button>
+        <a [routerLink]="['/register']" class="btn btn-secondary">Register</a>
       </div>
       <br>
       <button class="btn btn-sm btn-outline-default" (click)="sendMessage()">Send a message to your friends [dev]</button>

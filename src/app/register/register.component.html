@@ -1,4 +1,4 @@
-<h2>Register</h2>
+<h2>Registration</h2>
 
 <form (ngSubmit)="onSubmit()" #userForm="ngForm">
   <div class="form-group">
@@ -27,7 +27,6 @@
     </alert>
   </div>
 
-  <button type="submit" class="btn btn-default" [disabled]="!userForm.form.valid">Register</button>
-
-<button class="btn btn-default-outline" (click)="onLogout()">Cancel</button>
+  <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid">Register</button>
+  <button class="btn btn-secondary" (click)="onLogout()">Cancel</button>
 </form>

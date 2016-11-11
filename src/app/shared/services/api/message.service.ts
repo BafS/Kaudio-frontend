@@ -17,7 +17,7 @@ export class MessageService {
 
     // TODO add observer
     this._socket.on('created', function (message) {
-      console.log('-- New Message [socket] --')
+      console.log('-- New Message [socket] --'); // DEV TODO
       console.log(message)
     });
   }

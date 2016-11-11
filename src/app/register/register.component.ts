@@ -1,32 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../shared/services/api/user.service'
+import { UserService } from '../shared/services/api/user.service';
 
-import {MessageService} from '../shared/services/api/message.service'
-import {User} from '../models/user'
+import { MessageService } from '../shared/services/api/message.service';
+import { User } from '../shared/models/user';
 
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
-  providers: [ UserService, MessageService ]})
+  providers: [ UserService, MessageService ]
+})
 export class RegisterComponent implements OnInit {
-    private _messages: any[] = [];
+  private _messages: any[] = [];
   // private _messageService: MessageService;
-    user = new User('', '')
+  user = new User('', '');
 
   constructor(private _messageService: MessageService,
     private _userService: UserService
     ) {
     this._messageService = _messageService;
     this._userService = _userService;
-  }s
+  }
+
+  ngOnInit() {
+  }
+
   onSubmit(event) {
     console.log(`do register (${this.user.email})`);
 
     this._userService.create(this.user).then((result) => {
       console.log('Registered!', result);
-
 
 
       this._messageService.create({
@@ -42,9 +46,4 @@ export class RegisterComponent implements OnInit {
 
     return false;
   }
-
-
-  ngOnInit() {
-  }
-
 }

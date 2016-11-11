@@ -17,8 +17,8 @@ export class AuthenticationService {
   }
 
   getToken() {
-    console.log(this._rest.getApp().get('token'))
-    return this._rest.getApp().get('token')
+    console.log(this._rest.getApp().get('token'));
+    return this._rest.getApp().get('token');
   }
 
   logout() {

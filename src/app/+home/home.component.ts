@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-//import { PlaylistComponent } from './../shared/components/playlist/playlist';
+// import { PlaylistComponent } from './../shared/components/playlist/playlist';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  //directives: [ PlaylistComponent ]
+  // directives: [ PlaylistComponent ]
 })
 export class HomeComponent implements OnInit {
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { RestService } from './../rest.service';
-import {User} from './../../../models/user'
+import { User } from './../../models';
 // import { SocketService } from './../socket.service';
 
 @Injectable()
