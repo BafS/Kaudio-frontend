@@ -1,7 +1,12 @@
 <nav class="nav nav-pills nav-stacked">
   <a class="nav-link disabled title" href="#">Playlists</a>
-  <a class="nav-link active" href="#">Rock</a>
-  <a class="nav-link" href="#">Jazz</a>
-  <a class="nav-link" href="#">Classical</a>
-  <a class="nav-link" href="#">Favorite stuff</a>
+  <!--TODO add active to the current one-->
+  <a
+    class="nav-link"
+    *ngFor="let playlist of playlistsList"
+    (click)="selectPlaylist(playlist.id)"
+    [class.active]="playlist.id === currentPlaylistID"
+  >
+    {{playlist.name}}
+  </a>
 </nav>

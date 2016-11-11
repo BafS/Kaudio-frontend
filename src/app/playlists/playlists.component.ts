@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Playlist } from '../shared/models/playlist';
 
 @Component({
   selector: 'app-playlists',
@@ -6,12 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./playlists.component.scss']
 })
 export class PlaylistsComponent implements OnInit {
-  private playlists: playlist[];
+  private playlists: Playlist[];
   // private currentPlaylist: playlist;
 
   constructor() { }
 
   ngOnInit() {
+    this.playlists = [
+      <Playlist>
+      {
+        id: 1,
+        name: 'Jazz',
+        isPrivate: false
+      },
+      {
+        id: 2,
+        name: 'Classical',
+        isPrivate: true
+      }
+    ];
+  }
+
+  loadPlaylist(id: number) {
+    console.log(`Playlist id(${id}) will be loaded !`)
   }
 
 }

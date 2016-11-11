@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Playlist } from '../../models/playlist';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
+  @Input('playlists') playlistsList: Playlist[];
+  @Output('selectPlaylist') selectedPlaylist = new EventEmitter<number>();
+  private currentPlaylistID: number = -1;
 
-  constructor() { }
-
-  ngOnInit() {
+  selectPlaylist(id: number) {
+    this.currentPlaylistID = id;
+    this.selectedPlaylist.emit(id);
   }
-
 }

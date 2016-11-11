@@ -1,12 +1,14 @@
 <div class="playlists">
   <div class="sidebar">
-    <app-sidebar></app-sidebar>
+    <app-sidebar [playlists]="playlists" (selectPlaylist)="loadPlaylist($event)"></app-sidebar>
   </div>
 
   <div class="main">
     <p>
       selected playlist: xxx
     </p>
+
+    {{playlists}}
 
     <app-playlist [title]="'childTitle'"></app-playlist>
 
