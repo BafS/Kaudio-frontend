@@ -4,13 +4,10 @@
   </div>
 
   <div class="main">
-    <p>
-      selected playlist: xxx
-    </p>
-
-    {{playlists}}
-
-    <app-playlist [title]="'childTitle'"></app-playlist>
+    <app-playlist
+      [title]="currentPlaylist.name"
+      [pieces]="currentPlaylist.pieces"
+    ></app-playlist>
 
     <button class="btn btn-default-outline" (click)="onLogout()">Logout</button>
   </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Playlist } from '../shared/models/playlist';
+import { Piece } from '../shared/models/piece';
 
 @Component({
   selector: 'app-playlists',
@@ -8,9 +9,16 @@ import { Playlist } from '../shared/models/playlist';
 })
 export class PlaylistsComponent implements OnInit {
   private playlists: Playlist[];
-  // private currentPlaylist: playlist;
+  private currentPlaylist: Playlist;
 
-  constructor() { }
+  constructor() {
+    this.currentPlaylist = <Playlist>{
+      id: -1,
+      name: '',
+      isPrivate: false,
+      pieces: []
+    }
+  }
 
   ngOnInit() {
     this.playlists = [
@@ -30,6 +38,32 @@ export class PlaylistsComponent implements OnInit {
 
   loadPlaylist(id: number) {
     console.log(`Playlist id(${id}) will be loaded !`)
+
+    // TODO get playlist from API
+
+    this.currentPlaylist = <Playlist>{
+      id: id,
+      name: this.playlists[id-1].name,
+      isPrivate: this.playlists[id-1].isPrivate,
+      pieces: [
+        <Piece>
+        {
+          title: 'My super song',
+          artist: 'Debussy',
+          album: 'Kaudioz'
+        },
+        {
+          title: 'My Selene',
+          artist: 'Sonata Arctica',
+          album: 'Reckoning Night'
+        },
+        {
+          title: 'The Way You Look Tonight (alt take)',
+          artist: 'Wes Montgomery',
+          album: 'Trio	Guitar On The Go'
+        }
+      ]
+    }
   }
 
 }
