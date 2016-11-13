@@ -4,6 +4,10 @@ $border-radius-sm:       0;
 
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
+// Datatable
+@import '../node_modules/angular2-data-table/src/components/datatable.scss';
+@import '../node_modules/angular2-data-table/src/themes/material.scss';
+
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

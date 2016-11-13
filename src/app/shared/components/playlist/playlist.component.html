@@ -5,28 +5,11 @@
 <div *ngIf="title">
   <h1>{{title}}</h1>
 
-  <div *ngIf="!pieces">
-    <p class="text-muted">This playlist is empty</p>
-  </div>
-
-  <table class="table table-sm table-hover">
-    <thead class="thead-default">
-      <tr>
-        <th>Title</th>
-        <th>Album</th>
-        <th>Artist</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="let piece of pieces"
-        (click)="selectSong(piece.title)"
-      >
-        <th scope="row">{{piece.title}}</th>
-        <td>{{piece.album}}</td>
-        <td>{{piece.artist}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <datatable
+    class="material"
+    [rows]="pieces"
+    [columns]="columns"
+    [columnMode]="'force'"
+  ></datatable>
 </div>
 
