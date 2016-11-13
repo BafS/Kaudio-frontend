@@ -1,4 +1,4 @@
-export interface Piece {
+export interface Track {
   title: string;
   artist: string;
   album: string;

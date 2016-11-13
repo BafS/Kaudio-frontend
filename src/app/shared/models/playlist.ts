@@ -1,8 +1,8 @@
-import { Piece } from './piece';
+import { Track } from './track';
 
 export interface Playlist {
   id: number;
   name: string;
-  pieces?: Piece[];
+  tracks?: Track[];
   isPrivate: boolean;
 }

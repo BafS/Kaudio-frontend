@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Playlist, Piece } from '../shared/models';
+import { Playlist, Track } from '../shared/models';
 
 @Component({
   selector: 'app-playlists',
@@ -15,7 +15,7 @@ export class PlaylistsComponent implements OnInit {
       id: -1,
       name: '',
       isPrivate: false,
-      pieces: []
+      tracks: []
     }
   }
 
@@ -44,8 +44,8 @@ export class PlaylistsComponent implements OnInit {
       id: id,
       name: this.playlists[id-1].name,
       isPrivate: this.playlists[id-1].isPrivate,
-      pieces: [
-        <Piece>
+      tracks: [
+        <Track>
         {
           title: 'My super song',
           artist: 'Debussy',

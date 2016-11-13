@@ -1,3 +1,3 @@
-export * from './piece';
+export * from './track';
 export * from './playlist';
 export * from './user';

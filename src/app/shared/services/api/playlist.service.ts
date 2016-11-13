@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { RestService } from './../rest.service';
 import { SocketService } from './../socket.service';
-import { Piece } from '../../models';
+import { Track } from '../../models';
 
 @Injectable()
 export class PlaylistService {
@@ -25,9 +25,9 @@ export class PlaylistService {
     return this._rest.get(name, query);
   }
 
-  create(name: string, pieces: Piece[], isPrivate: boolean) {
+  create(name: string, tracks: Track[], isPrivate: boolean) {
     // app.get('token')
-    return this._socket.create(name, pieces, isPrivate);
+    return this._socket.create(name, tracks, isPrivate);
   }
 
   remove(name: string, query: any) {

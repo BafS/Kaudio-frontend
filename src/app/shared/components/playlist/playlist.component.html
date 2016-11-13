@@ -7,9 +7,11 @@
 
   <datatable
     class="material"
-    [rows]="pieces"
+    [rows]="tracks"
     [columns]="columns"
     [columnMode]="'force'"
+    [headerHeight]="40"
+    (sort)="onSort($event)"
   ></datatable>
 </div>
 

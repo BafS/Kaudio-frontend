@@ -1,25 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Piece } from '../../models';
+import { Track } from '../../models';
 
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
-  styleUrls: [
-    //'./../../../../../node_modules/angular2-data-table/release/datatable.css',
-    //'./../../../../../node_modules/angular2-data-table/release/material.css',
-    './playlist.component.scss'
-  ]
+  styleUrls: ['./playlist.component.scss']
 })
 export class PlaylistComponent implements OnInit {
   @Input() title: string;
-  @Input() pieces?: Piece[]; // songs
+  @Input() tracks?: Track[]; // songs
 
   rows = [];
 
   columns = [
-    { prop: 'title' },
-    { prop: 'album' },
-    { prop: 'artist' }
+    { prop: 'title', comparator: false },
+    { prop: 'album', sortable: false },
+    { prop: 'artist', sortable: false }
   ];
 
   constructor() { }
@@ -27,4 +23,8 @@ export class PlaylistComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSort(event) {
+    // event was triggered, start sort sequence
+    console.log('Sort Event', event);
+  }
 }
