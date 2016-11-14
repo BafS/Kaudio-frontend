@@ -1,9 +1,9 @@
 <div *ngIf="!title">
-  <h1 class="text-muted">Please select a playlist</h1>
+  <h1 class="text-muted playlist-title">Please select a playlist</h1>
 </div>
 
 <div *ngIf="title">
-  <h1>{{title}}</h1>
+  <h1 class="playlist-title">{{title}}</h1>
 
   <datatable
     class="material"

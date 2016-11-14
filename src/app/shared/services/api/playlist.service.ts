@@ -21,7 +21,7 @@ export class PlaylistService {
   }
 
   // TODO Get by name or id ?
-  get(name: string, query: any) {
+  get(name: string, query?: any) {
     return this._rest.get(name, query);
   }
 

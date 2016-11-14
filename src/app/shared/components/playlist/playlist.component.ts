@@ -14,8 +14,8 @@ export class PlaylistComponent implements OnInit {
 
   columns = [
     { prop: 'title', comparator: false },
-    { prop: 'album', sortable: false },
-    { prop: 'artist', sortable: false }
+    { name: 'Album', prop: 'album.title', sortable: false },
+    { name: 'Artist', prop: 'album.artist.name', sortable: false }
   ];
 
   constructor() { }

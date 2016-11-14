@@ -1,7 +1,7 @@
 import { Track } from './track';
 
 export interface Playlist {
-  id: number;
+  _id: string;
   name: string;
   tracks?: Track[];
   isPrivate: boolean;

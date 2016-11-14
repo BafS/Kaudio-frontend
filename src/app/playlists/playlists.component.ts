@@ -16,7 +16,7 @@ export class PlaylistsComponent implements OnInit {
     private _playlistService: PlaylistService,
   ) {
     this.currentPlaylist = <Playlist>{
-      id: -1,
+      _id: '',
       name: '',
       isPrivate: false,
       tracks: []
@@ -28,33 +28,29 @@ export class PlaylistsComponent implements OnInit {
       console.info(playlists);
       if (playlists.data) {
         this.playlists = playlists.data;
+
+        // Reload previous playlist if possible
+        let key = Number(window.localStorage.getItem('playlist-key'));
+        if (key >= 0) {
+          this.loadPlaylist(key);
+        }
       }
     });
   }
 
   loadPlaylist(key: number) {
-    console.log(`Playlist id(${key}) will be loaded !`)
+    if (!this.playlists[key]) {
+      return;
+    }
 
-    let tmpPlaylist = this.playlists[key];
-    tmpPlaylist.tracks = [
-        <Track>
-        {
-          title: 'My super song',
-          artist: 'Debussy',
-          album: 'Kaudioz'
-        },
-        {
-          title: 'My Selene',
-          artist: 'Sonata Arctica',
-          album: 'Reckoning Night'
-        },
-        {
-          title: 'The Way You Look Tonight (alt take)',
-          artist: 'Wes Montgomery',
-          album: 'Trio	Guitar On The Go'
-        }
-      ];
+    window.localStorage.setItem('playlist-key', key + '');
+    let uid = this.playlists[key]._id;
 
-    this.currentPlaylist = tmpPlaylist;
+    console.log(`Playlist key:${key}, _id:${uid}`);
+
+    this._playlistService.get(uid).then(playlist => {
+      console.info(playlist);
+      this.currentPlaylist = playlist
+    });
   }
 }
