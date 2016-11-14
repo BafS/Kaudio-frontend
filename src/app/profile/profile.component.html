@@ -27,6 +27,13 @@
     </alert>
   </div>
 
+  <div class="form-group">
+    <label for="password">Picture</label>
+    <input type="file" class="form-control" id="picture"
+            [(ngModel)]="user.picture" name="picture"
+            #picture="ngModel">
+  </div>
+
   <button type="submit" class="btn btn-default" [disabled]="!userForm.form.valid">Register</button>
 </form>
 <button class="btn btn-default-outline" (click)="onLogout()">Cancel</button>

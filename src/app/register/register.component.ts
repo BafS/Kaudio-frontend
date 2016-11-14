@@ -14,7 +14,7 @@ import { User } from '../shared/models/user';
 export class RegisterComponent implements OnInit {
   private _messages: any[] = [];
   // private _messageService: MessageService;
-  user = new User('', '');
+  user = new User('', '', '');
 
   constructor(private _messageService: MessageService,
     private _userService: UserService

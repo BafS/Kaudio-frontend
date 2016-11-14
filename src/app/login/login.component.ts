@@ -14,7 +14,7 @@ import { User } from '../shared/models/user';
 export class LoginComponent implements OnInit {
   private _messages: any[] = [];
   // private _messageService: MessageService;
-  user = new User('super@admin.com', 'adminPwd');
+  user = new User('super@admin.com', 'adminPwd', '');
   token = this._authService.getToken();
 
   constructor (

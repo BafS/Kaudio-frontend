@@ -11,7 +11,7 @@ import { User } from '../shared/models/user';
   providers: [ UserService, MessageService ]})
 export class ProfileComponent implements OnInit {
     private _messages: any[] = [];
-    user = new User('', '')
+    user = new User('', '', '')
 
   constructor(
     ) {
@@ -21,6 +21,8 @@ export class ProfileComponent implements OnInit {
     console.log(`do register (${this.user.email})`);
 
     console.log(this.user.email);
+    console.log(this.user.password);
+    console.log(this.user.picture);
 
     // TODO
     // If logged, redirection
