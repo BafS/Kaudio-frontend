@@ -19,15 +19,15 @@ export class UserService {
     return this._rest.find(query);
   }
 
-  get(id: string, query: any) {
+  get(id: string, query?: any) {
     return this._rest.get(id, query);
   }
 
-  create(user:User) {
+  create(user: User) {
     return this._rest.create(user);
   }
 
-  remove(id: string, query: any) {
+  remove(id: string, query?: any) {
     return this._rest.remove(id, query);
   }
 }
