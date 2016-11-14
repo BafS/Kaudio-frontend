@@ -12,10 +12,10 @@ export class PlaylistService {
     private _socketService: SocketService,
     private _restService: RestService
   ) {
-
-    this._rest = _restService.getService('user');
-    this._socket = _socketService.getService('user');
+    this._rest = _restService.getService('playlists');
+    this._socket = _socketService.getService('playlists');
   }
+
   find(query?: any) {
     return this._rest.find(query);
   }

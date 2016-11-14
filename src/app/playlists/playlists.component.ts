@@ -1,25 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { Playlist, Track } from '../shared/models';
+import { PlaylistService } from './../shared/services/api/playlist.service';
 
 @Component({
   selector: 'app-playlists',
   templateUrl: './playlists.component.html',
-  styleUrls: ['./playlists.component.scss']
+  styleUrls: ['./playlists.component.scss'],
+  providers: [ PlaylistService ]
 })
 export class PlaylistsComponent implements OnInit {
   private playlists: Playlist[];
   private currentPlaylist: Playlist;
 
-  constructor() {
+  constructor(
+    private _playlistService: PlaylistService,
+  ) {
     this.currentPlaylist = <Playlist>{
       id: -1,
       name: '',
       isPrivate: false,
       tracks: []
-    }
+    };
   }
 
   ngOnInit() {
+    let all = this._playlistService.find();
+    console.info(all.data);
+
     this.playlists = [
       <Playlist>
       {

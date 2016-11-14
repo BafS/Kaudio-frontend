@@ -29,7 +29,7 @@ export class SocketService {
     this._app = feathers()
       .configure(socketio(this.socket))
       .configure(hooks())
-      .configure(authentication({ storage: window.localStorage }))
+      .configure(authentication({ storage: window.localStorage }));
   }
 
   getService(service: string) {
