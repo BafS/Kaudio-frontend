@@ -9,10 +9,10 @@ import { Playlist } from '../../models/playlist';
 export class SidebarComponent {
   @Input('playlists') playlistsList: Playlist[];
   @Output('selectPlaylist') selectedPlaylist = new EventEmitter<number>();
-  private currentPlaylistID: number = -1;
+  private currentPlaylistKey: number = -1;
 
-  selectPlaylist(id: number) {
-    this.currentPlaylistID = id;
-    this.selectedPlaylist.emit(id);
+  selectPlaylist(key: number) {
+    this.currentPlaylistKey = key;
+    this.selectedPlaylist.emit(key);
   }
 }

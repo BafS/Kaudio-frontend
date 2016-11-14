@@ -14,8 +14,13 @@ import { User } from '../shared/models/user';
 export class LoginComponent implements OnInit {
   private _messages: any[] = [];
   // private _messageService: MessageService;
+<<<<<<< HEAD
   user = new User('super@admin.com', 'adminPwd', '');
   token = this._authService.getToken();
+=======
+  user = new User('super@admin.com', 'adminPwd');
+  token: string;
+>>>>>>> f06e3d20cea861ca257787a77b1005c47d68db7a
 
   constructor (
     private _messageService: MessageService,
@@ -33,6 +38,7 @@ export class LoginComponent implements OnInit {
   // }
 
   ngOnInit() {
+    this.token = this._authService.getToken();
     // this._messageService.find().then(messages => {
       //  this._messages = messages;
     // });
@@ -51,13 +57,18 @@ export class LoginComponent implements OnInit {
       });
     }).catch((error) => {
       console.error('Error authenticating!', error);
-    })
+    });
 
     // TODO
     // If logged, redirection
     // if not, alert message
 
     return false;
+  }
+
+  onLogout() {
+    this._authService.logout();
+    this.token = null;
   }
 
   // @DEV

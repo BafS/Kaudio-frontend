@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
     user = new User('', '', '')
 
   constructor(
+    private userService: UserService,
     ) {
   }
 
@@ -24,9 +25,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.user.password);
     console.log(this.user.picture);
 
-    // TODO
-    // If logged, redirection
-    // if not, alert message
+    this.userService.create(this.user);
 
     return false;
   }

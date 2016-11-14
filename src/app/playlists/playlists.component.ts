@@ -24,34 +24,19 @@ export class PlaylistsComponent implements OnInit {
   }
 
   ngOnInit() {
-    let all = this._playlistService.find();
-    console.info(all.data);
-
-    this.playlists = [
-      <Playlist>
-      {
-        id: 1,
-        name: 'Jazz',
-        isPrivate: false
-      },
-      {
-        id: 2,
-        name: 'Classical',
-        isPrivate: true
+    this._playlistService.find().then(playlists => {
+      console.info(playlists);
+      if (playlists.data) {
+        this.playlists = playlists.data;
       }
-    ];
+    });
   }
 
-  loadPlaylist(id: number) {
-    console.log(`Playlist id(${id}) will be loaded !`)
+  loadPlaylist(key: number) {
+    console.log(`Playlist id(${key}) will be loaded !`)
 
-    // TODO get playlist from API
-
-    this.currentPlaylist = <Playlist>{
-      id: id,
-      name: this.playlists[id-1].name,
-      isPrivate: this.playlists[id-1].isPrivate,
-      tracks: [
+    let tmpPlaylist = this.playlists[key];
+    tmpPlaylist.tracks = [
         <Track>
         {
           title: 'My super song',
@@ -68,7 +53,8 @@ export class PlaylistsComponent implements OnInit {
           artist: 'Wes Montgomery',
           album: 'Trio	Guitar On The Go'
         }
-      ]
-    };
+      ];
+
+    this.currentPlaylist = tmpPlaylist;
   }
 }

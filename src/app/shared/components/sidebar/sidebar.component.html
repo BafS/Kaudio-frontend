@@ -3,10 +3,10 @@
   <!--TODO add active to the current one-->
   <a
     class="nav-link"
-    *ngFor="let playlist of playlistsList"
-    (click)="selectPlaylist(playlist.id)"
-    [class.active]="playlist.id === currentPlaylistID"
+    *ngFor="let playlist of playlistsList; let i=index"
+    (click)="selectPlaylist(i)"
+    [class.active]="i === currentPlaylistKey"
   >
-    {{playlist.name}}
+    {{playlist.name}} <span class="tag" *ngIf="playlist.isPrivate">private</span>
   </a>
 </nav>
