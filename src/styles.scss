@@ -28,3 +28,10 @@ html {
   // background: #eaa; // Debug only
   position: absolute;
 }
+
+// Plyr customization
+.plyr--audio .plyr__controls {
+  background: transparent;
+  color: #fbfbfb;
+  border: none;
+}
