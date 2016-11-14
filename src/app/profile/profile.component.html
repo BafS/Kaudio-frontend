@@ -1,7 +1,31 @@
 <h2>Profile</h2>
 
 <form (ngSubmit)="onSubmit()" #userForm="ngForm">
-  This is profile page
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email"
+            ngControl="email"
+            required
+            autofocus
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+            [(ngModel)]="user.email" name="email"
+            #email="ngModel">
+    <alert [hidden]="email.valid || email.pristine">
+      Email is required
+    </alert>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="text" class="form-control" id="password"
+            required minlength="3"
+            [(ngModel)]="user.password" name="password"
+            #password="ngModel">
+    <alert
+      [hidden]="password.valid || password.pristine">
+      A password longer than 3 characters is required
+    </alert>
+  </div>
 
   <button type="submit" class="btn btn-default" [disabled]="!userForm.form.valid">Register</button>
 </form>

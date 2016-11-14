@@ -25,6 +25,18 @@ export class ProfileComponent implements OnInit {
     ) {
   }
 
+    onSubmit(event) {
+    console.log(`do register (${this.user.email})`);
+
+    console.log(this.user.email);
+
+    // TODO
+    // If logged, redirection
+    // if not, alert message
+
+    return false;
+  }
+
 
   ngOnInit() {
   }
