@@ -18,10 +18,15 @@ export class RestService {
       .configure(rest(HOST).superagent(superagent)) // Fire up rest
       .configure(hooks())
       .configure(authentication({ storage: window.localStorage }));
+
+    // TODO workaround
+    if (window.localStorage.getItem('feathers-jwt')) {
+      this._app.set('token', window.localStorage.getItem('feathers-jwt'));
+    }
   }
 
   getService(service: string) {
-    return this._app.service(service);
+    return this.getApp().service(service);
   }
 
   getApp() {

@@ -13,11 +13,10 @@ export class AuthenticationService {
         type: 'local',
         email: email,
         password: password
-      })
+      });
   }
 
   getToken() {
-    console.log(this._rest.getApp().get('token'));
     return this._rest.getApp().get('token');
   }
 
