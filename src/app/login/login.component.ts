@@ -14,8 +14,8 @@ import { User } from '../shared/models/user';
 export class LoginComponent implements OnInit {
   private _messages: any[] = [];
   // private _messageService: MessageService;
-  user = new User('test@test.com', 'test')
-  token = this._authService.getToken()
+  user = new User('super@admin.com', 'adminPwd');
+  token = this._authService.getToken();
 
   constructor (
     private _messageService: MessageService,
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
 
   // @DEV
   sendMessage() {
-    console.log('send a message....')
+    console.log('send a message....');
     this._messageService.create({
       message: `User ${this.user.email} send a message`
     });
