@@ -16,11 +16,16 @@ export class AuthenticationService {
       });
   }
 
+  getUser() {
+    return this._rest.getApp().get('user');
+  }
+
   getToken() {
     return this._rest.getApp().get('token');
   }
 
   logout() {
+    window.localStorage.setItem('userId', null); // tmp
     return this._rest.getApp().logout();
   }
 }

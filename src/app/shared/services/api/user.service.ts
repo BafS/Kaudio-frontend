@@ -5,7 +5,7 @@ import { User } from './../../models';
 
 @Injectable()
 export class UserService {
-  private _socket;
+  // private _socket;
   private _rest;
 
   constructor(
@@ -15,6 +15,7 @@ export class UserService {
     this._rest = _restService.getService('users');
     // this._socket = _socketService.getService('user');
   }
+
   find(query?: any) {
     return this._rest.find(query);
   }
@@ -25,6 +26,10 @@ export class UserService {
 
   create(user: User) {
     return this._rest.create(user);
+  }
+
+  update(id: string, user: User) {
+    return this._rest.update(id, user);
   }
 
   remove(id: string, query?: any) {

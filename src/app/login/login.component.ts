@@ -47,6 +47,8 @@ export class LoginComponent implements OnInit {
 
       this.token = this._authService.getToken();
 
+      window.localStorage.setItem('userId', result.data._id);
+
       this._messageService.create({
         message: `User ${this.user.email} is logged (or try to...)`
       });
