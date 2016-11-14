@@ -18,9 +18,12 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
+        "../node_modules/plyr/dist/plyr.css",
         "styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/plyr/dist/plyr.js"
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",

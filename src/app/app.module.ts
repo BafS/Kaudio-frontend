@@ -21,6 +21,7 @@ import { RegisterComponent } from './register/register.component';
 import { PlaylistComponent } from './shared/components/playlist/playlist.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { PlaylistsComponent } from './playlists/playlists.component';
+import { AudiobarComponent } from './shared/components/audiobar/audiobar.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PlaylistsComponent } from './playlists/playlists.component';
     ProfileComponent,
     PlaylistComponent,
     SidebarComponent,
-    PlaylistsComponent
+    PlaylistsComponent,
+    AudiobarComponent
   ],
   imports: [
     BrowserModule,
