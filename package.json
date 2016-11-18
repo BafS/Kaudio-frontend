@@ -25,8 +25,8 @@
     "core-js": "^2.4.1",
     "feathers": "^2.0.2",
     "feathers-authentication": "^0.8.0-beta-2",
-    "feathers-hooks": "^1.5.8",
-    "feathers-localstorage": "^0.5.0",
+    "feathers-hooks": "^1.6.1",
+    "feathers-localstorage": "^1.0.0",
     "feathers-rest": "^1.5.0",
     "feathers-socketio": "^1.4.1",
     "ng2-bootstrap": "^1.1.13",
@@ -40,8 +40,8 @@
   "devDependencies": {
     "@types/jasmine": "^2.2.30",
     "@types/node": "^6.0.42",
-    "angular-cli": "1.0.0-beta.19-3",
-    "codelyzer": "1.0.0-beta.1",
+    "angular-cli": "1.0.0-beta.20-4",
+    "codelyzer": "1.0.0-beta.4",
     "jasmine-core": "2.4.1",
     "jasmine-spec-reporter": "2.5.0",
     "karma": "1.2.0",
@@ -50,7 +50,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-remap-istanbul": "^0.2.1",
     "protractor": "^4.0.10",
-    "ts-node": "^1.6.0",
+    "ts-node": "^1.7.0",
     "tslint": "3.15.1",
     "typescript": "~2.0.3"
   }

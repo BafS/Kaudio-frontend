@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/services/api/user.service';
 import { AuthenticationService } from '../shared/services/api/authentication.service';
-
 import { MessageService } from '../shared/services/api/message.service';
 import { User } from '../shared/models/user';
 
@@ -14,7 +13,7 @@ import { User } from '../shared/models/user';
 export class ProfileComponent implements OnInit {
     private _messages: any[] = [];
     private userId: string;
-    user: User;
+    public user: User;
 
   constructor(
     private _userService: UserService,
@@ -47,5 +46,4 @@ export class ProfileComponent implements OnInit {
 
     return false;
   }
-
 }
