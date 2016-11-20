@@ -1,0 +1,7 @@
+  <form class="form-inline float-xs-right">
+    <input (input)="term$.next($event.target.value)">
+    <ul>
+      <li *ngFor="let track of tracks">{{track}}</li>
+    </ul>
+    <button class="btn btn-outline-info" type="submit">Search</button>
+  </form>
