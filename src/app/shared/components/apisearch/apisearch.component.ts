@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Track} from '../../models/track';
+import { Track } from '../../models/track';
 import { ApiSearchService } from '../../services/api/api-search.service';
 import { Subject } from 'rxjs/Subject';
 
@@ -12,18 +12,21 @@ import { Subject } from 'rxjs/Subject';
 export class ApiSearchComponent implements OnInit {
   tracks: Track[];
   term$ = new Subject<string>();
+
   constructor(
     private _apiSearchService: ApiSearchService,
   ) {
   }
-search(term: string){
-  this._apiSearchService.find(term).then(result => {
-      if (result.data) {
-        this.tracks = result.data;
-      }
-});
-}
+
   ngOnInit() {
     this.term$.subscribe(term => this.search(term));
   }
+
+  search(term: string) {
+    this._apiSearchService.find(term).then(result => {
+      if (result.data) {
+        this.tracks = result.data;
+      }
+    });
   }
+}
