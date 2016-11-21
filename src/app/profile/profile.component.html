@@ -39,10 +39,23 @@
 
       <div class="form-group">
         <label for="friends">Friends</label>
-        <input type="text" class="form-control" id="friends"
-                [(ngModel)]="user.friends" name="friends"
-                #picture="ngModel">
-      </div>
+          <input [(ngModel)]="selected"
+                [typeahead]="dataSource"
+                (typeaheadLoading)="changeTypeaheadLoading($event)"
+                (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+                (typeaheadOnSelect)="typeaheadOnSelect($event)"
+                [typeaheadOptionsLimit]="7"
+                [typeaheadOptionField]="'name'"
+                placeholder="Locations loaded with timeout"
+                class="form-control"
+                name="friends">
+          <div *ngIf="typeaheadLoading===true">
+            <i class="glyphicon glyphicon-refresh ng-hide" style=""></i>
+          </div>
+          <div *ngIf="typeaheadNoResults===true" class="" style="">
+            <i class="glyphicon glyphicon-remove"></i> No Results Found
+          </div>
+        </div>
 
       <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid">Update</button>
       <button class="btn btn-default-outline" (click)="onLogout()">Cancel</button>

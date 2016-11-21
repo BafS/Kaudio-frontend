@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { AlertModule, TypeaheadModule, Ng2BootstrapModule  } from 'ng2-bootstrap/ng2-bootstrap';
 import { Angular2DataTableModule } from 'angular2-data-table';
 
 import { ROUTES } from './app.routes';
@@ -45,7 +45,8 @@ import { ApiSearchComponent } from './shared/components/apisearch/apisearch.comp
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     AlertModule,
-    Angular2DataTableModule
+    Angular2DataTableModule,
+    TypeaheadModule
   ],
   // providers: [],
   providers: [ SocketService, RestService ],
