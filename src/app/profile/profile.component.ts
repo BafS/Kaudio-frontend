@@ -16,14 +16,14 @@ import 'rxjs/add/observable/of';
 })
 export class ProfileComponent implements OnInit {
   public stateCtrl:FormControl = new FormControl();
-    private _messages: any[] = [];
-    private userId: string;
-    public user: User;
-    public myForm:FormGroup = new FormGroup({
+  private _messages: any[] = [];
+  private userId: string;
+  public user: User;
+  public myForm:FormGroup = new FormGroup({
     state: this.stateCtrl
   });
 
-   public customSelected:string = '';
+  public customSelected:string = '';
   public groupSelected:string = '';
   public selected:string = '';
   public dataSource:Observable<any>;
@@ -74,7 +74,7 @@ export class ProfileComponent implements OnInit {
     private _userService: UserService,
     private _authService: AuthenticationService,
   ) {
-        this.dataSource = Observable.create((observer:any) => {
+    this.dataSource = Observable.create((observer:any) => {
       // Runs on every search
       observer.next(this.asyncSelected);
     }).mergeMap((token:string) => this.getStatesAsObservable(token));
@@ -90,7 +90,7 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-    public changeTypeaheadLoading(e:boolean):void {
+  public changeTypeaheadLoading(e:boolean):void {
     this.typeaheadLoading = e;
   }
  
@@ -130,38 +130,3 @@ export class ProfileComponent implements OnInit {
     return false;
   }
 }
-
-/*@Directive({
-  selector: '[typeahead][ngModel]'
-})
-export class TypeaheadDirective implements OnInit {
-  @Output() public typeaheadLoading:EventEmitter<boolean>;
-  @Output() public typeaheadNoResults:EventEmitter<boolean>;
-  @Output() public typeaheadOnSelect:EventEmitter<TypeaheadMatch>;
-
-  @Input() public typeahead:any;
-  @Input() public typeaheadMinLength:number;
-  @Input() public typeaheadWaitMs:number;
-  @Input() public typeaheadOptionsLimit:number;
-  @Input() public typeaheadOptionField:string;
-  @Input() public typeaheadGroupField:string;
-  @Input() public typeaheadAsync:boolean = null;
-  @Input() public typeaheadLatinize:boolean = true;
-  @Input() public typeaheadSingleWords:boolean = true;
-  @Input() public typeaheadWordDelimiters:string = ' ';
-  @Input() public typeaheadPhraseDelimiters:string = '\'"';
-  @Input() public typeaheadItemTemplate:TemplateRef<any>;
-
-    ngOnInit() {
-
-  }
-
-  // not yet implemented
-  @Input() private typeaheadAppendToBody:boolean;
-  @Input() private typeaheadEditable:boolean;
-  @Input() private typeaheadFocusFirst:boolean;
-  @Input() private typeaheadInputFormatter:any;
-  @Input() private typeaheadSelectOnExact:boolean;
-  @Input() private typeaheadSelectOnBlur:boolean;
-  @Input() private typeaheadFocusOnSelect:boolean;
-}*/

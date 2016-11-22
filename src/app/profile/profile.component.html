@@ -39,7 +39,7 @@
 
       <div class="form-group">
         <label for="friends">Friends</label>
-          <input [(ngModel)]="selected"
+          <input [(ngModel)]="asyncSelected"
                 [typeahead]="dataSource"
                 (typeaheadLoading)="changeTypeaheadLoading($event)"
                 (typeaheadNoResults)="changeTypeaheadNoResults($event)"
