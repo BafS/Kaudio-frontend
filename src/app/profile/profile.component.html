@@ -38,15 +38,14 @@
       </div>
 
       <div class="form-group">
-        <label for="friends">Friends</label>
+        <label for="friends">Friends</label><!-- [typeahead]="dataSource"" -->
           <input [(ngModel)]="asyncSelected"
-                [typeahead]="dataSource"
+                [typeahead]="autoCompleteRef" 
                 (typeaheadLoading)="changeTypeaheadLoading($event)"
                 (typeaheadNoResults)="changeTypeaheadNoResults($event)"
                 (typeaheadOnSelect)="typeaheadOnSelect($event)"
                 [typeaheadOptionsLimit]="7"
                 [typeaheadOptionField]="'name'"
-                placeholder="Locations loaded with timeout"
                 class="form-control"
                 name="friends">
           <div *ngIf="typeaheadLoading===true">

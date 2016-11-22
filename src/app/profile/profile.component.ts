@@ -6,7 +6,9 @@ import { User } from '../shared/models/user';
 import { TypeaheadModule, TypeaheadMatch } from 'ng2-bootstrap/components/typeahead';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { Http, HttpModule, JsonpModule, Headers, URLSearchParams } from '@angular/http';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-profile',
@@ -22,6 +24,8 @@ export class ProfileComponent implements OnInit {
   public myForm:FormGroup = new FormGroup({
     state: this.stateCtrl
   });
+
+  private api_url:string = '';
 
   public customSelected:string = '';
   public groupSelected:string = '';
@@ -73,7 +77,9 @@ export class ProfileComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private _authService: AuthenticationService,
+    private http: Http,
   ) {
+    this.api_url = '/users?email';
     this.dataSource = Observable.create((observer:any) => {
       // Runs on every search
       observer.next(this.asyncSelected);
@@ -128,5 +134,24 @@ export class ProfileComponent implements OnInit {
     this._userService.update(this.userId, this.user);
 
     return false;
+  }
+
+  public autoCompleteRef = this.autoComplete.bind(this);
+
+  public autoComplete() {
+    //let headers = new Headers();
+    //headers.append('Authorization', 'Bearer ' + this.authservice.getToken());
+
+    let searchParams = new URLSearchParams();
+    searchParams.set('search', this.asyncSelected);
+
+    return this.http.get(this.api_url, {search: searchParams/*, headers: headers*/})
+      .map(res => res.json())
+      .map((el)=> {
+        return el.map((data)=> {
+          return ({id: data.id, name: data.name});
+        });
+      })
+      .toPromise();
   }
 }
