@@ -37,24 +37,24 @@
                 #picture="ngModel">
       </div>
 
-      <div class="form-group">
-        <label for="friends">Friends</label><!-- [typeahead]="dataSource"" -->
-          <input [(ngModel)]="asyncSelected"
-                [typeahead]="autoCompleteRef" 
-                (typeaheadLoading)="changeTypeaheadLoading($event)"
-                (typeaheadNoResults)="changeTypeaheadNoResults($event)"
-                (typeaheadOnSelect)="typeaheadOnSelect($event)"
-                [typeaheadOptionsLimit]="7"
-                [typeaheadOptionField]="'name'"
-                class="form-control"
-                name="friends">
-          <div *ngIf="typeaheadLoading===true">
-            <i class="glyphicon glyphicon-refresh ng-hide" style=""></i>
-          </div>
-          <div *ngIf="typeaheadNoResults===true" class="" style="">
-            <i class="glyphicon glyphicon-remove"></i> No Results Found
-          </div>
+      <div class="form-group mb-3">
+        <label for="friends">Friends</label>
+        <input [(ngModel)]="asyncSelected"
+              [typeahead]="dataSource"
+              (typeaheadLoading)="changeTypeaheadLoading($event)"
+              (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+              (typeaheadOnSelect)="typeaheadOnSelect($event)"
+              [typeaheadOptionsLimit]="7"
+              [typeaheadOptionField]="'email'"
+              class="form-control"
+              name="friends">
+        <div *ngIf="typeaheadLoading===true">
+          <i class="glyphicon glyphicon-refresh ng-hide" style=""></i>
         </div>
+        <div *ngIf="typeaheadNoResults===true" class="" style="">
+          <i class="glyphicon glyphicon-remove"></i> No Results Found
+        </div>
+      </div>
 
       <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid">Update</button>
       <button class="btn btn-default-outline" (click)="onLogout()">Cancel</button>
