@@ -1,7 +1,7 @@
   <form class="form-inline float-xs-right">
-    <input (input)="term$.next($event.target.value)">
-    <ul>
-      <li *ngFor="let track of tracks">{{track}}</li>
+    <input class="form-control" (input)="term$.next($event.target.value)">
+    <ul *ngIf="tracks">
+      <li *ngFor="let track of tracks">{{track | json}}</li>
     </ul>
-    <button class="btn btn-outline-info" type="submit">Search</button>
+    <button class="form-inline btn btn-outline-info" type="submit">Search</button>
   </form>

@@ -11,9 +11,7 @@ export class ApiSearchService {
     this._rest = _restService.getService('tracks');
   }
 
-
- find(query?: any) {
+  find(query?: any) {
     return this._rest.find(query);
   }
-
 }
