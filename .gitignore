@@ -11,6 +11,7 @@
 /.vscode
 .project
 .classpath
+.c9/
 *.launch
 .settings/
 
