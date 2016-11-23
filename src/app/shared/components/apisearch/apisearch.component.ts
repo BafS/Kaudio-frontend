@@ -1,4 +1,3 @@
-import { ApiService } from './../../services/api.service';
 import { MessageService } from './../../services/api/message.service';
 import { ApiSearchService } from './../../services/api/api-search.service';
 import { Track } from './../../models/track';
