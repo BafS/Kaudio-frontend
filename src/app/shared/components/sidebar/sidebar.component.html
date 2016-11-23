@@ -9,4 +9,18 @@
   >
     {{playlist.name}} <span class="tag" *ngIf="playlist.isPrivate">private</span>
   </a>
+  <!--Ajout playlist-->
+  <form (ngSubmit)="addPlaylist()" #addPlaylistForm="ngForm">
+      <!--A<div class="form-group">
+        <input class="form-control" id="addPlaylist"
+                ngControl="addPlaylist"
+                required
+                [(ngModel)]="playlist.name" name="addPlaylist"
+                #name="ngModel">
+        <alert [hidden]="email.valid || email.pristine">
+          Email is required
+        </alert>
+      </div>-->
+      <button type="submit" class="btn btn-primary" [disabled]="!addPlaylistForm.form.valid">Add</button>
+  </form>
 </nav>
