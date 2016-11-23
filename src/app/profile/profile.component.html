@@ -38,6 +38,9 @@
       </div>
 
       <div class="form-group mb-3">
+        <ul *ngFor="let friend of user.friends">
+            <li>{{friend}}</li>
+        </ul>
         <label for="friends">Friends</label>
         <input [(ngModel)]="asyncSelected"
               [typeahead]="dataSource"
