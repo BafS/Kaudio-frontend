@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import {Injectable} from '@angular/core';
 import { RestService } from './../rest.service';
 
