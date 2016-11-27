@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AlertModule, TypeaheadModule, Ng2BootstrapModule  } from 'ng2-bootstrap/ng2-bootstrap';
+import { MaterialModule } from '@angular/material';
 import { Angular2DataTableModule } from 'angular2-data-table';
 
 import { ROUTES } from './app.routes';
@@ -23,6 +24,7 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
 import { PlaylistsComponent } from './playlists/playlists.component';
 import { AudiobarComponent } from './shared/components/audiobar/audiobar.component';
 import { ApiSearchComponent } from './shared/components/apisearch/apisearch.component';
+import { AddPlaylistSidenavComponent } from './shared/components/add-playlist-sidenav/add-playlist-sidenav.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { ApiSearchComponent } from './shared/components/apisearch/apisearch.comp
     SidebarComponent,
     PlaylistsComponent,
     AudiobarComponent,
-    ApiSearchComponent
+    ApiSearchComponent,
+    AddPlaylistSidenavComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,8 @@ import { ApiSearchComponent } from './shared/components/apisearch/apisearch.comp
     RouterModule.forRoot(ROUTES, { useHash: true }),
     AlertModule,
     Angular2DataTableModule,
-    TypeaheadModule
+    TypeaheadModule,
+    MaterialModule.forRoot()
   ],
   // providers: [],
   providers: [ SocketService, RestService ],
