@@ -24,6 +24,7 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
 import { PlaylistsComponent } from './playlists/playlists.component';
 import { AudiobarComponent } from './shared/components/audiobar/audiobar.component';
 import { ApiSearchComponent } from './shared/components/apisearch/apisearch.component';
+import { AddPlaylistDialogComponent } from './shared/components/add-playlist-dialog/add-playlist-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,9 @@ import { ApiSearchComponent } from './shared/components/apisearch/apisearch.comp
     PlaylistsComponent,
     AudiobarComponent,
     ApiSearchComponent,
+    AddPlaylistDialogComponent
   ],
+  entryComponents: [AddPlaylistDialogComponent],
   imports: [
     BrowserModule,
     FormsModule,

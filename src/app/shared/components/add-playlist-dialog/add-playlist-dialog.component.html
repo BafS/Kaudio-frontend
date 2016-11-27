@@ -1,0 +1,10 @@
+<md-toolbar color="primary">Add Playlist</md-toolbar>
+<md-card-content>
+  <md-input placeholder="Playlist name" style="width: 100%" [(ngModel)]="playlist.name" name="playlist"></md-input>
+  <button md-mini-fab (click)="addPlaylist()">
+    <md-icon class="md-24">add</md-icon>
+  </button>
+  <button md-mini-fab (click)="dialogRef.close()">
+    <md-icon class="md-24">clear</md-icon>
+  </button>
+</md-card-content>
