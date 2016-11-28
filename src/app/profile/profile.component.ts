@@ -91,4 +91,16 @@ export class ProfileComponent implements OnInit {
 
     return false;
   }
+
+  onRemove(user) {
+    console.log("Remove: " + user);
+
+    for (var i = 0; i < this.user.friends.length; i++)
+      if (this.user.friends[i] == user) {
+        this.user.friends.splice(i, 1);
+        // TODO: Implement persistance here
+      }
+    
+    return false;
+  }
 }
