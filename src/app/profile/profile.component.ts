@@ -68,6 +68,7 @@ export class ProfileComponent implements OnInit {
   public typeaheadOnSelect(e: TypeaheadMatch): void {
     console.log('Selected value: ', e);
     this.user.friends.push(e.value);
+    this.asyncSelected = null;
   }
 
   ngOnInit() {
