@@ -13,6 +13,8 @@ import { PlaylistService } from '../../services/api/playlist.service';
 export class PlaylistComponent implements OnInit {
   @Input() title: string;
   @Input() tracks?: Track[]; // songs
+  @Input() id: string;
+  
 
   rows = [];
 
@@ -34,21 +36,12 @@ export class PlaylistComponent implements OnInit {
     console.log('Sort Event', event);
   }
 
-  //TODO recuperer l'id de la playlist selectionner et remove ça
   deletePlaylist(){
-    /*this._playlistService.remove('582c2e80860b26649e67bea3', '').then((result) => {
-      console.log('Playlist : ' + 'test' + ' delete', result);
+    this._playlistService.remove(this.id, '').then((result) => {
+      console.log('Playlist : ' + this.title + ' delete', result);
 
     }).catch((error) => {
-      console.error('Error Delete Playlist : ' , error);
-    });*/
-
-    this._playlistService.find('_id : 582c2e80860b26649e67bea3').then((result) => {
-      console.log('Playlist : ', result);
-
-    }).catch((error) => {
-      console.error('Error Delete Playlist : ' , error);
+      console.error('Error Delete Playlist : ' + this.title , error);
     });
-
   }
 }
