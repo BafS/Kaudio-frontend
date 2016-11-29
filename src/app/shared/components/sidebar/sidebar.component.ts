@@ -31,9 +31,9 @@ export class SidebarComponent {
    * Call add playlist dialog
    */
   addPlaylist() {
-    this.dialogRef = this.dialog.open(AddPlaylistDialogComponent, {
-      disableClose: false
-    });
+    // this.dialogRef = this.dialog.open(AddPlaylistDialogComponent, {
+      // disableClose: false
+    // });
   }
 }
 
