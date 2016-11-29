@@ -25,6 +25,7 @@ import { PlaylistsComponent } from './playlists/playlists.component';
 import { AudiobarComponent } from './shared/components/audiobar/audiobar.component';
 import { ApiSearchComponent } from './shared/components/apisearch/apisearch.component';
 import { AddPlaylistDialogComponent } from './shared/components/add-playlist-dialog/add-playlist-dialog.component';
+import { LivefeedComponent } from './shared/components/livefeed/livefeed.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AddPlaylistDialogComponent } from './shared/components/add-playlist-dia
     PlaylistsComponent,
     AudiobarComponent,
     ApiSearchComponent,
-    AddPlaylistDialogComponent
+    AddPlaylistDialogComponent,
+    LivefeedComponent
   ],
   entryComponents: [AddPlaylistDialogComponent],
   imports: [

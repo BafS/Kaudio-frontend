@@ -28,4 +28,9 @@ export class SocketService extends FeathersService {
       // this._app.set('token', window.localStorage.getItem('feathers-jwt'));
     }
   }
+
+  // WIP
+  public on(trigger: string, callback: Function) {
+    this.socket.on(trigger, callback);
+  }
 }

@@ -18,8 +18,12 @@ export class MessageService {
     // TODO add observer
     this._socket.on('created', function (message) {
       console.log('-- New Message [socket] --'); // DEV TODO
-      console.log(message)
+      console.log(message);
     });
+  }
+
+  public on(trigger: string, callback: Function) {
+    this._socket.on(trigger, callback);
   }
 
   find(query?: any) {
