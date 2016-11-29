@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
 
 import {Playlist} from '../../models/playlist';
@@ -10,7 +10,7 @@ import { PlaylistService } from '../../services/api/playlist.service';
   styleUrls: ['./add-playlist-dialog.component.scss'],
   providers: [ PlaylistService ]
 })
-export class AddPlaylistDialogComponent implements OnInit {
+export class AddPlaylistDialogComponent {
 
   //playlist pour tester l'ajout a la db
   private playlist = <Playlist>{
@@ -19,15 +19,14 @@ export class AddPlaylistDialogComponent implements OnInit {
     private: true
   };
 
-  constructor(public dialogRef: MdDialogRef<AddPlaylistDialogComponent>, private _playlistService: PlaylistService) { 
-    this._playlistService = _playlistService;
+  constructor(
+    public dialogRef: MdDialogRef<AddPlaylistDialogComponent>,
+    private _playlistService: PlaylistService
+  ) {
   }
 
-  ngOnInit() {
-  }
-
-//TODO change to 
-  addPlaylist(){
+//TODO change to
+  addPlaylist() {
     this._playlistService.create({
       name: this.playlist.name,
       public: this.playlist.private,
