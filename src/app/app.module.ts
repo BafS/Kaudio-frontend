@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { AlertModule, TypeaheadModule, Ng2BootstrapModule  } from 'ng2-bootstrap/ng2-bootstrap';
+import { AlertModule, TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { MaterialModule } from '@angular/material';
 import { Angular2DataTableModule } from 'angular2-data-table';
 

@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
-const feathers = require('feathers');
+// const feathers = require('feathers');
 
 @Injectable()
 export class FeathersService {
-  private _app: any;
+  protected _app: any;
 
   constructor() {
-    this._app = feathers();
+    // this._app = feathers();
+  }
+
+  getService(service: string) {
+    return this.getApp().service(service);
   }
 
   getApp() {
