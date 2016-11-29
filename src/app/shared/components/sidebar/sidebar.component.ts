@@ -1,7 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Playlist } from '../../models/playlist';
-
-//import for dialog
 import { MdDialogRef, MdDialog } from '@angular/material';
 import { AddPlaylistDialogComponent} from '../add-playlist-dialog/add-playlist-dialog.component';
 
@@ -11,13 +9,13 @@ import { AddPlaylistDialogComponent} from '../add-playlist-dialog/add-playlist-d
   styleUrls: ['./sidebar.component.scss'],
 })
 
-//TODO Verifier si après 5 ou plus playlists elles s'affichent dans le sidebar...
+// TODO Verifier si après 5 ou plus playlists elles s'affichent dans le sidebar...
 export class SidebarComponent {
   @Input('playlists') playlistsList: Playlist[];
   @Output('selectPlaylist') selectedPlaylist = new EventEmitter<number>();
   private currentPlaylistKey: number = -1;
 
-  //for add playlist dialog
+  // for add playlist dialog
   private dialogRef: MdDialogRef<AddPlaylistDialogComponent>;
 
   constructor(public dialog: MdDialog) { }

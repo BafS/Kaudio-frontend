@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { AlertModule, TypeaheadModule, Ng2BootstrapModule  } from 'ng2-bootstrap/ng2-bootstrap';
+import { AlertModule, TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { MaterialModule } from '@angular/material';
 import { Angular2DataTableModule } from 'angular2-data-table';
 
@@ -25,6 +25,7 @@ import { PlaylistsComponent } from './playlists/playlists.component';
 import { AudiobarComponent } from './shared/components/audiobar/audiobar.component';
 import { ApiSearchComponent } from './shared/components/apisearch/apisearch.component';
 import { AddPlaylistDialogComponent } from './shared/components/add-playlist-dialog/add-playlist-dialog.component';
+import { LivefeedComponent } from './shared/components/livefeed/livefeed.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AddPlaylistDialogComponent } from './shared/components/add-playlist-dia
     PlaylistsComponent,
     AudiobarComponent,
     ApiSearchComponent,
-    AddPlaylistDialogComponent
+    AddPlaylistDialogComponent,
+    LivefeedComponent
   ],
   entryComponents: [AddPlaylistDialogComponent],
   imports: [
