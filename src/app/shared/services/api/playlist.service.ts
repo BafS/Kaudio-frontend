@@ -25,7 +25,8 @@ export class PlaylistService {
     return this._rest.get(name, query);
   }
 
-  create(playlist: Playlist) {
+//TODO change object to playlist
+  create(playlist: Object) {
     // app.get('token')
     return this._rest.create(playlist);
   }

@@ -14,10 +14,9 @@ export class AddPlaylistDialogComponent implements OnInit {
 
   //playlist pour tester l'ajout a la db
   private playlist = <Playlist>{
-    _id: '0',
     name: '',
-    tracks: [],
-    isPrivate: false
+    //tracks: [],
+    private: true
   };
 
   constructor(public dialogRef: MdDialogRef<AddPlaylistDialogComponent>, private _playlistService: PlaylistService) { 
@@ -27,8 +26,12 @@ export class AddPlaylistDialogComponent implements OnInit {
   ngOnInit() {
   }
 
+//TODO change to 
   addPlaylist(){
-    this._playlistService.create(this.playlist).then((result) => {
+    this._playlistService.create({
+      name: this.playlist.name,
+      public: this.playlist.private,
+    }).then((result) => {
       console.log('Added Playlist : ' + this.playlist.name, result);
 
     }).catch((error) => {

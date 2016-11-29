@@ -10,6 +10,8 @@ import { AddPlaylistDialogComponent} from '../add-playlist-dialog/add-playlist-d
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
+
+//TODO Verifier si après 5 ou plus playlists elles s'affichent dans le sidebar...
 export class SidebarComponent {
   @Input('playlists') playlistsList: Playlist[];
   @Output('selectPlaylist') selectedPlaylist = new EventEmitter<number>();
