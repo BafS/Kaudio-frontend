@@ -31,7 +31,7 @@ export class PlaylistService {
     return this._rest.create(playlist);
   }
 
-  remove(name: string, query: any) {
+  remove(id: string, query: any) {
     return this._rest.remove(name, query);
   }
 }
