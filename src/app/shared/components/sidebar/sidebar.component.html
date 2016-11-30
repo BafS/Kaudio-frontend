@@ -7,9 +7,9 @@
     (click)="selectPlaylist(i)"
     [class.active]="i === currentPlaylistKey"
   >
-    {{playlist.name}} <span class="tag" *ngIf="playlist.isPrivate">private</span>
+    {{playlist.name}} <span class="tag" *ngIf="!playlist.public">private</span>
   </a>
-  <button md-mini-fab (click)="addPlaylist()">
+  <button md-button (click)="addPlaylist()">
     <md-icon class="md-24">add</md-icon>
   </button>
 

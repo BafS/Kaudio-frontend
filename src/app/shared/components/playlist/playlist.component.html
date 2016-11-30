@@ -3,7 +3,7 @@
 </div>
 
 <div *ngIf="title">
-  <h1 class="playlist-title">{{title}}</h1>
+  <h1 class="playlist-title">{{title}} ({{description}})</h1>
 
   <datatable
     class="material"
@@ -15,7 +15,10 @@
   ></datatable>
 </div>
 <div>
-  <button md-mini-fab  (click)="deletePlaylist()">
+  <button md-button (click)="updatePlaylist()">
+    <md-icon class="md-24">edit</md-icon>
+  </button>
+  <button md-button (click)="deletePlaylist()">
     <md-icon class="md-24">delete</md-icon>
   </button>
 </div>

@@ -42,9 +42,11 @@ import { LivefeedComponent } from './shared/components/livefeed/livefeed.compone
     AudiobarComponent,
     ApiSearchComponent,
     AddPlaylistDialogComponent,
-    LivefeedComponent
+    LivefeedComponent,
   ],
-  entryComponents: [AddPlaylistDialogComponent],
+  entryComponents: [
+    AddPlaylistDialogComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,
