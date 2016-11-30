@@ -73,7 +73,7 @@ export class ProfileComponent implements OnInit {
     let already_in = false;
 
     for (let key in this.user.friends)
-      if (this.user.friends[key] == e.value) {
+      if (this.user.friends[key] === e.value) {
         already_in = true;
         break;
       }
@@ -110,9 +110,9 @@ export class ProfileComponent implements OnInit {
     console.log("Remove: " + user);
 
     for (var i = 0; i < this.user.friends.length; i++)
-      if (this.user.friends[i] == user) {
+      if (this.user.friends[i] === user) {
         this.user.friends.splice(i, 1);
-        // TODO: Implement persistance here
+        this._userService.update(this.userId, this.user);
       }
     
     return false;
