@@ -15,7 +15,7 @@ export class AddPlaylistDialogComponent {
   //playlist pour tester l'ajout a la db
   private playlist = <Playlist>{
     name: '',
-    private: false
+    public: true
   };
 
   constructor(
@@ -24,11 +24,11 @@ export class AddPlaylistDialogComponent {
   ) {
   }
 
-//TODO change to
+//TODO add description when it ok in backend change model to
   addPlaylist() {
     this._playlistService.create({
       name: this.playlist.name,
-      public: this.playlist.private
+      public: this.playlist.public
     }).then((result) => {
       console.log('Added Playlist : ' + this.playlist.name, result);
 

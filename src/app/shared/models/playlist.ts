@@ -4,5 +4,5 @@ export interface Playlist {
   _id?: string;
   name: string;
   tracks_ref?: Track[];
-  private: boolean;
+  public: boolean;
 }
