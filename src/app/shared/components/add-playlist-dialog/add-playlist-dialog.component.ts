@@ -12,9 +12,9 @@ import { PlaylistService } from '../../services/api/playlist.service';
 })
 export class AddPlaylistDialogComponent {
 
-  //playlist pour tester l'ajout a la db
   private playlist = <Playlist>{
     name: '',
+    description: '',
     public: true
   };
 
@@ -24,16 +24,26 @@ export class AddPlaylistDialogComponent {
   ) {
   }
 
-//TODO add description when it ok in backend change model to
   addPlaylist() {
-    this._playlistService.create({
-      name: this.playlist.name,
-      public: this.playlist.public
-    }).then((result) => {
+    this._playlistService.create(this.playlist
+      /*name: this.playlist.name,
+      description: this.playlist.description,
+      public: this.playlist.public*/
+    ).then((result) => {
       console.log('Added Playlist : ' + this.playlist.name, result);
 
     }).catch((error) => {
       console.error('Error Add Playlist : ' + this.playlist.name, error);
     });
   }
+
+  editPlaylist() { //TODO change for update
+    this._playlistService.update('', {name: ''})
+    .then((result) => {
+      //console.log('Added Playlist : ' + this.playlist.name, result);
+
+    }).catch((error) => {
+      //console.error('Error Add Playlist : ' + this.playlist.name, error);
+    });
+  }  
 }

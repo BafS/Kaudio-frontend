@@ -25,10 +25,15 @@ export class PlaylistService {
     return this._rest.get(name, query);
   }
 
-//TODO change object to playlist... marche dans app playlist comme ça mais si on change Object ne marche plus
-  create(playlist: Object) {
+  create(playlist: Playlist) {
     // app.get('token')
     return this._rest.create(playlist);
+  }
+
+//TODO change object to playlist... marche dans app playlist comme ça mais si on change Object ne marche plus
+  update(id: string, playlist: Object) {
+    // app.get('token')
+    return this._rest.update(id, playlist);
   }
 
   remove(name: string, query: any) {
