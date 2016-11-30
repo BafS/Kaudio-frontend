@@ -38,10 +38,10 @@
       </div>
 
       <div class="form-group mb-3">
+        <label for="friends">Friends</label>
         <ul *ngFor="let friend of user.friends">
             <li>{{friend}} <a href="#" (click)="onRemove(friend)">Remove</a></li>
         </ul>
-        <label for="friends">Friends</label>
         <input [(ngModel)]="asyncSelected"
               [typeahead]="dataSource"
               (typeaheadLoading)="changeTypeaheadLoading($event)"
