@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { RestService } from './../rest.service';
 import { SocketService } from './../socket.service';
-import { Track } from '../../models';
+import { Track, Playlist } from '../../models';
 
 @Injectable()
 export class PlaylistService {
-  private _socket;
+  //private _socket;
   private _rest;
 
   constructor(
-    private _socketService: SocketService,
+    //private _socketService: SocketService,
     private _restService: RestService
   ) {
     this._rest = _restService.getService('playlists');
-    this._socket = _socketService.getService('playlists');
+    //this._socket = _socketService.getService('playlists');
   }
 
   find(query?: any) {
@@ -25,12 +25,18 @@ export class PlaylistService {
     return this._rest.get(name, query);
   }
 
-  create(name: string, tracks: Track[], isPrivate: boolean) {
+  create(playlist: Playlist) {
     // app.get('token')
-    return this._socket.create(name, tracks, isPrivate);
+    return this._rest.create(playlist);
+  }
+
+//TODO change object to playlist... marche dans app playlist comme ça mais si on change Object ne marche plus
+  update(id: string, playlist: Object) {
+    // app.get('token')
+    return this._rest.update(id, playlist);
   }
 
   remove(name: string, query: any) {
-    return this._socket.remove(name, query);
+    return this._rest.remove(name, query);
   }
 }

@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { AlertModule, TypeaheadModule, Ng2BootstrapModule  } from 'ng2-bootstrap/ng2-bootstrap';
+import { AlertModule, TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { MaterialModule } from '@angular/material';
 import { Angular2DataTableModule } from 'angular2-data-table';
 
 import { ROUTES } from './app.routes';
@@ -26,6 +27,9 @@ import { ApiSearchComponent } from './apisearch/apisearch.component';
 import { SearchboxComponent } from './shared/components/searchbox/searchbox.component';
 import { SearchresultsComponent } from './shared/components/searchresults/searchresults.component';
 
+import { AddPlaylistDialogComponent } from './shared/components/add-playlist-dialog/add-playlist-dialog.component';
+import { LivefeedComponent } from './shared/components/livefeed/livefeed.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +45,12 @@ import { SearchresultsComponent } from './shared/components/searchresults/search
     AudiobarComponent,
     ApiSearchComponent,
     SearchboxComponent,
-    SearchresultsComponent
+    SearchresultsComponent,
+    AddPlaylistDialogComponent,
+    LivefeedComponent,
+  ],
+  entryComponents: [
+    AddPlaylistDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +60,8 @@ import { SearchresultsComponent } from './shared/components/searchresults/search
     AlertModule,
     Angular2DataTableModule,
     TypeaheadModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule.forRoot()
   ],
   // providers: [],
   providers: [ SocketService, RestService ],

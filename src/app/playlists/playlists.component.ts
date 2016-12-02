@@ -16,10 +16,9 @@ export class PlaylistsComponent implements OnInit {
     private _playlistService: PlaylistService,
   ) {
     this.currentPlaylist = <Playlist>{
-      _id: '',
       name: '',
-      isPrivate: false,
-      tracks: []
+      description: '',
+      public: true,
     };
   }
 

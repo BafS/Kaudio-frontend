@@ -41,6 +41,10 @@ export class ProfileComponent implements OnInit {
             }
           }
         }).then(res => {
+          /*for (let entry of res.data)
+            if (entry.email in this.user.friends)
+              console.log("To delete: " + entry);*/
+
           observer.next(res.data);
         });
       }
@@ -66,7 +70,18 @@ export class ProfileComponent implements OnInit {
   }
  
   public typeaheadOnSelect(e: TypeaheadMatch): void {
-    console.log('Selected value: ', e.value);
+    let already_in = false;
+
+    for (let key in this.user.friends)
+      if (this.user.friends[key] == e.value) {
+        already_in = true;
+        break;
+      }
+    
+    if (!already_in)
+      this.user.friends.push(e.value);
+    
+    this.asyncSelected = null;
   }
 
   ngOnInit() {
@@ -88,6 +103,18 @@ export class ProfileComponent implements OnInit {
 
     this._userService.update(this.userId, this.user);
 
+    return false;
+  }
+
+  onRemove(user) {
+    console.log("Remove: " + user);
+
+    for (var i = 0; i < this.user.friends.length; i++)
+      if (this.user.friends[i] == user) {
+        this.user.friends.splice(i, 1);
+        // TODO: Implement persistance here
+      }
+    
     return false;
   }
 }

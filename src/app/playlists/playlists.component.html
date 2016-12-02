@@ -6,7 +6,9 @@
   <div class="main">
     <app-playlist
       [title]="currentPlaylist.name"
+      [description]="currentPlaylist.description"
       [tracks]="currentPlaylist.tracks"
+      [id]="currentPlaylist._id"
     ></app-playlist>
   </div>
 </div>
