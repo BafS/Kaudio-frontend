@@ -1,7 +1,7 @@
-<<<<<<< HEAD
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Track } from './../../models/track';
+
 import {Injectable} from '@angular/core';
 import { RestService } from './../rest.service';
 
