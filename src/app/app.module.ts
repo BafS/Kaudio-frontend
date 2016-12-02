@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AlertModule, TypeaheadModule, Ng2BootstrapModule  } from 'ng2-bootstrap/ng2-bootstrap';
@@ -22,7 +22,9 @@ import { PlaylistComponent } from './shared/components/playlist/playlist.compone
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { PlaylistsComponent } from './playlists/playlists.component';
 import { AudiobarComponent } from './shared/components/audiobar/audiobar.component';
-import { ApiSearchComponent } from './shared/components/apisearch/apisearch.component';
+import { ApiSearchComponent } from './apisearch/apisearch.component';
+import { SearchboxComponent } from './shared/components/searchbox/searchbox.component';
+import { SearchresultsComponent } from './shared/components/searchresults/searchresults.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { ApiSearchComponent } from './shared/components/apisearch/apisearch.comp
     SidebarComponent,
     PlaylistsComponent,
     AudiobarComponent,
-    ApiSearchComponent
+    ApiSearchComponent,
+    SearchboxComponent,
+    SearchresultsComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,8 @@ import { ApiSearchComponent } from './shared/components/apisearch/apisearch.comp
     RouterModule.forRoot(ROUTES, { useHash: true }),
     AlertModule,
     Angular2DataTableModule,
-    TypeaheadModule
+    TypeaheadModule,
+    ReactiveFormsModule
   ],
   // providers: [],
   providers: [ SocketService, RestService ],
