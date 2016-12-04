@@ -1,5 +1,5 @@
 import { Track } from './../../models/track';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-searchresults',
@@ -8,11 +8,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class SearchresultsComponent {
   @Input() tracks: Track[];
-  @Output()('SelectTrack') trackToAdd =new EventEmitter<Track>();
+  @Output()('SelectTrack') trackToAdd = new EventEmitter<Track>();
 
 
   constructor() { }
-  selectTrack(track: Track){
+  selectTrack(track: Track) {
     this.trackToAdd.emit(track);
   }
 

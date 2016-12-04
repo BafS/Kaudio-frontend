@@ -21,10 +21,8 @@ export class ApiSearchComponent implements OnInit {
     private _apiSearchService: ApiSearchService,
   ) {}
 
-
-
   ngOnInit() {
-this.tracks = this.searchTerm
+    this.tracks = this.searchTerm
       .debounceTime(100)        // wait for 100ms pause in events
       .distinctUntilChanged()   // ignore if next search term is same as previous
       .switchMap(term => term   // switch to new observable each time
