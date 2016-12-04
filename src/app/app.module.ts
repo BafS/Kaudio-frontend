@@ -27,7 +27,7 @@ import { ApiSearchComponent } from './apisearch/apisearch.component';
 import { SearchboxComponent } from './shared/components/searchbox/searchbox.component';
 import { SearchresultsComponent } from './shared/components/searchresults/searchresults.component';
 
-import { AddPlaylistDialogComponent } from './shared/components/add-playlist-dialog/add-playlist-dialog.component';
+import { PlaylistDialogComponent } from './shared/components/playlist-dialog/playlist-dialog.component';
 import { LivefeedComponent } from './shared/components/livefeed/livefeed.component';
 
 @NgModule({
@@ -46,11 +46,11 @@ import { LivefeedComponent } from './shared/components/livefeed/livefeed.compone
     ApiSearchComponent,
     SearchboxComponent,
     SearchresultsComponent,
-    AddPlaylistDialogComponent,
+    PlaylistDialogComponent,
     LivefeedComponent,
   ],
   entryComponents: [
-    AddPlaylistDialogComponent,
+    PlaylistDialogComponent,
   ],
   imports: [
     BrowserModule,

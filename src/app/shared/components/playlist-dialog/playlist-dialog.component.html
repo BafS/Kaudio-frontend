@@ -5,8 +5,8 @@
     <md-input placeholder="Name" style="width: 100%" [(ngModel)]="this.title"></md-input>
     <md-input placeholder="Description" style="width: 100%" [(ngModel)]="this.description"></md-input>
     <md-radio-group selected [(ngModel)]="this.public">
-      <md-radio-button value="true">public</md-radio-button>
-      <md-radio-button value="false">private</md-radio-button>
+      <md-radio-button selected value="this.public">public</md-radio-button>
+      <md-radio-button value="this.public">private</md-radio-button>
     </md-radio-group>
   </div>
   <!--If this dialog is for add a new playlist-->

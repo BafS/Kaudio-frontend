@@ -4,7 +4,7 @@ import { Track } from '../../models';
 import { MdDialogRef, MdDialog } from '@angular/material';
 import { Playlist } from '../../models/playlist';
 import { PlaylistService } from '../../services/api/playlist.service';
-import { AddPlaylistDialogComponent} from '../add-playlist-dialog/add-playlist-dialog.component';
+import { PlaylistDialogComponent} from '../playlist-dialog/playlist-dialog.component';
 
 
 
@@ -29,7 +29,7 @@ export class PlaylistComponent implements OnInit {
     { name: 'Artist', prop: 'album.artist.name', sortable: false }
   ];
 
-  private dialogRef: MdDialogRef<AddPlaylistDialogComponent>;
+  private dialogRef: MdDialogRef<PlaylistDialogComponent>;
 
    /*private playlist = <Playlist>{
     name: this.title,
@@ -52,7 +52,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   updatePlaylist(){
-    this.dialogRef = this.dialog.open(AddPlaylistDialogComponent, {
+    this.dialogRef = this.dialog.open(PlaylistDialogComponent, {
       disableClose: false
     });
     this.dialogRef.componentInstance.new = false;

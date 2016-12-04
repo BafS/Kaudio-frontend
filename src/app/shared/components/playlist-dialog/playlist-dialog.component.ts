@@ -5,12 +5,12 @@ import {Playlist} from '../../models/playlist';
 import { PlaylistService } from '../../services/api/playlist.service';
 
 @Component({
-  selector: 'app-add-playlist-dialog',
-  templateUrl: './add-playlist-dialog.component.html',
-  styleUrls: ['./add-playlist-dialog.component.scss'],
+  selector: 'app-playlist-dialog',
+  templateUrl: './playlist-dialog.component.html',
+  styleUrls: ['./playlist-dialog.component.scss'],
   providers: [ PlaylistService ]
 })
-export class AddPlaylistDialogComponent {
+export class PlaylistDialogComponent {
   public id: string;
   public new: boolean;  //To know if the dialog is for add or update playlist
   public title: string;
@@ -19,17 +19,20 @@ export class AddPlaylistDialogComponent {
   private playlist: Playlist;
 
   constructor(
-    public dialogRef: MdDialogRef<AddPlaylistDialogComponent>,
+    public dialogRef: MdDialogRef<PlaylistDialogComponent>,
     private _playlistService: PlaylistService
   ) {
   }
 
   addPlaylist() {
+    //create new playlist
     this.playlist = <Playlist>{
       name: this.title,
       description: this.description,
       public: this.public
     };
+
+    //create in DB
     this._playlistService.create(this.playlist
     ).then((result) => {
       console.log('Added Playlist : ' + this.playlist.name, result);
@@ -40,6 +43,7 @@ export class AddPlaylistDialogComponent {
   }
 
   editPlaylist() { //TODO change for a real update
+    //create playlist to edit
     this.playlist = <Playlist>{
       _id: this.id,
       name: this.title,
@@ -47,8 +51,7 @@ export class AddPlaylistDialogComponent {
       public: this.public
     }
 
-    console.log('Edit in Dialog : ' + this.title + ':' + this.playlist.description);
-
+    //update in DB
     this._playlistService.update(this.playlist._id, {
       name: this.playlist.name,
       description: this.playlist.description,

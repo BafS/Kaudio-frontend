@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Playlist } from '../../models/playlist';
 import { MdDialogRef, MdDialog } from '@angular/material';
-import { AddPlaylistDialogComponent} from '../add-playlist-dialog/add-playlist-dialog.component';
+import { PlaylistDialogComponent} from '../playlist-dialog/playlist-dialog.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -16,7 +16,7 @@ export class SidebarComponent {
   private currentPlaylistKey: number = -1;
 
   // for add playlist dialog
-  private dialogRef: MdDialogRef<AddPlaylistDialogComponent>;
+  private dialogRef: MdDialogRef<PlaylistDialogComponent>;
 
   constructor(public dialog: MdDialog) { }
 
@@ -29,7 +29,7 @@ export class SidebarComponent {
    * Call add playlist dialog
    */
   addPlaylist() {
-    this.dialogRef = this.dialog.open(AddPlaylistDialogComponent, {
+    this.dialogRef = this.dialog.open(PlaylistDialogComponent, {
       disableClose: false
     });
     this.dialogRef.componentInstance.new = true;
