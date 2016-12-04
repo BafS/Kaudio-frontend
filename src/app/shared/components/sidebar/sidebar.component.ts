@@ -32,6 +32,7 @@ export class SidebarComponent {
     this.dialogRef = this.dialog.open(AddPlaylistDialogComponent, {
       disableClose: false
     });
+    this.dialogRef.componentInstance.new = true;
   }
 }
 

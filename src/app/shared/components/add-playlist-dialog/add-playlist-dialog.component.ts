@@ -11,12 +11,12 @@ import { PlaylistService } from '../../services/api/playlist.service';
   providers: [ PlaylistService ]
 })
 export class AddPlaylistDialogComponent {
-
-  private playlist = <Playlist>{
-    name: '',
-    description: '',
-    public: true
-  };
+  public id: string;
+  public new: boolean;  //To know if the dialog is for add or update playlist
+  public title: string;
+  public description?: string;
+  public public?: boolean;
+  private playlist: Playlist;
 
   constructor(
     public dialogRef: MdDialogRef<AddPlaylistDialogComponent>,
@@ -25,25 +25,40 @@ export class AddPlaylistDialogComponent {
   }
 
   addPlaylist() {
+    this.playlist = <Playlist>{
+      name: this.title,
+      description: this.description,
+      public: this.public
+    };
     this._playlistService.create(this.playlist
-      /*name: this.playlist.name,
-      description: this.playlist.description,
-      public: this.playlist.public*/
     ).then((result) => {
       console.log('Added Playlist : ' + this.playlist.name, result);
+
+    }).catch((error) => {
+      console.error('Error Add Playlist : ' + this.playlist.name + error);
+    });
+  }
+
+  editPlaylist() { //TODO change for a real update
+    this.playlist = <Playlist>{
+      _id: this.id,
+      name: this.title,
+      description: this.description,
+      public: this.public
+    }
+
+    console.log('Edit in Dialog : ' + this.title + ':' + this.playlist.description);
+
+    this._playlistService.update(this.playlist._id, {
+      name: this.playlist.name,
+      description: this.playlist.description,
+      public: this.playlist.public
+    })
+    .then((result) => {
+      console.log('update Playlist : ' + this.playlist, result);
 
     }).catch((error) => {
       console.error('Error Add Playlist : ' + this.playlist.name, error);
     });
   }
-
-  editPlaylist() { //TODO change for update
-    this._playlistService.update('', {name: ''})
-    .then((result) => {
-      //console.log('Added Playlist : ' + this.playlist.name, result);
-
-    }).catch((error) => {
-      //console.error('Error Add Playlist : ' + this.playlist.name, error);
-    });
-  }  
 }

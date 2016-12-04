@@ -2,7 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Track } from '../../models';
 
 import { MdDialogRef, MdDialog } from '@angular/material';
+import { Playlist } from '../../models/playlist';
 import { PlaylistService } from '../../services/api/playlist.service';
+import { AddPlaylistDialogComponent} from '../add-playlist-dialog/add-playlist-dialog.component';
+
 
 
 @Component({
@@ -16,6 +19,7 @@ export class PlaylistComponent implements OnInit {
   @Input() description?: string;
   @Input() tracks?: Track[]; // songs
   @Input() id: string;
+  @Input() public: boolean
 
   rows = [];
 
@@ -25,10 +29,16 @@ export class PlaylistComponent implements OnInit {
     { name: 'Artist', prop: 'album.artist.name', sortable: false }
   ];
 
-//  private dialogRef: MdDialogRef<EditPlaylistDialogComponent>;
+  private dialogRef: MdDialogRef<AddPlaylistDialogComponent>;
+
+   /*private playlist = <Playlist>{
+    name: this.title,
+    description: this.description,
+    public: this.public
+  };*/
 
   constructor(
-    private _playlistService: PlaylistService, 
+    private _playlistService: PlaylistService,
     public dialog: MdDialog) {
       this._playlistService = _playlistService;
   }
@@ -42,7 +52,15 @@ export class PlaylistComponent implements OnInit {
   }
 
   updatePlaylist(){
-    
+    this.dialogRef = this.dialog.open(AddPlaylistDialogComponent, {
+      disableClose: false
+    });
+    this.dialogRef.componentInstance.new = false;
+    this.dialogRef.componentInstance.title = this.title;
+    this.dialogRef.componentInstance.description = this.description;
+    this.dialogRef.componentInstance.public = this.public;
+    this.dialogRef.componentInstance.id = this.id;
+    console.log('Update for : ' + this.title + ':' + this.description);
   }
 
   deletePlaylist(){
