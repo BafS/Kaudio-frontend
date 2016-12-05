@@ -22,10 +22,12 @@ export class PlaylistDialogComponent {
     public dialogRef: MdDialogRef<PlaylistDialogComponent>,
     private _playlistService: PlaylistService
   ) {
+    //By default the playlist is public
+    this.public = true;
   }
 
   addPlaylist() {
-    //create new playlist
+    //new playlist
     this.playlist = <Playlist>{
       name: this.title,
       description: this.description,
@@ -42,23 +44,19 @@ export class PlaylistDialogComponent {
     });
   }
 
-  editPlaylist() { //TODO change for a real update
-    //create playlist to edit
+  editPlaylist() {
+    //playlist to edit
     this.playlist = <Playlist>{
       _id: this.id,
       name: this.title,
       description: this.description,
       public: this.public
-    }
+    };
 
     //update in DB
-    this._playlistService.update(this.playlist._id, {
-      name: this.playlist.name,
-      description: this.playlist.description,
-      public: this.playlist.public
-    })
+    this._playlistService.update(this.playlist._id, this.playlist)
     .then((result) => {
-      console.log('update Playlist : ' + this.playlist, result);
+      console.log('Update Playlist : ' + this.playlist, result);
 
     }).catch((error) => {
       console.error('Error Add Playlist : ' + this.playlist.name, error);

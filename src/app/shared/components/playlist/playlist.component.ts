@@ -19,7 +19,7 @@ export class PlaylistComponent implements OnInit {
   @Input() description?: string;
   @Input() tracks?: Track[]; // songs
   @Input() id: string;
-  @Input() public: boolean
+  @Input() public: boolean;
 
   rows = [];
 
@@ -30,12 +30,6 @@ export class PlaylistComponent implements OnInit {
   ];
 
   private dialogRef: MdDialogRef<PlaylistDialogComponent>;
-
-   /*private playlist = <Playlist>{
-    name: this.title,
-    description: this.description,
-    public: this.public
-  };*/
 
   constructor(
     private _playlistService: PlaylistService,
@@ -51,7 +45,7 @@ export class PlaylistComponent implements OnInit {
     console.log('Sort Event', event);
   }
 
-  updatePlaylist(){
+  updatePlaylist() {  //TODO Can change to send a playlist and not 5 single element
     this.dialogRef = this.dialog.open(PlaylistDialogComponent, {
       disableClose: false
     });
@@ -60,7 +54,6 @@ export class PlaylistComponent implements OnInit {
     this.dialogRef.componentInstance.description = this.description;
     this.dialogRef.componentInstance.public = this.public;
     this.dialogRef.componentInstance.id = this.id;
-    console.log('Update for : ' + this.title + ':' + this.description);
   }
 
   deletePlaylist(){
