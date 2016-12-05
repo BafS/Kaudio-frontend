@@ -23,7 +23,9 @@ export class PlaylistDialogComponent {
     private _playlistService: PlaylistService
   ) {
     //By default the playlist is public
-    this.public = true;
+    if (true === !this.new) {
+      this.public = true;
+    }
   }
 
   addPlaylist() {

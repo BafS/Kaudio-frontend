@@ -1,6 +1,6 @@
 <div class="dialog">
   <md-toolbar *ngIf="new" color="primary">Add Playlist</md-toolbar>
-  <md-toolbar *ngIf="!new" color="primary">Edit</md-toolbar>
+  <md-toolbar *ngIf="!new" color="primary">Edit "{{title}}"</md-toolbar>
   <md-card-content>
     <div>
       <md-input placeholder="Name" style="width: 100%" [(ngModel)]="title"></md-input>
