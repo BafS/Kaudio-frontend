@@ -1,0 +1,18 @@
+
+<table class="search-results">
+  <tr >
+    <th>Title</th>
+    <th>Album</th>
+    <th>Artist</th>
+  </tr>
+  <tr *ngFor="let track of tracks | async">
+    <td>{{track.title}}</td>
+    <td>album</td>
+    <td>artist</td>
+    <td>
+      <button (click)="selectTrack(track)" class="counter__button">
+            +
+        </button>
+    </td>
+  </tr>
+</table>

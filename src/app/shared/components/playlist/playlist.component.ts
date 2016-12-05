@@ -2,7 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Track } from '../../models';
 
 import { MdDialogRef, MdDialog } from '@angular/material';
+import { Playlist } from '../../models/playlist';
 import { PlaylistService } from '../../services/api/playlist.service';
+import { PlaylistDialogComponent} from '../playlist-dialog/playlist-dialog.component';
+
 
 
 @Component({
@@ -16,6 +19,7 @@ export class PlaylistComponent implements OnInit {
   @Input() description?: string;
   @Input() tracks?: Track[]; // songs
   @Input() id: string;
+  @Input() public: boolean;
 
   rows = [];
 
@@ -25,10 +29,10 @@ export class PlaylistComponent implements OnInit {
     { name: 'Artist', prop: 'album.artist.name', sortable: false }
   ];
 
-//  private dialogRef: MdDialogRef<EditPlaylistDialogComponent>;
+  private dialogRef: MdDialogRef<PlaylistDialogComponent>;
 
   constructor(
-    private _playlistService: PlaylistService, 
+    private _playlistService: PlaylistService,
     public dialog: MdDialog) {
       this._playlistService = _playlistService;
   }
@@ -41,8 +45,15 @@ export class PlaylistComponent implements OnInit {
     console.log('Sort Event', event);
   }
 
-  updatePlaylist(){
-    
+  updatePlaylist() {  //TODO Can change to send a playlist and not 5 single element
+    this.dialogRef = this.dialog.open(PlaylistDialogComponent, {
+      disableClose: false
+    });
+    this.dialogRef.componentInstance.new = false;
+    this.dialogRef.componentInstance.title = this.title;
+    this.dialogRef.componentInstance.description = this.description;
+    this.dialogRef.componentInstance.public = this.public;
+    this.dialogRef.componentInstance.id = this.id;
   }
 
   deletePlaylist(){

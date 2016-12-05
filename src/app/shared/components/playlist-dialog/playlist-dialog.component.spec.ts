@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { AddPlaylistDialogComponent } from './add-playlist-dialog.component';
+import { PlaylistDialogComponent } from './playlist-dialog.component';
 
 describe('AddPlaylistDialogComponent', () => {
-  let component: AddPlaylistDialogComponent;
-  let fixture: ComponentFixture<AddPlaylistDialogComponent>;
+  let component: PlaylistDialogComponent;
+  let fixture: ComponentFixture<PlaylistDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddPlaylistDialogComponent ]
+      declarations: [ PlaylistDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddPlaylistDialogComponent);
+    fixture = TestBed.createComponent(PlaylistDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

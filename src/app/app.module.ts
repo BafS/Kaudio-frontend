@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AlertModule, TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { MaterialModule } from '@angular/material';
 import { Angular2DataTableModule } from 'angular2-data-table';
+import 'hammerjs';
 
 import { ROUTES } from './app.routes';
 
@@ -23,8 +24,11 @@ import { PlaylistComponent } from './shared/components/playlist/playlist.compone
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { PlaylistsComponent } from './playlists/playlists.component';
 import { AudiobarComponent } from './shared/components/audiobar/audiobar.component';
-import { ApiSearchComponent } from './shared/components/apisearch/apisearch.component';
-import { AddPlaylistDialogComponent } from './shared/components/add-playlist-dialog/add-playlist-dialog.component';
+import { ApiSearchComponent } from './apisearch/apisearch.component';
+import { SearchboxComponent } from './shared/components/searchbox/searchbox.component';
+import { SearchresultsComponent } from './shared/components/searchresults/searchresults.component';
+
+import { PlaylistDialogComponent } from './shared/components/playlist-dialog/playlist-dialog.component';
 import { LivefeedComponent } from './shared/components/livefeed/livefeed.component';
 
 @NgModule({
@@ -41,11 +45,13 @@ import { LivefeedComponent } from './shared/components/livefeed/livefeed.compone
     PlaylistsComponent,
     AudiobarComponent,
     ApiSearchComponent,
-    AddPlaylistDialogComponent,
+    SearchboxComponent,
+    SearchresultsComponent,
+    PlaylistDialogComponent,
     LivefeedComponent,
   ],
   entryComponents: [
-    AddPlaylistDialogComponent,
+    PlaylistDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +61,7 @@ import { LivefeedComponent } from './shared/components/livefeed/livefeed.compone
     AlertModule,
     Angular2DataTableModule,
     TypeaheadModule,
+    ReactiveFormsModule,
     MaterialModule.forRoot()
   ],
   // providers: [],
