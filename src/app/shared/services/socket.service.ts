@@ -28,13 +28,13 @@ export class SocketService extends FeathersService {
     this.authenticateIfPossible()
 
     this.socket.io.engine.on('reconnect', () => {
-      console.log('--> reconnect');
+      console.info('--> reconnect');
       // this._app.authenticate();
     });
 
     // If the transport changes, you have to authenticate again.
     this.socket.io.engine.on('upgrade', transport => {
-      console.log('>> transport changed [socket.service]');
+      console.info('>> transport changed [socket.service]');
       this.authenticateIfPossible()
     });
   }
