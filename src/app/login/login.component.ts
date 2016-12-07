@@ -4,7 +4,6 @@ import { MessageService } from './../shared/services/api/message.service';
 import { AuthenticationService } from './../shared/services/api/authentication.service';
 import { User } from '../shared/models/user';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
