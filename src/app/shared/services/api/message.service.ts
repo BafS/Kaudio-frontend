@@ -16,10 +16,10 @@ export class MessageService {
     this._socket = _socketService.getService('messages');
 
     // TODO add observer
-    this._socket.on('created', function (message) {
-      console.log('-- New Message [socket] --'); // DEV TODO
-      console.log(message);
-    });
+    // this._socket.on('created', function (message) {
+      // console.log('-- New Message [socket mesg] --'); // DEV TODO
+      // console.log(message);
+    // });
   }
 
   public on(trigger: string, callback: Function) {
