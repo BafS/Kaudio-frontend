@@ -32,7 +32,7 @@ import { PlaylistDialogComponent } from './shared/components/playlist-dialog/pla
 import { LivefeedComponent } from './shared/components/livefeed/livefeed.component';
 
 import { StoreModule } from '@ngrx/store';
-import { messageReducer } from './shared/reducers/messages';
+import { reducers } from './shared/reducers';
 
 @NgModule({
   declarations: [
@@ -58,9 +58,7 @@ import { messageReducer } from './shared/reducers/messages';
   ],
   imports: [
     BrowserModule,
-    StoreModule.provideStore({
-      messages: messageReducer
-    }),
+    StoreModule.provideStore(reducers),
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),

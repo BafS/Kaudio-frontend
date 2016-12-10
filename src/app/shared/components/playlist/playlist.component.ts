@@ -22,7 +22,7 @@ export class PlaylistComponent implements OnInit {
   rows = [];
 
   columns = [
-    { prop: 'title', comparator: false },
+    { name: 'Song', prop: 'title', comparator: false },
     { name: 'Album', prop: 'album.title', sortable: false },
     { name: 'Artist', prop: 'album.artist.name', sortable: false }
   ];
