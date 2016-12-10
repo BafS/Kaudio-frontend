@@ -53,9 +53,12 @@ export class SocketService extends FeathersService {
       );
 
       // If we have a token, we can authenticate
-      this._app.authenticate();
-
-      console.log('Authenticated done')
+      this._app.authenticate().then(res => {
+        console.info(res);
+        console.log('Authenticated done')
+      }).catch((error) => {
+        console.error('Error ' + error);
+      });
     }
     // TODO If no token -> redirection to login
   }

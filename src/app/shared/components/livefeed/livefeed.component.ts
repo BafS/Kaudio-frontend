@@ -30,7 +30,7 @@ export class LivefeedComponent implements OnInit {
       this.store.dispatch({
         type: ADD_MESSAGE,
         payload: <Message> {
-          title: message.message + (Math.random() * 1000).toFixed(0)
+          title: message.message
         }
       });
     });
@@ -38,7 +38,7 @@ export class LivefeedComponent implements OnInit {
 
   onPingButton() {
     this._messageService.create({
-      message: "PING !"
+      message: 'PING !'  + (Math.random() * 1000).toFixed(0)
     });
   }
 }
