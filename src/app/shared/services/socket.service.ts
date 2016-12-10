@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from './../../../environments/environment'
 import { FeathersService } from './feathers.service';
 
 const io = require('socket.io-client');
@@ -8,8 +9,6 @@ const socketio = require('feathers-socketio/client');
 // const localstorage = require('feathers-localstorage');
 const authentication = require('feathers-authentication/client');
 
-const HOST = 'http://127.0.0.1:3030';
-
 @Injectable()
 export class SocketService extends FeathersService {
   public socket: any; // SocketIOClient.Socket;
@@ -17,7 +16,7 @@ export class SocketService extends FeathersService {
   constructor(
   ) {
     super();
-    this.socket = io(HOST, {
+    this.socket = io(environment.serverHost, {
       // transports: ['websocket']
     });
     this._app = feathers()
