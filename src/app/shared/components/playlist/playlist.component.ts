@@ -1,12 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Track } from '../../models';
 
-import { MdDialogRef, MdDialog } from '@angular/material';
+import { MdDialogRef, MdDialogConfig, MdDialog } from '@angular/material';
 import { Playlist } from '../../models/playlist';
 import { PlaylistService } from '../../services/api/playlist.service';
 import { PlaylistDialogComponent} from '../playlist-dialog/playlist-dialog.component';
-
-
 
 @Component({
   selector: 'app-playlist',
@@ -33,9 +31,8 @@ export class PlaylistComponent implements OnInit {
 
   constructor(
     private _playlistService: PlaylistService,
-    public dialog: MdDialog) {
-      this._playlistService = _playlistService;
-  }
+    public dialog: MdDialog
+  ) { }
 
   ngOnInit() {
   }
@@ -46,7 +43,8 @@ export class PlaylistComponent implements OnInit {
   }
 
   updatePlaylist() {  //TODO Can change to send a playlist and not 5 single element
-    this.dialogRef = this.dialog.open(PlaylistDialogComponent, {
+    this.dialogRef = this.dialog.open(PlaylistDialogComponent, <MdDialogConfig>{
+      // width: '500px',
       disableClose: false
     });
     this.dialogRef.componentInstance.new = false;
@@ -56,7 +54,7 @@ export class PlaylistComponent implements OnInit {
     this.dialogRef.componentInstance.id = this.id;
   }
 
-  deletePlaylist(){
+  deletePlaylist() {
     this._playlistService.remove(this.id, '').then((result) => {
       console.log('Playlist : ' + this.title + ' delete', result);
 
