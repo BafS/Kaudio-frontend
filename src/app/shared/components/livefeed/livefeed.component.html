@@ -1,7 +1,7 @@
 <div>
   <h3>Live feed</h3>
 
-  <ul *ngFor="let message of messages" class="list-group">
+  <ul *ngFor="let message of messages | async" class="list-group">
     <li class="list-group-item">{{message.title}}</li>
   </ul>
 
