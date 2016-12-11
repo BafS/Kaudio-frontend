@@ -25,8 +25,8 @@ export class PlaylistComponent implements OnInit {
 
   columns = [
     { prop: 'title', comparator: false },
-    { name: 'Album', prop: 'album.title', sortable: false },
-    { name: 'Artist', prop: 'album.artist.name', sortable: false }
+    { name: 'Album', prop: 'album.title', sortable: true },
+    { name: 'Artist', prop: 'album.artist.name', sortable: true }
   ];
 
   private dialogRef: MdDialogRef<PlaylistDialogComponent>;
