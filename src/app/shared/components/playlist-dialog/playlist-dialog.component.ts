@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
 
-import {Playlist} from '../../models/playlist';
+import { Playlist } from '../../models/playlist';
 import { PlaylistService } from '../../services/api/playlist.service';
 
 @Component({

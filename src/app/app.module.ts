@@ -31,6 +31,9 @@ import { SearchresultsComponent } from './shared/components/searchresults/search
 import { PlaylistDialogComponent } from './shared/components/playlist-dialog/playlist-dialog.component';
 import { LivefeedComponent } from './shared/components/livefeed/livefeed.component';
 
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './shared/reducers';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,9 +58,10 @@ import { LivefeedComponent } from './shared/components/livefeed/livefeed.compone
   ],
   imports: [
     BrowserModule,
+    StoreModule.provideStore(reducers),
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true }),
+    RouterModule.forRoot(ROUTES),
     AlertModule,
     Angular2DataTableModule,
     TypeaheadModule,
