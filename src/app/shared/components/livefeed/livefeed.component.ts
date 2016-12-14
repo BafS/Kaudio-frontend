@@ -17,9 +17,9 @@ export class LivefeedComponent implements OnInit {
 
   constructor(
     private _messageService: MessageService,
-    private store: Store<any>
+    private _store: Store<any>
   ) {
-    this.messages = store.select(s => s.messages);
+    this.messages = _store.select(s => s.messages);
   }
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class LivefeedComponent implements OnInit {
       console.info('> New Message (LivefeedComponent) [socket]'); // DEV TODO
       console.log(message);
 
-      this.store.dispatch({
+      this._store.dispatch({
         type: ADD_MESSAGE,
         payload: <Message> {
           title: message.message

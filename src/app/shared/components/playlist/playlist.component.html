@@ -13,6 +13,9 @@
     [columnMode]="'force'"
     [headerHeight]="40"
     (sort)="onSort($event)"
+    [selected]="selected"
+    [selectionType]="'single'"
+    (activate)="onActivate($event)"
   ></swui-datatable>
 </div>
 <div>

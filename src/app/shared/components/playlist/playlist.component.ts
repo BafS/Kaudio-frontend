@@ -1,5 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Track } from '../../models';
+import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+import { Track, AudioFile } from '../../models';
+import { LOAD_SONG } from './../../reducers/player';
 
 import { MdDialogRef, MdDialogConfig, MdDialog } from '@angular/material';
 import { Playlist } from '../../models/playlist';
@@ -12,16 +15,18 @@ import { PlaylistDialogComponent} from '../playlist-dialog/playlist-dialog.compo
   styleUrls: ['./playlist.component.scss'],
   providers: [ PlaylistService ]
 })
-export class PlaylistComponent implements OnInit {
+export class PlaylistComponent {
   @Input() title: string;
   @Input() description?: string;
   @Input() tracks?: Track[]; // songs
   @Input() id: string;
   @Input() public: boolean;
 
-  rows = [];
+  private rows = [];
 
-  columns = [
+  private selected = [];
+
+  private columns = [
     { name: 'Song', prop: 'title', comparator: false },
     { name: 'Album', prop: 'album.title' },
     { name: 'Artist', prop: 'album.artist.name' }
@@ -29,12 +34,14 @@ export class PlaylistComponent implements OnInit {
 
   private dialogRef: MdDialogRef<PlaylistDialogComponent>;
 
-  constructor(
-    private _playlistService: PlaylistService,
-    public dialog: MdDialog
-  ) { }
+  public player: Observable<any>;
 
-  ngOnInit() {
+  constructor(
+    public dialog: MdDialog,
+    private _playlistService: PlaylistService,
+    private _store: Store<any>
+  ) {
+    this.player = _store.select(s => s.player);
   }
 
   onSort(event) {
@@ -61,5 +68,19 @@ export class PlaylistComponent implements OnInit {
     }).catch((error) => {
       console.error('Error Delete Playlist : ' + this.title , error);
     });
+  }
+
+  onActivate(event) {
+    if (event.type === 'dblclick') {
+      let row = event.row;
+      console.log('This id will be played', row._id);
+
+      this._store.dispatch({
+        type: LOAD_SONG,
+        payload: <AudioFile> {
+          filepath: 'test.mp3'
+        }
+      });
+    }
   }
 }
