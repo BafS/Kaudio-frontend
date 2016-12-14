@@ -10,10 +10,12 @@ export class SearchresultsComponent {
   @Input() tracks: Track[];
   @Output()('SelectTrack') trackToAdd = new EventEmitter<Track>();
 
+  constructor() {}
 
-  constructor() { }
+
   selectTrack(track: Track) {
-    this.trackToAdd.emit(track);
+    console.log("track: " + track._id);
+    //this.trackToAdd.emit(track);
   }
 
 }
