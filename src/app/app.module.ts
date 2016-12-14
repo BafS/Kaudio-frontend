@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AlertModule, TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { MaterialModule } from '@angular/material';
 import { Angular2DataTableModule } from 'angular2-data-table';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'; // Dev tool
 import 'hammerjs';
 
 import { ROUTES } from './app.routes';
@@ -59,6 +60,7 @@ import { reducers } from './shared/reducers';
   imports: [
     BrowserModule,
     StoreModule.provideStore(reducers),
+    StoreDevtoolsModule.instrumentOnlyWithExtension(), // Dev tool
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES),
