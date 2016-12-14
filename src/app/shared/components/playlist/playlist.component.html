@@ -15,7 +15,7 @@
     (sort)="onSort($event)"
   ></swui-datatable>
 </div>
-<div>
+<div *ngIf="title">
   <button md-button (click)="updatePlaylist()">
     <md-icon class="md-24">edit</md-icon>
   </button>
