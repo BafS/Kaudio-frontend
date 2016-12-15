@@ -15,17 +15,17 @@ import { RestService } from './shared/services/rest.service';
 import { SocketService } from './shared/services/socket.service';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './+home/home.component';
-import { AboutComponent } from './about/about.component';
-import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './containers/+home/home.component';
+import { AboutComponent } from './containers/about/about.component';
+import { LoginComponent } from './containers/login/login.component';
+import { ProfileComponent } from './containers/profile/profile.component';
 import { NavigationComponent } from './shared/components/navigation/navigation.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './containers/register/register.component';
 import { PlaylistComponent } from './shared/components/playlist/playlist.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
-import { PlaylistsComponent } from './playlists/playlists.component';
+import { PlaylistsComponent } from './containers/playlists/playlists.component';
 import { AudiobarComponent } from './shared/components/audiobar/audiobar.component';
-import { ApiSearchComponent } from './apisearch/apisearch.component';
+import { ApiSearchComponent } from './containers/apisearch/apisearch.component';
 import { SearchboxComponent } from './shared/components/searchbox/searchbox.component';
 import { SearchresultsComponent } from './shared/components/searchresults/searchresults.component';
 

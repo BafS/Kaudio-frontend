@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from './../shared/services/api/authentication.service';
+import { AuthenticationService } from './../../shared/services/api/authentication.service';
 // import { PlaylistComponent } from './../shared/components/playlist/playlist';
 
 @Component({

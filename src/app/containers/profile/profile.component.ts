@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
-import { UserService } from '../shared/services/api/user.service';
-import { MessageService } from '../shared/services/api/message.service';
-import { User } from '../shared/models/user';
+import { UserService } from '../../shared/services/api/user.service';
+import { MessageService } from '../../shared/services/api/message.service';
+import { User } from '../../shared/models/user';
 import { TypeaheadMatch } from 'ng2-bootstrap/components/typeahead';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
