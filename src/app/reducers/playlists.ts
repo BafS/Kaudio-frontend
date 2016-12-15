@@ -7,7 +7,7 @@ export const UPDATE_PLAYLIST = 'UPDATE_PLAYLIST';
 export const REMOVE_PLAYLIST = 'REMOVE_PLAYLIST';
 export const RESET_PLAYLISTS = 'RESET';
 
-const defaultState = [
+const initialState: Playlist[] = [
     <Playlist> {
         name: '',
         description: '',
@@ -15,7 +15,7 @@ const defaultState = [
     }
 ];
 
-export function playlistReducer(state: Playlist[] = defaultState, action: Action): Playlist[] {
+export function reducer(state = initialState, action: Action): Playlist[] {
     switch (action.type) {
         case INDEX_PLAYLISTS:
             return action.payload;

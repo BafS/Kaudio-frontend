@@ -6,7 +6,7 @@ export const PLAY = 'PLAY';
 export const PAUSE = 'PAUSE';
 export const STOP = 'STOP';
 
-export function playerReducer(state: AudioFile = null, action: Action): AudioFile {
+export function reducer(state: AudioFile = null, action: Action): AudioFile {
     switch (action.type) {
         case LOAD_SONG:
             return <AudioFile> {

@@ -3,11 +3,11 @@ import { App } from './../models';
 
 export const SET_CURRENT_PLAYLIST = 'SET_CURRENT_PLAYLIST';
 
-const defaultState = <App> {
+const initialState = <App> {
     currentPlaylist: 0
 };
 
-export function appReducer(state: App = defaultState, action: Action): App {
+export function reducer(state: App = initialState, action: Action): App {
     switch (action.type) {
         case SET_CURRENT_PLAYLIST:
             return Object.assign({}, state, {

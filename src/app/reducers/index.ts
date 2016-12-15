@@ -1,11 +1,11 @@
-import { messageReducer } from './messages';
-import { playerReducer } from './player';
-import { playlistReducer } from './playlists';
-import { appReducer } from './app';
+import * as fromMessages from './messages';
+import * as fromPlayer from './player';
+import * as fromPlaylists from './playlists';
+import * as fromApp from './app';
 
 export const reducers: Object = {
-    messages: messageReducer,
-    player: playerReducer,
-    playlists: playlistReducer,
-    app: appReducer
+    messages: fromMessages.reducer,
+    player: fromPlayer.reducer,
+    playlists: fromPlaylists.reducer,
+    app: fromApp.reducer
 };
