@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../shared/services/api/user.service';
+import { UserService } from '../../services/api/user.service';
 
-import { MessageService } from '../../shared/services/api/message.service';
-import { User } from '../../shared/models/user';
+import { MessageService } from '../../services/api/message.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-register',

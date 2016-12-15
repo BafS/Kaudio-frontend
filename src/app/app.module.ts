@@ -11,29 +11,28 @@ import 'hammerjs';
 
 import { ROUTES } from './app.routes';
 
-import { RestService } from './shared/services/rest.service';
-import { SocketService } from './shared/services/socket.service';
+import { RestService } from './services/rest.service';
+import { SocketService } from './services/socket.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './containers/+home/home.component';
 import { AboutComponent } from './containers/about/about.component';
 import { LoginComponent } from './containers/login/login.component';
 import { ProfileComponent } from './containers/profile/profile.component';
-import { NavigationComponent } from './shared/components/navigation/navigation.component';
 import { RegisterComponent } from './containers/register/register.component';
-import { PlaylistComponent } from './shared/components/playlist/playlist.component';
-import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { PlaylistsComponent } from './containers/playlists/playlists.component';
-import { AudiobarComponent } from './shared/components/audiobar/audiobar.component';
 import { ApiSearchComponent } from './containers/apisearch/apisearch.component';
-import { SearchboxComponent } from './shared/components/searchbox/searchbox.component';
-import { SearchresultsComponent } from './shared/components/searchresults/searchresults.component';
-
-import { PlaylistDialogComponent } from './shared/components/playlist-dialog/playlist-dialog.component';
-import { LivefeedComponent } from './shared/components/livefeed/livefeed.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { PlaylistComponent } from './components/playlist/playlist.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AudiobarComponent } from './components/audiobar/audiobar.component';
+import { SearchboxComponent } from './components/searchbox/searchbox.component';
+import { SearchresultsComponent } from './components/searchresults/searchresults.component';
+import { PlaylistDialogComponent } from './components/playlist-dialog/playlist-dialog.component';
+import { LivefeedComponent } from './components/livefeed/livefeed.component';
 
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './shared/reducers';
+import { reducers } from './reducers';
 
 @NgModule({
   declarations: [

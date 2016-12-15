@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import { AudioFile } from './../../../shared/models';
+import { AudioFile } from './../../models';
 
 declare let plyr: any;
 // declare let Hls: any;

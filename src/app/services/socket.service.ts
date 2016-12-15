@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from './../../../environments/environment'
+import { environment } from './../../environments/environment'
 import { FeathersService } from './feathers.service';
 
 const io = require('socket.io-client');

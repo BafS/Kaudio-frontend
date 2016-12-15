@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MessageService } from './../../shared/services/api/message.service';
-import { AuthenticationService } from './../../shared/services/api/authentication.service';
-import { User } from '../../shared/models/user';
+import { MessageService } from './../../services/api/message.service';
+import { AuthenticationService } from './../../services/api/authentication.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-login',

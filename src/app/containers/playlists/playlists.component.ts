@@ -3,18 +3,18 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 
-import { Playlist, Track, App } from '../../shared/models';
-import { PlaylistService } from './../../shared/services/api/playlist.service';
+import { Playlist, Track, App } from '../../models';
+import { PlaylistService } from './../../services/api/playlist.service';
 
 import {
   INDEX_PLAYLISTS,
   ADD_PLAYLIST,
   UPDATE_PLAYLIST
-} from '../../shared/reducers/playlists';
+} from '../../reducers/playlists';
 
 import {
   SET_CURRENT_PLAYLIST
-} from '../../shared/reducers/app';
+} from '../../reducers/app';
 
 @Component({
   selector: 'app-playlists',

@@ -1,6 +1,6 @@
-import { MessageService } from './../../shared/services/api/message.service';
-import { ApiSearchService } from './../../shared/services/api/api-search.service';
-import { Track } from './../../shared/models/track';
+import { MessageService } from './../../services/api/message.service';
+import { ApiSearchService } from './../../services/api/api-search.service';
+import { Track } from './../../models/track';
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
