@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+
 import { AudioFile } from './../../../shared/models';
 
 declare let plyr: any;
@@ -13,8 +14,7 @@ declare let plyr: any;
 })
 export class AudiobarComponent implements OnInit {
 
-  private _player;
-
+  // private _player;
   player: Observable<AudioFile>;
 
   constructor(
@@ -28,7 +28,7 @@ export class AudiobarComponent implements OnInit {
       volume: 9
     })[0];
 
-    this.player.subscribe(r => {
+    this.player.take(1).subscribe(r => {
       console.log(inst);
 
       inst.source({
@@ -75,5 +75,4 @@ export class AudiobarComponent implements OnInit {
     // //   }]
     // });
   }
-
 }

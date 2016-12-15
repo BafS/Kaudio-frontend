@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
 import { MessageService } from './../../services/api/message.service';
-import { Message, AppState } from './../../models';
+import { Message } from './../../models';
 import { ADD_MESSAGE, REMOVE_MESSAGE, RESET } from './../../reducers/messages';
 
 @Component({
