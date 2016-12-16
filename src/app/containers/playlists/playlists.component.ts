@@ -3,18 +3,16 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
 
-import { Playlist, Track, App } from '../../models';
+import {
+  Playlist,
+  Track,
+  App
+} from '../../models';
 import { PlaylistService } from './../../services/api/playlist.service';
 
-import {
-  INDEX_PLAYLISTS,
-  ADD_PLAYLIST,
-  UPDATE_PLAYLIST
-} from '../../reducers/playlists';
+import { ActionTypes as PlaylistsActionTypes } from '../../reducers/playlists';
 
-import {
-  SET_CURRENT_PLAYLIST
-} from '../../reducers/app';
+import { ActionTypes as AppActionTypes } from '../../reducers/app';
 
 @Component({
   selector: 'app-playlists',
@@ -51,7 +49,7 @@ export class PlaylistsComponent implements OnInit, OnDestroy {
       // If a playslist exists
       if (playlists.data) {
         this._store.dispatch({
-          type: INDEX_PLAYLISTS,
+          type: PlaylistsActionTypes.INDEX_PLAYLISTS,
           payload: playlists.data
         });
 
@@ -60,7 +58,7 @@ export class PlaylistsComponent implements OnInit, OnDestroy {
         if (key >= 0) {
           // this.loadPlaylist(key);
           this._store.dispatch({
-            type: SET_CURRENT_PLAYLIST,
+            type: AppActionTypes.SET_CURRENT_PLAYLIST,
             payload: key
           });
         }
@@ -76,7 +74,7 @@ export class PlaylistsComponent implements OnInit, OnDestroy {
   loadPlaylist(index: number) {
     console.log("RELOAD", index);
     this._store.dispatch({
-      type: SET_CURRENT_PLAYLIST,
+      type: AppActionTypes.SET_CURRENT_PLAYLIST,
       payload: index
     });
   }

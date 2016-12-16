@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { Track, AudioFile } from '../../models';
-import { LOAD_SONG } from './../../reducers/player';
+import { ActionTypes as PlayerActionTypes } from './../../reducers/player';
 
 import { MdDialogRef, MdDialogConfig, MdDialog } from '@angular/material';
 import { Playlist } from '../../models/playlist';
@@ -76,7 +76,7 @@ export class PlaylistComponent {
       console.log('This id will be played', row._id);
 
       this._store.dispatch({
-        type: LOAD_SONG,
+        type: PlayerActionTypes.LOAD_SONG,
         payload: <AudioFile> {
           filepath: 'test.mp3'
         }

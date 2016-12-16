@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { MessageService } from './../../services/api/message.service';
 import { Message } from './../../models';
-import { ADD_MESSAGE, REMOVE_MESSAGE, RESET } from './../../reducers/messages';
+import { ActionTypes as MessagesActionTypes } from './../../reducers/messages';
 
 @Component({
   selector: 'app-livefeed',
@@ -23,12 +23,13 @@ export class LivefeedComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Duplication (do an observable)
     this._messageService.on('created', message => {
       console.info('> New Message (LivefeedComponent) [socket]'); // DEV TODO
       console.log(message);
 
       this._store.dispatch({
-        type: ADD_MESSAGE,
+        type: MessagesActionTypes.ADD_MESSAGE,
         payload: <Message> {
           title: message.message
         }

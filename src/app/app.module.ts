@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AlertModule, TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { MaterialModule } from '@angular/material';
 import { Angular2DataTableModule } from 'angular2-data-table';
+import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'; // Dev tool
 import 'hammerjs';
 
@@ -13,6 +14,7 @@ import { ROUTES } from './app.routes';
 
 import { RestService } from './services/rest.service';
 import { SocketService } from './services/socket.service';
+// import { PlaylistService } from './services/api/playlist.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './containers/+home/home.component';
@@ -31,7 +33,6 @@ import { SearchresultsComponent } from './components/searchresults/searchresults
 import { PlaylistDialogComponent } from './components/playlist-dialog/playlist-dialog.component';
 import { LivefeedComponent } from './components/livefeed/livefeed.component';
 
-import { StoreModule } from '@ngrx/store';
 import { reducers } from './reducers';
 
 @NgModule({
@@ -67,15 +68,13 @@ import { reducers } from './reducers';
     Angular2DataTableModule,
     TypeaheadModule,
     ReactiveFormsModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
   ],
-  // providers: [],
-  providers: [ SocketService, RestService ],
-  bootstrap: [AppComponent, [
-    // RestService,
-    // SocketService,
-    // MessageService
-  ]]
+  providers: [
+    SocketService,
+    RestService,
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
