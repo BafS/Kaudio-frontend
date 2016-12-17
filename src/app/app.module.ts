@@ -10,6 +10,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'; // Dev tool
 import 'hammerjs';
 
+import { KeysPipe } from './pipes/keys'
+
 import { ROUTES } from './app.routes';
 
 import { RestService } from './services/rest.service';
