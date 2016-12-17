@@ -5,5 +5,6 @@ export interface Playlist {
   name: string;
   description?: string;
   tracks_ref?: Track[];
+  tracks?: Track[];
   public: boolean;
 }
