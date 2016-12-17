@@ -1,4 +1,4 @@
-<table style="width: 100%" class="search-results">
+<table *ngIf="(tracks | async)?.length > 0" style="width: 100%" class="table table-sm search-results">
   <tr>
     <th>Title</th>
     <th>Album</th>
@@ -10,8 +10,8 @@
     <td>artist</td>
     <td>
       <button (click)="selectTrack(track)" class="counter__button">
-            +
-        </button>
+        +
+      </button>
     </td>
   </tr>
 </table>

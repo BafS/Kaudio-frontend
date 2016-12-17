@@ -8,9 +8,10 @@ import { Component, Input } from '@angular/core';
 })
 export class SearchboxComponent {
   @Input() term = new Subject<string>();
-    constructor() { }
 
-    search(term: string): void {
+  constructor() { }
+
+  search(term: string): void {
     this.term.next(term);
   }
 }

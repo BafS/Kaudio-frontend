@@ -19,13 +19,13 @@ export class ApiSearchService {
     return this._rest.find(query);
   }
 
-  search(term: string): Observable<Track[]> {
+  search(term: string): Promise<Track[]> {
     return this._rest.find({
       query: {
         title: {
           $search: term
         }
       }
-    }).then(res => res.data as Track[]);
+    });
   }
 }

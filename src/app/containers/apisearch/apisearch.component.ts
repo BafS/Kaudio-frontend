@@ -1,9 +1,9 @@
 import { MessageService } from './../../services/api/message.service';
 import { ApiSearchService } from './../../services/api/api-search.service';
 import { Track } from './../../models/track';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
   selector: 'app-search',
@@ -11,11 +11,11 @@ import { Subject } from 'rxjs/Subject';
   styleUrls: ['./apisearch.component.scss'],
   providers: [ ApiSearchService, MessageService ]
 })
-export class ApiSearchComponent implements OnInit {
+export class ApiSearchComponent implements OnInit, OnDestroy {
 
   public selected: string = '';
   tracks: Observable<Track[]>;
-  searchTerm = new Subject<string>();
+  searchTerm = new BehaviorSubject<string>('');
 
   constructor(
     private _apiSearchService: ApiSearchService,
@@ -26,13 +26,16 @@ export class ApiSearchComponent implements OnInit {
       .debounceTime(100)        // wait for 100ms pause in events
       .distinctUntilChanged()   // ignore if next search term is same as previous
       .switchMap(term => term   // switch to new observable each time
-        // return the http search observable
-        ? this._apiSearchService.search(term)
-        : Observable.of<Track[]>([]))
+        ? this._apiSearchService.search(term).then((res: any) => res.data)
+        : Observable.of([]))
       .catch(error => {
         // TODO: real error handling
-        console.log(this.tracks);
+        console.error(this.tracks);
         return Observable.of<Track[]>([]);
       });
+  }
+
+  ngOnDestroy() {
+    this.searchTerm.unsubscribe();
   }
 }

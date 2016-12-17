@@ -12,10 +12,8 @@ export class SearchresultsComponent {
 
   constructor() {}
 
-
   selectTrack(track: Track) {
     console.log("track: " + track._id);
     //this.trackToAdd.emit(track);
   }
-
 }
