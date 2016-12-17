@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { createSelector } from 'reselect';
 
 import { PlaylistService } from './../../services/api/playlist.service';
-import { State } from './../../reducers';
+import { State, getPlaylistState } from './../../reducers';
 
 import {
   Playlist,
@@ -13,10 +13,7 @@ import {
   App
 } from '../../models';
 
-import {
-  State as PlaylistState,
-  ActionTypes as PlaylistsActionTypes
-} from '../../reducers/playlists';
+import * as fromPlaylists from '../../reducers/playlists';
 
 @Component({
   selector: 'app-playlists',
@@ -27,7 +24,7 @@ import {
 export class PlaylistsComponent implements OnInit, OnDestroy {
   playlist$: Observable<Playlist>;
 
-  public playlistsStore: Observable<PlaylistState>;
+  public playlistsStore: Observable<fromPlaylists.State>;
   public playlistsEntitiesStore: Observable<Playlist[]>;
 
   private _playlistSelectSubscription: Subscription;
@@ -39,14 +36,7 @@ export class PlaylistsComponent implements OnInit, OnDestroy {
     this.playlistsStore = _store.select(s => s.playlists);
     this.playlistsEntitiesStore = _store.select(s => s.playlists.entities);
 
-    const getEntities = (state: PlaylistState) => state.entities;
-    const getSelectedId = (state: PlaylistState) => state.selectedPlaylistId;
-
-    const getSelected = createSelector(getEntities, getSelectedId, (entities, selectedId) => {
-      return entities[selectedId];
-    });
-    const getPlaylistState = (state: State) => state.playlists;
-    const getSelectedPlaylist = createSelector(getPlaylistState, getSelected);
+    const getSelectedPlaylist = createSelector(getPlaylistState, fromPlaylists.getSelected);
 
     this.playlist$ = _store.select(getSelectedPlaylist);
   }
@@ -58,7 +48,7 @@ export class PlaylistsComponent implements OnInit, OnDestroy {
             console.log(playlist);
 
             this._store.dispatch({
-              type: PlaylistsActionTypes.LOAD_PLAYLIST,
+              type: fromPlaylists.ActionTypes.LOAD_PLAYLIST,
               payload: playlist
             });
           });
@@ -71,7 +61,7 @@ export class PlaylistsComponent implements OnInit, OnDestroy {
       // If a playslist exists
       if (playlists.data) {
         this._store.dispatch({
-          type: PlaylistsActionTypes.INDEX_PLAYLISTS,
+          type: fromPlaylists.ActionTypes.INDEX_PLAYLISTS,
           payload: playlists.data
         });
 
@@ -86,14 +76,13 @@ export class PlaylistsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._playlistSelectSubscription.unsubscribe();
-    // this._appSubscription.unsubscribe();
   }
 
   selectPlaylist(id: string) {
     console.log('SELECT ', id);
     window.localStorage.setItem('playlist-key', '' + id);
     this._store.dispatch({
-      type: PlaylistsActionTypes.SELECT_PLAYLIST,
+      type: fromPlaylists.ActionTypes.SELECT_PLAYLIST,
       payload: id
     });
   }

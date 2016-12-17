@@ -1,4 +1,5 @@
 import { ActionReducer, Action } from '@ngrx/store';
+import { createSelector } from 'reselect';
 import { Playlist } from './../models/playlist';
 
 export const ActionTypes = {
@@ -30,7 +31,7 @@ const initialState: State = {
   selectedPlaylistId: null,
 };
 
-export function reducer(state = initialState, action: Action): State {
+export function reducer(state: State = initialState, action: Action): State {
   switch (action.type) {
     case ActionTypes.INDEX_PLAYLISTS:
       const playlists: any[] = action.payload;
@@ -78,3 +79,11 @@ export function reducer(state = initialState, action: Action): State {
       return state;
   }
 }
+
+export const getEntities = (state: State) => state.entities;
+
+export const getSelectedId = (state: State) => state.selectedPlaylistId;
+
+export const getSelected = createSelector(getEntities, getSelectedId, (entities, selectedId) => {
+  return entities[selectedId];
+});

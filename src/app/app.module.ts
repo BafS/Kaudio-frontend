@@ -39,6 +39,7 @@ import { reducers } from './reducers';
 
 @NgModule({
   declarations: [
+    KeysPipe,
     AppComponent,
     AboutComponent,
     HomeComponent,

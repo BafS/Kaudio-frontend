@@ -13,3 +13,5 @@ export const reducers: Object = {
   player: fromPlayer.reducer,
   playlists: fromPlaylists.reducer,
 };
+
+export const getPlaylistState = (state: State) => state.playlists;
