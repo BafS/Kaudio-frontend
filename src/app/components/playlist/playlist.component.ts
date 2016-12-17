@@ -16,11 +16,7 @@ import { PlaylistDialogComponent} from '../playlist-dialog/playlist-dialog.compo
   providers: [ PlaylistService ]
 })
 export class PlaylistComponent {
-  @Input() title: string;
-  @Input() description?: string;
-  @Input() tracks?: Track[]; // songs
-  @Input() id: string;
-  @Input() public: boolean;
+  @Input() playlist: Playlist;
 
   private rows = [];
 
@@ -54,19 +50,19 @@ export class PlaylistComponent {
       // width: '500px',
       disableClose: false
     });
-    this.dialogRef.componentInstance.new = false;
-    this.dialogRef.componentInstance.title = this.title;
-    this.dialogRef.componentInstance.description = this.description;
-    this.dialogRef.componentInstance.public = this.public;
-    this.dialogRef.componentInstance.id = this.id;
+    // TODO
+    // this.dialogRef.componentInstance.new = false;
+    // this.dialogRef.componentInstance.title = this.title;
+    // this.dialogRef.componentInstance.description = this.description;
+    // this.dialogRef.componentInstance.public = this.public;
+    // this.dialogRef.componentInstance.id = this.playlist;
   }
 
   deletePlaylist() {
-    this._playlistService.remove(this.id, '').then((result) => {
-      console.log('Playlist : ' + this.title + ' delete', result);
-
+    this._playlistService.remove(this.playlist._id, '').then((result) => {
+      console.log('Playlist : ' + this.playlist.name + ' delete', result);
     }).catch((error) => {
-      console.error('Error Delete Playlist : ' + this.title , error);
+      console.error('Error Delete Playlist : ' + this.playlist.name , error);
     });
   }
 

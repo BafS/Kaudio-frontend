@@ -1,18 +1,14 @@
 <div class="playlists">
   <div class="sidebar">
     <app-sidebar
-      [playlists]="playlistsStore"
-      (selectPlaylist)="loadPlaylist($event)"
+      [playlists]="playlistsEntitiesStore"
+      (selectPlaylist)="selectPlaylist($event)"
     ></app-sidebar>
   </div>
 
   <div class="main">
     <app-playlist
-      *ngIf="currentPlaylist && currentPlaylist.tracks"
-      [title]="currentPlaylist.name"
-      [description]="currentPlaylist.description"
-      [tracks]="currentPlaylist.tracks"
-      [id]="currentPlaylist._id"
+      [playlist]="playlist$ | async"
     ></app-playlist>
   </div>
 </div>

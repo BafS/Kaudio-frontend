@@ -2,17 +2,21 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
+import { createSelector } from 'reselect';
+
+import { PlaylistService } from './../../services/api/playlist.service';
+import { State } from './../../reducers';
 
 import {
   Playlist,
   Track,
   App
 } from '../../models';
-import { PlaylistService } from './../../services/api/playlist.service';
 
-import { ActionTypes as PlaylistsActionTypes } from '../../reducers/playlists';
-
-import { ActionTypes as AppActionTypes } from '../../reducers/app';
+import {
+  State as PlaylistState,
+  ActionTypes as PlaylistsActionTypes
+} from '../../reducers/playlists';
 
 @Component({
   selector: 'app-playlists',
@@ -21,26 +25,44 @@ import { ActionTypes as AppActionTypes } from '../../reducers/app';
   providers: [ PlaylistService ]
 })
 export class PlaylistsComponent implements OnInit, OnDestroy {
-  currentPlaylist: Playlist;
+  playlist$: Observable<Playlist>;
 
-  public playlistsStore: Observable<Playlist[]>;
-  public appStore: Observable<App>;
-  private _appSubscription: Subscription;
-  private _playlistsSubscription: Subscription;
+  public playlistsStore: Observable<PlaylistState>;
+  public playlistsEntitiesStore: Observable<Playlist[]>;
+
+  private _playlistSelectSubscription: Subscription;
 
   constructor(
     private _playlistService: PlaylistService,
     private _store: Store<any>
   ) {
     this.playlistsStore = _store.select(s => s.playlists);
-    this.appStore = _store.select(s => s.app);
+    this.playlistsEntitiesStore = _store.select(s => s.playlists.entities);
+
+    const getEntities = (state: PlaylistState) => state.entities;
+    const getSelectedId = (state: PlaylistState) => state.selectedPlaylistId;
+
+    const getSelected = createSelector(getEntities, getSelectedId, (entities, selectedId) => {
+      return entities[selectedId];
+    });
+    const getPlaylistState = (state: State) => state.playlists;
+    const getSelectedPlaylist = createSelector(getPlaylistState, getSelected);
+
+    this.playlist$ = _store.select(getSelectedPlaylist);
   }
 
   ngOnInit() {
-    this._appSubscription = this.appStore.subscribe(app => {
-      console.log('SUB1');
-      
-      this.fetchPlaylist(app.currentPlaylist);
+    this._playlistSelectSubscription = this._store.select(s => s.playlists.selectedPlaylistId).subscribe((id: string) => {
+        if (id) {
+          this._playlistService.get(id).then(playlist => {
+            console.log(playlist);
+
+            this._store.dispatch({
+              type: PlaylistsActionTypes.LOAD_PLAYLIST,
+              payload: playlist
+            });
+          });
+        }
     });
 
     this._playlistService.find().then(playlists => {
@@ -54,50 +76,25 @@ export class PlaylistsComponent implements OnInit, OnDestroy {
         });
 
         // Reload previous playlist if possible
-        let key = Number(window.localStorage.getItem('playlist-key'));
-        if (key >= 0) {
-          // this.loadPlaylist(key);
-          this._store.dispatch({
-            type: AppActionTypes.SET_CURRENT_PLAYLIST,
-            payload: key
-          });
+        let id = window.localStorage.getItem('playlist-key');
+        if (id) {
+          this.selectPlaylist(id);
         }
       }
     });
   }
 
   ngOnDestroy() {
-    this._appSubscription.unsubscribe();
-    // this._playlistsSubscription.unsubscribe();
+    this._playlistSelectSubscription.unsubscribe();
+    // this._appSubscription.unsubscribe();
   }
 
-  loadPlaylist(index: number) {
-    console.log("RELOAD", index);
+  selectPlaylist(id: string) {
+    console.log('SELECT ', id);
+    window.localStorage.setItem('playlist-key', '' + id);
     this._store.dispatch({
-      type: AppActionTypes.SET_CURRENT_PLAYLIST,
-      payload: index
+      type: PlaylistsActionTypes.SELECT_PLAYLIST,
+      payload: id
     });
-  }
-
-  fetchPlaylist(index) {
-    this.playlistsStore.take(1).subscribe(r => {
-      // console.log(r.toString());
-      this.currentPlaylist = r[index];
-      console.log('->', this.currentPlaylist);
-
-      if (this.currentPlaylist && this.currentPlaylist._id) {
-        this._playlistService.get(this.currentPlaylist._id).then(playlist => {
-          this.currentPlaylist = playlist
-
-      //     // this._store.dispatch({
-      //     //   type: UPDATE_PLAYLIST,
-      //     //   payload: {
-      //     //     index,
-      //     //     playlist
-      //     //   }
-      //     // });
-        });
-      }
-    })
   }
 }

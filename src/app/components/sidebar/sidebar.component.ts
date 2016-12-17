@@ -14,17 +14,18 @@ import { PlaylistDialogComponent} from '../playlist-dialog/playlist-dialog.compo
 // TODO Verifier si après 5 ou plus playlists elles s'affichent dans le sidebar...
 export class SidebarComponent {
   @Input('playlists') playlistsList: Observable<Playlist[]>;
-  @Output('selectPlaylist') selectedPlaylist = new EventEmitter<number>();
-  private currentPlaylistKey: number = -1;
+  @Output('selectPlaylist') selectedPlaylist = new EventEmitter<string>();
+  currentPlaylistId: string = '';
 
   // for add playlist dialog
   private dialogRef: MdDialogRef<PlaylistDialogComponent>;
 
-  constructor(public dialog: MdDialog) { }
+  constructor(public dialog: MdDialog) {
+  }
 
-  selectPlaylist(key: number) {
-    this.currentPlaylistKey = key;
-    this.selectedPlaylist.emit(key);
+  selectPlaylist(id: string) {
+    this.currentPlaylistId = id;
+    this.selectedPlaylist.emit(id);
   }
 
   /**
