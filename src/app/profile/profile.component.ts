@@ -32,7 +32,8 @@ export class ProfileComponent implements OnInit {
     private _userService: UserService,
   ) {
     this.dataSource = Observable.create((observer: any) => {
-      // Runs on every search
+      // Permet de mettre à jour l'auto-complétion de la liste d'amis
+      // Est exécuté à chaque fois qu'une lettre est tappée
       if (this.asyncSelected.length > 0) {
         this._userService.find({
           query: {
@@ -41,25 +42,11 @@ export class ProfileComponent implements OnInit {
             }
           }
         }).then(res => {
-          /*for (let entry of res.data)
-            if (entry.email in this.user.friends)
-              console.log("To delete: " + entry);*/
-
           observer.next(res.data);
         });
       }
-      //observer.next(this.asyncSelected);
     }).mergeMap((res: any) => Observable.of(res));
   }
-
-  /*
-  public getStatesAsObservable(token: string): Observable<any> {
-    let query = new RegExp(token, 'ig');
-    // console.log(query);
-    return Observable.of(
-      [{id: 49, name: 'West Virginia', region: 'South'}]
-    );
-  }*/
 
   public changeTypeaheadLoading(e: boolean): void {
     this.typeaheadLoading = e;
@@ -68,19 +55,25 @@ export class ProfileComponent implements OnInit {
   public changeTypeaheadNoResults(e: boolean): void {
     this.typeaheadNoResults = e;
   }
- 
+
+  // Appelé lorsque l'utilisateur clique sur une entrée
+  // de l'auto-complétion.
   public typeaheadOnSelect(e: TypeaheadMatch): void {
     let already_in = false;
 
-    for (let key in this.user.friends)
-      if (this.user.friends[key] === e.value) {
+    // Permet de déterminer si l'ami sélectionné fait déjà parti
+    // de la liste d'amis de l'utilisateur.
+    for (let key in this.user.friends_refs)
+      if (this.user.friends_refs[key] === e.value) {
         already_in = true;
         break;
       }
     
+    // Ajout de l'ami s'il n'est pas déjà dans la liste.
     if (!already_in)
-      this.user.friends.push(e.value);
+      this.user.friends_refs.push(e.value);
     
+    // Vide le champ d'auto-complétion.
     this.asyncSelected = null;
   }
 
@@ -88,33 +81,28 @@ export class ProfileComponent implements OnInit {
     this.userId = window.localStorage.getItem('userId');
     if (this.userId) {
       this._userService.get(this.userId).then(user => {
-        // console.info(user);
         this.user = <User>{
           email: user.email,
-          // picture: '',
           friends: user.friends_ref
         };
       });
     }
   }
 
+  // Met à jour l'utilisateur dans la base de données.
   onSubmit(event) {
-    console.log(this.user);
-
     this._userService.update(this.userId, this.user);
-
     return false;
   }
 
+  // Est appelé lorsque l'utilisateur veut supprimer un ami de sa liste d'amis.
   onRemove(user) {
-    console.log("Remove: " + user);
-
-    for (var i = 0; i < this.user.friends.length; i++)
-      if (this.user.friends[i] === user) {
-        this.user.friends.splice(i, 1);
-        this._userService.update(this.userId, this.user);
-      }
+    // Parcourt la liste d'amis et supprime l'ami sélectionné.
+    for (var i = 0; i < this.user.friends_refs.length; i++)
+      if (this.user.friends_refs[i] === user)
+        this.user.friends_refs.splice(i, 1);
     
+    this._userService.update(this.userId, this.user);
     return false;
   }
 }

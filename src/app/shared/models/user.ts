@@ -4,16 +4,16 @@ export class User {
     public email: string,
     public password?: string,
     public picture?: string,
-    public friends?: string[]
+    public friends_refs?: string[]
     // public username?: string
   ) {  }
 }
 
-/*
-export interface User {
+
+/*export interface User {
+  id?: string;
   email: string;
   password?: string;
   picture?: string;
-  friends?: string[];
-}
-*/
+  friends_ref?: string[];
+}*/
