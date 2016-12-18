@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private _userService: UserService,
   ) {
-    this.dataSource = Observable.create((observer: any) => {
+    this.dataSource = Observable.create(observer => {
       // Permet de mettre à jour l'auto-complétion de la liste d'amis
       // Est exécuté à chaque fois qu'une lettre est tappée
       if (this.asyncSelected.length > 0) {
@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
           observer.next(res.data);
         });
       }
-    }).mergeMap((res: any) => Observable.of(res));
+    }).mergeMap((res: Object) => Observable.of(res));
   }
 
   public changeTypeaheadLoading(e: boolean): void {
@@ -59,22 +59,24 @@ export class ProfileComponent implements OnInit {
   // Appelé lorsque l'utilisateur clique sur une entrée
   // de l'auto-complétion.
   public typeaheadOnSelect(e: TypeaheadMatch): void {
-    let already_in = false;
+    let alreadyIn = false;
 
     // Permet de déterminer si l'ami sélectionné fait déjà parti
     // de la liste d'amis de l'utilisateur.
-    for (let key in this.user.friends_refs)
+    for (let key in this.user.friends_refs) {
       if (this.user.friends_refs[key] === e.value) {
-        already_in = true;
+        alreadyIn = true;
         break;
       }
+    }
     
     // Ajout de l'ami s'il n'est pas déjà dans la liste.
-    if (!already_in)
+    if (!alreadyIn) {
       this.user.friends_refs.push(e.value);
+    }
     
     // Vide le champ d'auto-complétion.
-    this.asyncSelected = null;
+    this.asyncSelected = '';
   }
 
   ngOnInit() {
@@ -98,9 +100,11 @@ export class ProfileComponent implements OnInit {
   // Est appelé lorsque l'utilisateur veut supprimer un ami de sa liste d'amis.
   onRemove(user) {
     // Parcourt la liste d'amis et supprime l'ami sélectionné.
-    for (var i = 0; i < this.user.friends_refs.length; i++)
-      if (this.user.friends_refs[i] === user)
+    for (var i = 0; i < this.user.friends_refs.length; i++) {
+      if (this.user.friends_refs[i] === user) {
         this.user.friends_refs.splice(i, 1);
+      }
+    }
     
     this._userService.update(this.userId, this.user);
     return false;

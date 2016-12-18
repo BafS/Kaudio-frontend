@@ -44,6 +44,7 @@
         </ul>
         <input [(ngModel)]="asyncSelected"
               [typeahead]="dataSource"
+              [typeaheadWaitMs]="100"
               (typeaheadLoading)="changeTypeaheadLoading($event)"
               (typeaheadNoResults)="changeTypeaheadNoResults($event)"
               (typeaheadOnSelect)="typeaheadOnSelect($event)"
