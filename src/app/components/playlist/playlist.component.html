@@ -1,0 +1,30 @@
+<div *ngIf="!playlist">
+  <h1 class="text-muted playlist-title">Please select a playlist</h1>
+</div>
+
+<div *ngIf="playlist">
+  <h1 class="playlist-title">{{playlist.name}}</h1>
+  <h2 class="playlist-description">{{playlist.description}}</h2>
+
+  <swui-datatable
+    *ngIf="playlist.tracks"
+    class="material"
+    [rows]="playlist.tracks"
+    [columns]="columns"
+    [columnMode]="'force'"
+    [headerHeight]="40"
+    (sort)="onSort($event)"
+    [selected]="selected"
+    [selectionType]="'single'"
+    (activate)="onActivate($event)"
+  ></swui-datatable>
+</div>
+<div *ngIf="playlist">
+  <button md-button (click)="updatePlaylist()">
+    <md-icon class="md-24">edit</md-icon>
+  </button>
+  <button md-button (click)="deletePlaylist()">
+    <md-icon class="md-24">delete</md-icon>
+  </button>
+</div>
+

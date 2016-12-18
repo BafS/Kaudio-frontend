@@ -1,9 +1,9 @@
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './+home/home.component';
-import { PlaylistsComponent } from './playlists/playlists.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
+import { HomeComponent } from './containers/+home/home.component';
+import { PlaylistsComponent } from './containers/playlists/playlists.component';
+import { LoginComponent } from './containers/login/login.component';
+import { RegisterComponent } from './containers/register/register.component';
+import { ProfileComponent } from './containers/profile/profile.component';
 // import { PageNotFoundComponent } from './page-not-found-component';
 
 export const ROUTES: Routes = [

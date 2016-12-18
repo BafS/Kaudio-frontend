@@ -1,0 +1,14 @@
+<div class="playlists">
+  <div class="sidebar">
+    <app-sidebar
+      [playlists]="playlistsEntitiesStore"
+      (selectPlaylist)="selectPlaylist($event)"
+    ></app-sidebar>
+  </div>
+
+  <div class="main">
+    <app-playlist
+      [playlist]="playlist$ | async"
+    ></app-playlist>
+  </div>
+</div>
