@@ -32,8 +32,8 @@ export class ProfileComponent implements OnInit {
     private _userService: UserService,
   ) {
     this.dataSource = Observable.create(observer => {
-      // Permet de mettre à jour l'auto-complétion de la liste d'amis
-      // Est exécuté à chaque fois qu'une lettre est tappée
+      // Updates autocomplete of friends list.
+      // Is executed everytime a new letter is typed.
       if (this.asyncSelected.length > 0) {
         this._userService.find({
           query: {
@@ -56,13 +56,12 @@ export class ProfileComponent implements OnInit {
     this.typeaheadNoResults = e;
   }
 
-  // Appelé lorsque l'utilisateur clique sur une entrée
-  // de l'auto-complétion.
+  // Called when the user clicks on an entry of the autocomplete list.
   public typeaheadOnSelect(e: TypeaheadMatch): void {
     let alreadyIn = false;
 
-    // Permet de déterminer si l'ami sélectionné fait déjà parti
-    // de la liste d'amis de l'utilisateur.
+    // Determines if the selected friend is already part
+    // of the users friends list.
     for (let key in this.user.friends_ref) {
       if (this.user.friends_ref[key] === e.value) {
         alreadyIn = true;
@@ -70,13 +69,13 @@ export class ProfileComponent implements OnInit {
       }
     }
     
-    // Ajout de l'ami s'il n'est pas déjà dans la liste.
+    // Adds the friend if it's not already in the list.
     if (!alreadyIn) {
       console.log(this.user);
       this.user.friends_ref.push(e.value);
     }
     
-    // Vide le champ d'auto-complétion.
+    // Empties the autocomplete field.
     this.asyncSelected = '';
   }
 
@@ -89,15 +88,15 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  // Met à jour l'utilisateur dans la base de données.
+  // Updates the user in the database.
   onSubmit(event) {
     this._userService.update(this.userId, this.user);
     return false;
   }
 
-  // Est appelé lorsque l'utilisateur veut supprimer un ami de sa liste d'amis.
+  // Called when a user wants to delete a friend from the list.
   onRemove(user) {
-    // Parcourt la liste d'amis et supprime l'ami sélectionné.
+    // Deletes the selected friend.
     for (var i = 0; i < this.user.friends_ref.length; i++) {
       if (this.user.friends_ref[i] === user) {
         this.user.friends_ref.splice(i, 1);
