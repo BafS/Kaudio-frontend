@@ -63,8 +63,8 @@ export class ProfileComponent implements OnInit {
 
     // Permet de déterminer si l'ami sélectionné fait déjà parti
     // de la liste d'amis de l'utilisateur.
-    for (let key in this.user.friends_refs) {
-      if (this.user.friends_refs[key] === e.value) {
+    for (let key in this.user.friends_ref) {
+      if (this.user.friends_ref[key] === e.value) {
         alreadyIn = true;
         break;
       }
@@ -72,7 +72,8 @@ export class ProfileComponent implements OnInit {
     
     // Ajout de l'ami s'il n'est pas déjà dans la liste.
     if (!alreadyIn) {
-      this.user.friends_refs.push(e.value);
+      console.log(this.user);
+      this.user.friends_ref.push(e.value);
     }
     
     // Vide le champ d'auto-complétion.
@@ -83,10 +84,7 @@ export class ProfileComponent implements OnInit {
     this.userId = window.localStorage.getItem('userId');
     if (this.userId) {
       this._userService.get(this.userId).then(user => {
-        this.user = <User>{
-          email: user.email,
-          friends: user.friends_ref
-        };
+        this.user = user;
       });
     }
   }
@@ -100,9 +98,9 @@ export class ProfileComponent implements OnInit {
   // Est appelé lorsque l'utilisateur veut supprimer un ami de sa liste d'amis.
   onRemove(user) {
     // Parcourt la liste d'amis et supprime l'ami sélectionné.
-    for (var i = 0; i < this.user.friends_refs.length; i++) {
-      if (this.user.friends_refs[i] === user) {
-        this.user.friends_refs.splice(i, 1);
+    for (var i = 0; i < this.user.friends_ref.length; i++) {
+      if (this.user.friends_ref[i] === user) {
+        this.user.friends_ref.splice(i, 1);
       }
     }
     
