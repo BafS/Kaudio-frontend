@@ -39,7 +39,7 @@
 
       <div class="form-group mb-3">
         <label for="friends">Friends</label>
-        <ul *ngFor="let friend of user.friends_ref">
+        <ul *ngFor="let friend of friends">
             <li>{{friend}} <a href="#" (click)="onRemove(friend)">Remove</a></li>
         </ul>
         <input [(ngModel)]="asyncSelected"
@@ -60,7 +60,7 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary" [disabled]="!userForm.form.valid">Update</button>
+      <button type="submit" class="btn btn-primary">Update</button>
       <button class="btn btn-default-outline" (click)="onLogout()">Cancel</button>
     </form>
   </div>

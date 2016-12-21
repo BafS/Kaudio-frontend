@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   public stateCtrl: FormControl = new FormControl();
   private _messages: any[] = [];
   private userId: string;
+  private friends: User[] = [];
   public user: User;
   public myForm: FormGroup = new FormGroup({
     state: this.stateCtrl
@@ -62,17 +63,17 @@ export class ProfileComponent implements OnInit {
 
     // Determines if the selected friend is already part
     // of the users friends list.
-    for (let key in this.user.friends_ref) {
-      if (this.user.friends_ref[key] === e.value) {
+    for (let key in this.user.friends_ref)
+      if (this.user.friends_ref[key] === e.item._id) {
         alreadyIn = true;
         break;
       }
-    }
     
     // Adds the friend if it's not already in the list.
     if (!alreadyIn) {
-      console.log(this.user);
-      this.user.friends_ref.push(e.value);
+      this.user.friends_ref.push(e.item._id);
+      this.friends.push(e.item.email);
+      this._userService.update(this.userId, this.user);
     }
     
     // Empties the autocomplete field.
@@ -81,9 +82,16 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.userId = window.localStorage.getItem('userId');
+
     if (this.userId) {
       this._userService.get(this.userId).then(user => {
         this.user = user;
+
+          // Construction of the local list of friends with emails instead of IDs.
+          for (var i = 0; i < this.user.friends_ref.length; i++)
+            this._userService.get(this.user.friends_ref[i]).then(user => {
+              this.friends.push(user.email);
+            });
       });
     }
   }
@@ -96,12 +104,13 @@ export class ProfileComponent implements OnInit {
 
   // Called when a user wants to delete a friend from the list.
   onRemove(user) {
-    // Deletes the selected friend.
-    for (var i = 0; i < this.user.friends_ref.length; i++) {
-      if (this.user.friends_ref[i] === user) {
+    // Deletes the selected friend by iterating through the list
+    // of friends and checking if the friend to remove is in it.
+    for (var i = 0; i < this.user.friends_ref.length; i++)
+      if (this.friends[i] === user) {
         this.user.friends_ref.splice(i, 1);
+        this.friends.splice(i, 1);
       }
-    }
     
     this._userService.update(this.userId, this.user);
     return false;
