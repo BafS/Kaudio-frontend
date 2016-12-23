@@ -4,11 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AlertModule, TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { Ng2UploaderModule } from 'ng2-uploader/ng2-uploader';
 import { MaterialModule } from '@angular/material';
 import { Angular2DataTableModule } from 'angular2-data-table';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'; // Dev tool
 import 'hammerjs';
+import 'dropzone';
 
 import { KeysPipe } from './pipes/keys'
 
@@ -72,6 +74,7 @@ import { reducers } from './reducers';
     TypeaheadModule,
     ReactiveFormsModule,
     MaterialModule.forRoot(),
+    Ng2UploaderModule
   ],
   providers: [
     SocketService,

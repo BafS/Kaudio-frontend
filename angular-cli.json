@@ -22,7 +22,8 @@
         "styles.scss"
       ],
       "scripts": [
-        "../node_modules/plyr/dist/plyr.js"
+        "../node_modules/plyr/dist/plyr.js",
+        "../node_modules/dropzone/dist/dropzone.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

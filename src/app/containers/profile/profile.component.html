@@ -1,3 +1,8 @@
+
+
+        
+        
+        
 <div class="wrapper">
   <div class="container">
     <h2>Profile</h2>
@@ -30,12 +35,16 @@
         </alert>
       </div>
 
-      <div class="form-group">
+      <!--<div class="form-group">
         <label for="password">Picture</label>
         <input type="file" class="form-control" id="picture"
                 [(ngModel)]="user.picture" name="picture"
                 #picture="ngModel">
-      </div>
+      </div>-->
+
+      <form action="/file-upload"
+      class="dropzone"
+      id="my-awesome-dropzone"></form>
 
       <div class="form-group mb-3">
         <label for="friends">Friends</label>

@@ -7,6 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/toPromise';
+import 'dropzone';
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +16,7 @@ import 'rxjs/add/operator/toPromise';
   providers: [ UserService, MessageService ]
 })
 export class ProfileComponent implements OnInit {
+
   public stateCtrl: FormControl = new FormControl();
   private _messages: any[] = [];
   private userId: string;
@@ -98,6 +100,8 @@ export class ProfileComponent implements OnInit {
 
   // Updates the user in the database.
   onSubmit(event) {
+    console.log("onSubmit")
+    console.log(this.user);
     this._userService.update(this.userId, this.user);
     return false;
   }
