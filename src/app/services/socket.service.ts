@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from './../../environments/environment'
+import { environment } from './../../environments/environment';
 import { FeathersService } from './feathers.service';
 
 const io = require('socket.io-client');
@@ -11,7 +11,7 @@ const authentication = require('feathers-authentication/client');
 
 @Injectable()
 export class SocketService extends FeathersService {
-  public socket: any; // SocketIOClient.Socket;
+  public socket: SocketIOClient.Socket;
 
   constructor(
   ) {
@@ -24,17 +24,17 @@ export class SocketService extends FeathersService {
       .configure(socketio(this.socket))
       .configure(authentication({ storage: window.localStorage }));
 
-    this.authenticateIfPossible()
+    this.authenticateIfPossible();
 
-    this.socket.io.engine.on('reconnect', () => {
+    this.socket.io.on('reconnect', () => {
       console.info('--> reconnect');
       // this._app.authenticate();
     });
 
     // If the transport changes, you have to authenticate again.
-    this.socket.io.engine.on('upgrade', transport => {
+    this.socket.io.on('upgrade', transport => {
       console.info('>> transport changed [socket.service]');
-      this.authenticateIfPossible()
+      this.authenticateIfPossible();
     });
   }
 
@@ -55,7 +55,7 @@ export class SocketService extends FeathersService {
       // If we have a token, we can authenticate
       this._app.authenticate().then(res => {
         console.info(res);
-        console.log('Authenticated done')
+        console.log('Authenticated done');
       }).catch((error) => {
         console.error('Error ' + error);
       });
