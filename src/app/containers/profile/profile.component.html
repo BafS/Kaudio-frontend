@@ -48,8 +48,8 @@
 
       <div class="form-group mb-3">
         <label for="friends">Friends</label>
-        <ul *ngFor="let friend of friends">
-            <li>{{friend}} <a href="#" (click)="onRemove(friend)">Remove</a></li>
+        <ul *ngFor="let friend of user.friends">
+            <li>{{friend.email}} <a href="#" (click)="onRemove(friend)">Remove</a></li>
         </ul>
         <input [(ngModel)]="asyncSelected"
               [typeahead]="dataSource"
@@ -60,7 +60,7 @@
               [typeaheadOptionsLimit]="7"
               [typeaheadOptionField]="'email'"
               class="form-control"
-              name="friends_ref">
+              name="friends">
         <div *ngIf="typeaheadLoading===true">
           <i class="glyphicon glyphicon-refresh ng-hide" style=""></i>
         </div>
