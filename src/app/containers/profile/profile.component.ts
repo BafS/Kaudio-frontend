@@ -20,7 +20,6 @@ export class ProfileComponent implements OnInit {
   public stateCtrl: FormControl = new FormControl();
   private _messages: any[] = [];
   private userId: string;
-  private friends: User[] = [];
   public user: User;
   public myForm: FormGroup = new FormGroup({
     state: this.stateCtrl
@@ -65,17 +64,17 @@ export class ProfileComponent implements OnInit {
 
     // Determines if the selected friend is already part
     // of the users friends list.
-    for (let key in this.user.friends_ref)
-      if (this.user.friends_ref[key] === e.item._id) {
+    for (var i = 0; i < this.user.friends.length; i++)
+      if (this.user.friends[i].email === e.item.email) {
         alreadyIn = true;
         break;
       }
     
     // Adds the friend if it's not already in the list.
     if (!alreadyIn) {
-      this.user.friends_ref.push(e.item._id);
-      this.friends.push(e.item.email);
+      this.user.friends.push(e.item);
       this._userService.update(this.userId, this.user);
+      console.log(this.user.friends);
     }
     
     // Empties the autocomplete field.
@@ -88,12 +87,9 @@ export class ProfileComponent implements OnInit {
     if (this.userId) {
       this._userService.get(this.userId).then(user => {
         this.user = user;
-
-          // Construction of the local list of friends with emails instead of IDs.
-          for (var i = 0; i < this.user.friends_ref.length; i++)
-            this._userService.get(this.user.friends_ref[i]).then(user => {
-              this.friends.push(user.email);
-            });
+        
+        if (!this.user.hasOwnProperty("friends"))
+          this.user.friends = [];
       });
     }
   }
@@ -110,11 +106,9 @@ export class ProfileComponent implements OnInit {
   onRemove(user) {
     // Deletes the selected friend by iterating through the list
     // of friends and checking if the friend to remove is in it.
-    for (var i = 0; i < this.user.friends_ref.length; i++)
-      if (this.friends[i] === user) {
-        this.user.friends_ref.splice(i, 1);
-        this.friends.splice(i, 1);
-      }
+    for (var i = 0; i < this.user.friends.length; i++)
+      if (this.user.friends[i] === user)
+        this.user.friends.splice(i, 1);
     
     this._userService.update(this.userId, this.user);
     return false;
