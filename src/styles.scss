@@ -5,8 +5,8 @@ $border-radius-sm:       0;
 @import '~bootstrap/scss/bootstrap.scss';
 
 // Datatable
-@import '~angular2-data-table/src/components/datatable.scss';
-@import '~angular2-data-table/src/themes/material.scss';
+@import '~@swimlane/ngx-datatable/src/components/datatable.scss';
+@import '~@swimlane/ngx-datatable/src/themes/material.scss';
 
 // Material theme customization
 @import '~@angular/material/core/theming/all-theme';

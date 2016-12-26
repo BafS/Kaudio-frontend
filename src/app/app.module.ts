@@ -6,13 +6,13 @@ import { RouterModule } from '@angular/router';
 import { AlertModule, TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { Ng2UploaderModule } from 'ng2-uploader/ng2-uploader';
 import { MaterialModule } from '@angular/material';
-import { Angular2DataTableModule } from 'angular2-data-table';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'; // Dev tool
 import 'hammerjs';
 import 'dropzone';
 
-import { KeysPipe } from './pipes/keys'
+import { KeysPipe } from './pipes/keys';
 
 import { ROUTES } from './app.routes';
 
@@ -70,7 +70,7 @@ import { reducers } from './reducers';
     HttpModule,
     RouterModule.forRoot(ROUTES),
     AlertModule,
-    Angular2DataTableModule,
+    NgxDatatableModule,
     TypeaheadModule,
     ReactiveFormsModule,
     MaterialModule.forRoot(),

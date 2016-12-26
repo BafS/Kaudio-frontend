@@ -6,18 +6,19 @@
   <h1 class="playlist-title">{{playlist.name}}</h1>
   <h2 class="playlist-description">{{playlist.description}}</h2>
 
-  <swui-datatable
+  <ngx-datatable
     *ngIf="playlist.tracks"
     class="material"
     [rows]="playlist.tracks"
     [columns]="columns"
     [columnMode]="'force'"
     [headerHeight]="40"
+    [loadingIndicator]="loadingIndicator"
     (sort)="onSort($event)"
     [selected]="selected"
     [selectionType]="'single'"
     (activate)="onActivate($event)"
-  ></swui-datatable>
+  ></ngx-datatable>
 </div>
 <div *ngIf="playlist">
   <button md-button (click)="updatePlaylist()">
