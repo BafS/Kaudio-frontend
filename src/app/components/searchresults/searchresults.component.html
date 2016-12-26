@@ -1,17 +1,22 @@
-<table *ngIf="(tracks | async)?.length > 0" style="width: 100%" class="table table-sm search-results">
-  <tr>
-    <th>Title</th>
-    <th>Album</th>
-    <th>Artist</th>
-  </tr>
-  <tr *ngFor="let track of tracks | async">
-    <td>{{track.title}}</td>
-    <td>album</td>
-    <td>artist</td>
-    <td>
-      <button (click)="selectTrack(track)" class="counter__button">
-        +
-      </button>
-    </td>
-  </tr>
-</table>
+<div *ngIf="(tracks | async)?.length > 0" class="card">
+  <table style="width: 100%" class="table table-sm table-striped">
+    <thead class="thead-default">
+      <tr>
+        <th>Title</th>
+        <th>Album</th>
+        <th>Artist</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tr *ngFor="let track of tracks | async">
+      <td>{{track.title}}</td>
+      <td>album</td>
+      <td>artist</td>
+      <td>
+        <button (click)="selectTrack(track)" class="btn btn-sm btn-primary">
+          +
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
