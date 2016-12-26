@@ -9,7 +9,7 @@ export class FeathersService {
     // this._app = feathers();
   }
 
-  getService(service: string) {
+  getService(service: string): SocketIOClient.Socket {
     return this.getApp().service(service);
   }
 
