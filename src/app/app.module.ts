@@ -25,6 +25,7 @@ import { HomeComponent } from './containers/+home/home.component';
 import { AboutComponent } from './containers/about/about.component';
 import { LoginComponent } from './containers/login/login.component';
 import { ProfileComponent } from './containers/profile/profile.component';
+import { ProfileDetailComponent } from './containers/profile/profile-detail.component';
 import { RegisterComponent } from './containers/register/register.component';
 import { PlaylistsComponent } from './containers/playlists/playlists.component';
 import { ApiSearchComponent } from './containers/apisearch/apisearch.component';
@@ -49,6 +50,7 @@ import { reducers } from './reducers';
     NavigationComponent,
     RegisterComponent,
     ProfileComponent,
+    ProfileDetailComponent,
     PlaylistComponent,
     SidebarComponent,
     PlaylistsComponent,

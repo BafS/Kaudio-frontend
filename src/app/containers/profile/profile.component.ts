@@ -65,7 +65,7 @@ export class ProfileComponent implements OnInit {
     // Determines if the selected friend is already part
     // of the users friends list.
     for (var i = 0; i < this.user.friends.length; i++)
-      if (this.user.friends[i].email === e.item.email) {
+      if (this.user.friends[i]["_id"] === e.item["_id"]) {
         alreadyIn = true;
         break;
       }
@@ -73,8 +73,6 @@ export class ProfileComponent implements OnInit {
     // Adds the friend if it's not already in the list.
     if (!alreadyIn) {
       this.user.friends.push(e.item);
-      this._userService.update(this.userId, this.user);
-      console.log(this.user.friends);
     }
     
     // Empties the autocomplete field.
@@ -98,6 +96,13 @@ export class ProfileComponent implements OnInit {
   onSubmit(event) {
     console.log("onSubmit")
     console.log(this.user);
+
+    this.user.friends_ref = [];
+
+    
+    for (var i = 0; i < this.user.friends.length; i++)
+      this.user.friends_ref[i] = this.user.friends[i]["_id"];
+
     this._userService.update(this.userId, this.user);
     return false;
   }
@@ -109,8 +114,7 @@ export class ProfileComponent implements OnInit {
     for (var i = 0; i < this.user.friends.length; i++)
       if (this.user.friends[i] === user)
         this.user.friends.splice(i, 1);
-    
-    this._userService.update(this.userId, this.user);
+        
     return false;
   }
 }

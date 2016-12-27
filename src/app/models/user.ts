@@ -3,6 +3,7 @@ export class User {
     public email: string,
     public password?: string,
     public picture?: string,
-    public friends?: User[]
+    public friends?: string[],
+    public friends_ref?: string[]
   ) {  }
 }
