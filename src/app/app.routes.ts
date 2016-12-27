@@ -4,6 +4,7 @@ import { PlaylistsComponent } from './containers/playlists/playlists.component';
 import { LoginComponent } from './containers/login/login.component';
 import { RegisterComponent } from './containers/register/register.component';
 import { ProfileComponent } from './containers/profile/profile.component';
+import { ProfileDetailComponent } from './containers/profile/profile-detail.component';
 // import { PageNotFoundComponent } from './page-not-found-component';
 
 export const ROUTES: Routes = [
@@ -14,5 +15,6 @@ export const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'profile/:id', component: ProfileDetailComponent },
   // { path: '**', component: PageNotFoundComponent }
 ];

@@ -49,7 +49,7 @@
       <div class="form-group mb-3">
         <label for="friends">Friends</label>
         <ul *ngFor="let friend of user.friends">
-            <li>{{friend.email}} <a href="#" (click)="onRemove(friend)">Remove</a></li>
+            <li><a href="/profile/{{friend._id}}">{{friend.email}}</a> <a href="#" (click)="onRemove(friend)">Remove</a></li>
         </ul>
         <input [(ngModel)]="asyncSelected"
               [typeahead]="dataSource"

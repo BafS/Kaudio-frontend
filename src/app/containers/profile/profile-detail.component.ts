@@ -9,11 +9,11 @@ import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-profile-detail',
-  templateUrl: './profile.component.html',
+  templateUrl: './profile-detail.component.html',
+  providers: [UserService],
 })
 export class ProfileDetailComponent implements OnInit {
-    @Input()
-    user: User;
+    public user: User;
 
     constructor(
         private _userService: UserService,
@@ -22,8 +22,19 @@ export class ProfileDetailComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-    /*this.route.params
-        .switchMap((params: Params) => this._userService.get(+params['id']))
-        .subscribe(user => this.user = user);*/
+        console.log(this.route.params['id']);
+        this.route.params.subscribe(params => {
+            var id = params['id'];
+            console.log(id);
+
+            this._userService.get(id).then(user => {
+                this.user = user;
+
+                if (!this.user.hasOwnProperty("friends"))
+                    this.user.friends = [];
+
+                console.log(this.user);
+            });
+        });
     }
 }
