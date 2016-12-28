@@ -19,7 +19,7 @@
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="text" class="form-control" id="password"
+        <input type="password" class="form-control" id="password"
                 required minlength="3"
                 placeholder="Let empty if you dont want to edit"
                 [(ngModel)]="user.password" name="password"
@@ -28,6 +28,27 @@
           [hidden]="password.valid || password.pristine">
           A password longer than 3 characters is required
         </alert>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input type="text" class="form-control" id="age"
+                [(ngModel)]="user.age" name="age"
+                #age="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country</label>
+        <input type="text" class="form-control" id="country"
+                [(ngModel)]="user.country" name="country"
+                #country="ngModel">
+      </div>
+
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city"
+                [(ngModel)]="user.city" name="city"
+                #city="ngModel">
       </div>
 
       <form action="/file-upload"

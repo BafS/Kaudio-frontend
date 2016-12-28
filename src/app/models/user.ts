@@ -2,7 +2,7 @@ export class User {
   constructor(
     public email: string,
     public password?: string,
-    public date_birth?: string,
+    public age?: number,
     public country?: string,
     public city?: string,
     public picture?: string,
