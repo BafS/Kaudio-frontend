@@ -5,10 +5,32 @@
         
 <div class="wrapper">
   <div class="container">
-    <h2>Profile PUBLIC</h2>
 
     <div *ngIf="user">
-    {{user.email}}
+    <h2>Profile : {{user.alias}}</h2>
+    <table>
+      <tr>
+        <th>Email</th><td>{{user.email}}</td>
+      </tr>
+      <tr>
+        <th>Date of birth</th><td>{{user.date_birth}}</td>
+      </tr>
+      <tr>
+        <th>Country</th><td>{{user.country}}</td>
+      </tr>
+      <tr>
+        <th>Picture</th><td><img src="{{user.picture}}" alt="User picture" /></td>
+      </tr>
+      <tr>
+        <th>Friends</th>
+        <td>
+          <span *ngFor="let friend of user.friends">
+              <a routerLink="/profile/{{friend._id}}">{{friend.email}}</a><br />
+          </span>
+        </td>
+      </tr>
+      
+    </table>
     </div>
 
   </div>

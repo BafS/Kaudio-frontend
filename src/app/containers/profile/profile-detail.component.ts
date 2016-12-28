@@ -11,6 +11,7 @@ import 'rxjs/add/operator/switchMap';
   selector: 'app-profile-detail',
   templateUrl: './profile-detail.component.html',
   providers: [UserService],
+  styleUrls: ['./profile-detail.component.scss'],
 })
 export class ProfileDetailComponent implements OnInit {
     public user: User;
