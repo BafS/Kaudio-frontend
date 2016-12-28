@@ -23,10 +23,8 @@ export class ProfileDetailComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        console.log(this.route.params['id']);
         this.route.params.subscribe(params => {
             var id = params['id'];
-            console.log(id);
 
             this._userService.get(id).then(user => {
                 this.user = user;
@@ -34,7 +32,6 @@ export class ProfileDetailComponent implements OnInit {
                 if (!this.user.hasOwnProperty("friends"))
                     this.user.friends = [];
 
-                console.log(this.user);
             });
         });
     }

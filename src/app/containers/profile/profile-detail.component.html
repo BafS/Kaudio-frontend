@@ -1,25 +1,23 @@
-
-
-        
-        
-        
 <div class="wrapper">
   <div class="container">
 
     <div *ngIf="user">
-    <h2>Profile : {{user.alias}}</h2>
+    <h2>Profile : {{user.email}}</h2>
     <table>
       <tr>
-        <th>Email</th><td>{{user.email}}</td>
+        <th>Date of birth</th><td>{{user.date_birth || "Undefined"}}</td>
       </tr>
       <tr>
-        <th>Date of birth</th><td>{{user.date_birth}}</td>
+        <th>Country</th><td>{{user.country || "Undefined"}}</td>
       </tr>
       <tr>
-        <th>Country</th><td>{{user.country}}</td>
+        <th>City</th><td>{{user.city || "Undefined"}}</td>
       </tr>
       <tr>
         <th>Picture</th><td><img src="{{user.picture}}" alt="User picture" /></td>
+      </tr>
+      <tr>
+        <th>Member since</th><td>{{user.createdAt || "Undefined"}}</td>
       </tr>
       <tr>
         <th>Friends</th>
