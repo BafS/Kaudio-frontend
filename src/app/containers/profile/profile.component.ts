@@ -5,6 +5,7 @@ import { User } from '../../models/user';
 import { TypeaheadMatch } from 'ng2-bootstrap/components/typeahead';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/toPromise';
 import 'dropzone';
@@ -32,6 +33,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private _userService: UserService,
+    private router: Router,
   ) {
     this.dataSource = Observable.create(observer => {
       // Updates autocomplete of friends list.
@@ -88,20 +90,29 @@ export class ProfileComponent implements OnInit {
         
         if (!this.user.hasOwnProperty("friends"))
           this.user.friends = [];
+        
+        this.user.picture = "";
       });
     }
   }
 
+  // If thes user cancels, he is redirect to his public profile view.
+  onLogout() {
+    this.router.navigateByUrl('profile/' + this.userId);
+  }
+
   // Updates the user in the database.
   onSubmit(event) {
+    console.log(this.user);
     this.user.friends_ref = [];
 
     
     for (var i = 0; i < this.user.friends.length; i++)
       this.user.friends_ref[i] = this.user.friends[i]["_id"];
 
+    // Saves the user and redirects to public profile view.
     this._userService.update(this.userId, this.user);
-    return false;
+    this.router.navigateByUrl('profile/' + this.userId);
   }
 
   // Called when a user wants to delete a friend from the list.
