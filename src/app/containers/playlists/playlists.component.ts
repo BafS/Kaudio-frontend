@@ -57,7 +57,7 @@ export class PlaylistsComponent implements OnInit, OnDestroy {
 
     this._playlistService.find().then(playlists => {
       console.info(playlists);
-      
+
       // If a playslist exists
       if (playlists.data) {
         this._store.dispatch({

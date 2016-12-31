@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from '../../services/api/user.service';
 
 import { MessageService } from '../../services/api/message.service';
@@ -10,19 +10,16 @@ import { User } from '../../models/user';
   styleUrls: ['./register.component.scss'],
   providers: [ UserService, MessageService ]
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   private _messages: any[] = [];
   // private _messageService: MessageService;
-  user = new User('', '', '', ['']);
+  user = new User('');
 
   constructor(private _messageService: MessageService,
     private _userService: UserService
-    ) {
+  ) {
     this._messageService = _messageService;
     this._userService = _userService;
-  }
-
-  ngOnInit() {
   }
 
   onSubmit(event) {
@@ -37,7 +34,7 @@ export class RegisterComponent implements OnInit {
       });
     }).catch((error) => {
       console.error('Error registration!', error);
-    })
+    });
 
     // TODO
     // If logged, redirection
