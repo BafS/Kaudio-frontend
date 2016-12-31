@@ -15,7 +15,8 @@ export class RegisterComponent {
   // private _messageService: MessageService;
   user = new User('');
 
-  constructor(private _messageService: MessageService,
+  constructor(
+    private _messageService: MessageService,
     private _userService: UserService
   ) {
     this._messageService = _messageService;

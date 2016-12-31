@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from './../../environments/environment';
 import { FeathersService } from './feathers.service';
+import { Observable } from 'rxjs/Observable';
 
 const io = require('socket.io-client');
 const feathers = require('feathers/client');

@@ -8,18 +8,27 @@ import { Ng2UploaderModule } from 'ng2-uploader/ng2-uploader';
 import { MaterialModule } from '@angular/material';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'; // Dev tool
 import 'hammerjs';
 import 'dropzone';
 
-import { KeysPipe } from './pipes/keys';
-
 import { ROUTES } from './app.routes';
 
+import { reducers } from './reducers';
+
+// Pipes
+import { KeysPipe } from './pipes/keys';
+
+// Services
 import { RestService } from './services/rest.service';
 import { SocketService } from './services/socket.service';
 // import { PlaylistService } from './services/api/playlist.service';
 
+// Effects
+import { MessageEffects } from './effects/messages';
+
+// Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './containers/+home/home.component';
 import { AboutComponent } from './containers/about/about.component';
@@ -37,8 +46,6 @@ import { SearchboxComponent } from './components/searchbox/searchbox.component';
 import { SearchresultsComponent } from './components/searchresults/searchresults.component';
 import { PlaylistDialogComponent } from './components/playlist-dialog/playlist-dialog.component';
 import { LivefeedComponent } from './components/livefeed/livefeed.component';
-
-import { reducers } from './reducers';
 
 @NgModule({
   declarations: [
@@ -67,6 +74,7 @@ import { reducers } from './reducers';
   imports: [
     BrowserModule,
     StoreModule.provideStore(reducers),
+    EffectsModule.run(MessageEffects),
     StoreDevtoolsModule.instrumentOnlyWithExtension(), // Dev tool
     FormsModule,
     HttpModule,

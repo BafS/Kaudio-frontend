@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
@@ -12,7 +12,7 @@ import { ActionTypes as MessagesActionTypes } from './../../reducers/messages';
   styleUrls: ['./livefeed.component.scss'],
   providers: [ MessageService ]
 })
-export class LivefeedComponent implements OnInit {
+export class LivefeedComponent {
   public messages: Observable<Message[]>;
 
   constructor(
@@ -22,20 +22,20 @@ export class LivefeedComponent implements OnInit {
     this.messages = _store.select(s => s.messages);
   }
 
-  ngOnInit() {
-    // Duplication (do an observable)
-    this._messageService.on('created', message => {
-      console.info('> New Message (LivefeedComponent) [socket]'); // DEV TODO
-      console.log(message);
+  // ngOnInit() {
+  //   // Duplication (do an observable)
+  //   this._messageService.on('created', message => {
+  //     console.info('> New Message (LivefeedComponent) [socket]'); // DEV TODO
+  //     console.log(message);
 
-      this._store.dispatch({
-        type: MessagesActionTypes.ADD_MESSAGE,
-        payload: <Message> {
-          title: message.message
-        }
-      });
-    });
-  }
+  //     this._store.dispatch({
+  //       type: MessagesActionTypes.ADD_MESSAGE,
+  //       payload: <Message> {
+  //         title: message.message
+  //       }
+  //     });
+  //   });
+  // }
 
   onPingButton() {
     this._messageService.create({
