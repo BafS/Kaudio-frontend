@@ -8,7 +8,7 @@
 
     <!-- dev -->
     <div *ngIf="token">
-      <p>Your are logged ! (token: <code class="text-sm" style="font-size: 60%">{{token}}</code>)</p>
+      <p>You are logged! (token: <code class="text-sm" style="font-size: 60%">{{token}}</code>)</p>
 
       <button class="btn btn-outline-default" (click)="onLogout()">Logout</button>
     </div>
@@ -32,7 +32,7 @@
       <div class="form-group">
         <label for="password">Password</label>
         <input
-          type="text" class="form-control" id="password"
+          type="password" class="form-control" id="password"
           required minlength="3"
           [(ngModel)]="user.password" name="password"
           #password="ngModel"

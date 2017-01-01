@@ -2,6 +2,10 @@
   <div class="container">
     <h2>Profile</h2>
 
+    <div *ngIf="!connected">
+      Please connect to edit your profile.
+    </div>
+
     <form *ngIf="user" (ngSubmit)="onSubmit()" #userForm="ngForm">
       <div class="form-group">
         <label for="email">Email</label>

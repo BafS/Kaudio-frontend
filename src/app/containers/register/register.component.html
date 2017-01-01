@@ -2,7 +2,11 @@
   <div class="container">
     <h2>Registration</h2>
 
-    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <div *ngIf="connected">
+      You are already registered and connected!
+    </div>
+
+    <form *ngIf="!connected" (ngSubmit)="onSubmit()" #userForm="ngForm">
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" class="form-control" id="email"
@@ -19,7 +23,7 @@
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="text" class="form-control" id="password"
+        <input type="password" class="form-control" id="password"
                 required minlength="3"
                 [(ngModel)]="user.password" name="password"
                 #password="ngModel">

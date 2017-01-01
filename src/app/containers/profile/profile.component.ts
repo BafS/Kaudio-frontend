@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   public stateCtrl: FormControl = new FormControl();
   private _messages: any[] = [];
   private userId: string;
+  private connected: boolean = false;
   public user: User;
   public myForm: FormGroup = new FormGroup({
     state: this.stateCtrl
@@ -84,7 +85,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.userId = window.localStorage.getItem('userId');
 
-    if (this.userId) {
+    if (this.userId != 'null') {
+      this.connected = true;
       this._userService.get(this.userId).then(user => {
         this.user = user;
         
@@ -93,6 +95,9 @@ export class ProfileComponent implements OnInit {
         
         this.user.picture = "";
       });
+    }
+    else {
+      console.log("ERROR");
     }
   }
 

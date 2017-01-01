@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/api/user.service';
+import { Router } from '@angular/router';
 
 import { MessageService } from '../../services/api/message.service';
 import { User } from '../../models/user';
@@ -10,17 +11,26 @@ import { User } from '../../models/user';
   styleUrls: ['./register.component.scss'],
   providers: [ UserService, MessageService ]
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   private _messages: any[] = [];
   // private _messageService: MessageService;
   user = new User('');
+  private connected: boolean = false;
 
   constructor(
     private _messageService: MessageService,
-    private _userService: UserService
+    private _userService: UserService,
+    private router: Router
   ) {
     this._messageService = _messageService;
     this._userService = _userService;
+  }
+  
+  ngOnInit() {
+    console.log(window.localStorage.getItem('userId'));
+
+    if (window.localStorage.getItem('userId') != 'null')
+      this.connected = true;
   }
 
   onSubmit(event) {
