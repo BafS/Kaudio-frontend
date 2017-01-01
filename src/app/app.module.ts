@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { AlertModule, TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { Ng2UploaderModule } from 'ng2-uploader/ng2-uploader';
@@ -77,7 +76,6 @@ import { LivefeedComponent } from './components/livefeed/livefeed.component';
     EffectsModule.run(MessageEffects),
     StoreDevtoolsModule.instrumentOnlyWithExtension(), // Dev tool
     FormsModule,
-    HttpModule,
     RouterModule.forRoot(ROUTES),
     AlertModule,
     NgxDatatableModule,
