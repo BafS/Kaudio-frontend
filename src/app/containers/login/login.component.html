@@ -2,6 +2,10 @@
   <div class="container">
     <h2>Login</h2>
 
+    <div *ngIf="error" class="error">
+      {{error}}
+    </div>
+
     <!-- dev -->
     <div *ngIf="token">
       <p>Your are logged ! (token: <code class="text-sm" style="font-size: 60%">{{token}}</code>)</p>

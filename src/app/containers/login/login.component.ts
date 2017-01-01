@@ -12,6 +12,7 @@ import { User } from '../../models/user';
 })
 export class LoginComponent implements OnInit {
   private _messages: any[] = [];
+  private error: string;
   // private _messageService: MessageService;
   user = new User('super@admin.com', 'adminPwd');
   token: string;
@@ -48,11 +49,14 @@ export class LoginComponent implements OnInit {
 
       window.localStorage.setItem('userId', result.data._id);
 
+      this.error = '';
+
       this._messageService.create({
         message: `User ${this.user.email} is logged (or try to...)`
       });
     }).catch((error) => {
       console.error('Error authenticating!', error);
+      this.error = 'Invalid login or password.';
     });
 
     // TODO
