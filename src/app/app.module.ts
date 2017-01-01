@@ -22,6 +22,7 @@ import { KeysPipe } from './pipes/keys';
 // Services
 import { RestService } from './services/rest.service';
 import { SocketService } from './services/socket.service';
+import { MessageService } from './services/api/message.service';
 // import { PlaylistService } from './services/api/playlist.service';
 
 // Effects
@@ -82,11 +83,12 @@ import { LivefeedComponent } from './components/livefeed/livefeed.component';
     TypeaheadModule,
     ReactiveFormsModule,
     MaterialModule.forRoot(),
-    Ng2UploaderModule
+    Ng2UploaderModule,
   ],
   providers: [
     SocketService,
     RestService,
+    MessageService
   ],
   bootstrap: [AppComponent]
 })
