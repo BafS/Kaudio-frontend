@@ -1,4 +1,3 @@
-import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Track } from './../../models/track';
 
@@ -10,7 +9,7 @@ export class ApiSearchService {
   private _rest;
 
   constructor(
-    private _restService: RestService, private http: Http
+    private _restService: RestService
   ) {
     this._rest = _restService.getService('tracks');
   }

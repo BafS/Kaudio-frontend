@@ -9,14 +9,14 @@
 </div>-->
 
 <md-card>
-<md-list dense>
-  <md-list-item *ngFor="let message of messages | async">
-    <h3 md-line>{{message.title}}</h3>
-    <p md-line>
-      <span>{{message.description}}</span>
-    </p>
-  </md-list-item>
-</md-list>
+  <button class="btn btn-sm btn-outline-default" (click)="onPingButton()">Ping</button>
 
-<button class="btn btn-sm btn-outline-default" (click)="onPingButton()">Ping</button>
+  <md-list class="feed" dense>
+    <md-list-item *ngFor="let message of messages$ | async">
+      <h3 md-line>{{message.title}}</h3>
+      <p md-line>
+        <span>{{message.description}}</span>
+      </p>
+    </md-list-item>
+  </md-list>
 </md-card>

@@ -17,6 +17,8 @@ export class MessageService {
 
   private _subscription;
 
+  private _messages$: Observable<Message[]>;
+
   constructor(
     private _socketService: SocketService,
     private _restService: RestService,
@@ -26,10 +28,10 @@ export class MessageService {
     this._rest = _restService.getService('messages');
     this._socket = _socketService.getService('messages');
 
-    this.messages$ = new Observable(observer => this.messagesObserver = observer).share();
+    this._messages$ = _store.select(s => s.messages);
 
-    this._socket.on('created', message => this.dispatch(message.message));
-
+    // this.messages$ = new Observable(observer => this.messagesObserver = observer).share();
+    // this._socket.on('created', message => this.dispatch(message.message));
     // this._subscription = this.observe('created').subscribe(); // TODO
   }
 
@@ -52,8 +54,7 @@ export class MessageService {
   }
 
   create(message: any) {
-    console.log('Create a new message ', message);
-
+    // console.log('Create a new message ', message);
     // app.get('token')
     return this._socket.create(message);
   }
@@ -64,14 +65,13 @@ export class MessageService {
 
   // TODO dev
   public observe(trigger: string): Observable<any> {
-    console.log('OBSERVE CALLED');
-
     let observable = new Observable(observer => {
       this._socket.on(trigger, data => {
-        console.log('--NEXT');
+        console.log('(message service) Got new message');
         observer.next(data);
       });
       return () => {
+        console.log('(message service) Disconnect');
         this._socket.disconnect();
       };
     });
