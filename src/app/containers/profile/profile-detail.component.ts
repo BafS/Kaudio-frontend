@@ -15,6 +15,7 @@ import 'rxjs/add/operator/switchMap';
 })
 export class ProfileDetailComponent implements OnInit {
     public user: User;
+    public createdAt: string;
 
     constructor(
         private _userService: UserService,
@@ -28,6 +29,7 @@ export class ProfileDetailComponent implements OnInit {
 
             this._userService.get(id).then(user => {
                 this.user = user;
+                this.createdAt = user.createdAt.substr(0, 10);
 
                 if (!this.user.hasOwnProperty("friends"))
                     this.user.friends = [];
