@@ -14,7 +14,10 @@
         <th>City</th><td>{{user.city || "Undefined"}}</td>
       </tr>
       <tr>
-        <th>Picture</th><td><img src="{{user.picture}}" alt="User picture" /></td>
+        <th>Picture</th><td>
+          <a *ngIf="user.picture" href="{{user.picture}}"><img height="100" src="{{user.picture}}" alt="User picture" /></a>
+          <span *ngIf="!user.picture">No picture</span>
+        </td>
       </tr>
       <tr>
         <th>Member since</th><td>{{createdAt || "Undefined"}}</td>
