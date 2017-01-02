@@ -13,29 +13,14 @@ import { ActionTypes as MessagesActionTypes } from './../../reducers/messages';
   providers: [ MessageService ]
 })
 export class LivefeedComponent {
-  public messages: Observable<Message[]>;
+  public messages$: Observable<Message[]>;
 
   constructor(
     private _messageService: MessageService,
     private _store: Store<any>
   ) {
-    this.messages = _store.select(s => s.messages);
+    this.messages$ = _store.select(s => s.messages);
   }
-
-  // ngOnInit() {
-  //   // Duplication (do an observable)
-  //   this._messageService.on('created', message => {
-  //     console.info('> New Message (LivefeedComponent) [socket]'); // DEV TODO
-  //     console.log(message);
-
-  //     this._store.dispatch({
-  //       type: MessagesActionTypes.ADD_MESSAGE,
-  //       payload: <Message> {
-  //         title: message.message
-  //       }
-  //     });
-  //   });
-  // }
 
   onPingButton() {
     this._messageService.create({

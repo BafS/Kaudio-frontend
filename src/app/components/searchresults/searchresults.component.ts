@@ -14,6 +14,6 @@ export class SearchresultsComponent {
 
   selectTrack(track: Track) {
     console.log("track: " + track._id);
-    //this.trackToAdd.emit(track);
+    this.trackToAdd.emit(track);
   }
 }

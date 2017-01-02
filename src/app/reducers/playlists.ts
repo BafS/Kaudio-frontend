@@ -17,6 +17,9 @@ export const ActionTypes = {
   ADD_PLAYLIST_FAIL: 'ADD_PLAYLIST_FAIL',
 
   UPDATE_PLAYLIST: 'UPDATE_PLAYLIST',
+  UPDATE_PLAYLIST_SUCCESS: 'UPDATE_PLAYLIST_SUCCESS',
+  UPDATE_PLAYLIST_FAIL: 'UPDATE_PLAYLIST_FAIL',
+
   REMOVE_PLAYLIST: 'REMOVE_PLAYLIST',
   RESET_PLAYLISTS: 'RESET'
 };
@@ -36,7 +39,7 @@ export function reducer(state: State = initialState, action: Action): State {
     case ActionTypes.INDEX_PLAYLISTS:
       const playlists: any[] = action.payload;
       // console.log(playlists.reduce((prev, curr) => [...prev, ...curr._id]));
-    
+
       return {
         entities: playlists.reduce((map, obj) => {
           map[obj._id] = obj;
@@ -53,7 +56,7 @@ export function reducer(state: State = initialState, action: Action): State {
       const key = Object.keys(state.entities).indexOf(playlist._id);
       if (key > -1 && state.entities[playlist._id].tracks) {
         console.log('NO NEED AN UPDATE');
-        
+
         return state;
       }
 
@@ -63,7 +66,7 @@ export function reducer(state: State = initialState, action: Action): State {
         }),
         selectedPlaylistId: state.selectedPlaylistId,
       };
-    
+
     case ActionTypes.SELECT_PLAYLIST: {
       return {
         entities: state.entities,
@@ -74,6 +77,17 @@ export function reducer(state: State = initialState, action: Action): State {
     case ActionTypes.REMOVE_PLAYLIST:
       // TODO
       return state;
+
+    case ActionTypes.UPDATE_PLAYLIST_SUCCESS:{
+      const playlist: Playlist = action.payload;
+      return {
+          entities: Object.assign({}, state.entities, {
+            [playlist._id]: playlist
+          }),
+          selectedPlaylistId: state.selectedPlaylistId,
+        };
+    }
+
 
     default:
       return state;
