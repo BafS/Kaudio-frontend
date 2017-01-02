@@ -8,13 +8,13 @@ import { ProfileDetailComponent } from './containers/profile/profile-detail.comp
 // import { PageNotFoundComponent } from './page-not-found-component';
 
 export const ROUTES: Routes = [
-  { path: '',      component: HomeComponent },
-  { path: 'home',  component: HomeComponent },
-  { path: 'playlists', component: PlaylistsComponent },
-  // { path: 'about', component: AboutComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: '',           component: HomeComponent },
+  { path: 'home',       component: HomeComponent },
+  { path: 'playlists',  component: PlaylistsComponent },
+  // { path: 'about',   component: AboutComponent },
+  { path: 'login',      component: LoginComponent },
+  { path: 'register',   component: RegisterComponent },
+  { path: 'profile',    component: ProfileComponent },
   { path: 'profile/:id', component: ProfileDetailComponent },
   // { path: '**', component: PageNotFoundComponent }
 ];

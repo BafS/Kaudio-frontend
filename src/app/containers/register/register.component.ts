@@ -20,37 +20,32 @@ export class RegisterComponent implements OnInit {
   constructor(
     private _messageService: MessageService,
     private _userService: UserService,
-    private router: Router
+    private _router: Router
   ) {
     this._messageService = _messageService;
     this._userService = _userService;
   }
-  
-  ngOnInit() {
-    console.log(window.localStorage.getItem('userId'));
 
-    if (window.localStorage.getItem('userId') != 'null')
-      this.connected = true;
+  ngOnInit(): void {
+    console.log(window.localStorage.getItem('userId'));
+    this.connected = window.localStorage.getItem('userId').length > 9;
   }
 
-  onSubmit(event) {
-    console.log(`do register (${this.user.email})`);
-
-    this._userService.create(this.user).then((result) => {
+  onSubmit(): void {
+    this._userService.create(this.user).then(result => {
       console.log('Registered!', result);
-
 
       this._messageService.create({
         message: `User ${this.user.email} is registered (or try to...)`
       });
+
+      // Redirect to login page
+      this._router.navigate(['/login']);
     }).catch((error) => {
       console.error('Error registration!', error);
     });
 
     // TODO
-    // If logged, redirection
-    // if not, alert message
-
-    return false;
+    // if not logged, alert message
   }
 }
