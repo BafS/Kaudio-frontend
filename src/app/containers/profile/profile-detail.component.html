@@ -15,8 +15,7 @@
       </tr>
       <tr>
         <th>Picture</th><td>
-          <a *ngIf="user.picture" href="{{user.picture}}"><img height="100" src="{{user.picture}}" alt="User picture" /></a>
-          <span *ngIf="!user.picture">No picture</span>
+          <a href="http://www.gravatar.com/avatar/{{gravatar}}"><img height="100" src="http://www.gravatar.com/avatar/{{gravatar}}" alt="User picture" /></a>
         </td>
       </tr>
       <tr>

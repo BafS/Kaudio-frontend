@@ -89,11 +89,10 @@ export class ProfileComponent implements OnInit {
       this.connected = true;
       this._userService.get(this.userId).then(user => {
         this.user = user;
+        //this.user.password = "123";
         
         if (!this.user.hasOwnProperty("friends"))
           this.user.friends = [];
-        
-        this.user.picture = "";
       });
     }
     else {
@@ -108,6 +107,7 @@ export class ProfileComponent implements OnInit {
 
   // Updates the user in the database.
   onSubmit(event) {
+    console.log("User updated: ")
     console.log(this.user);
     this.user.friends_ref = [];
 

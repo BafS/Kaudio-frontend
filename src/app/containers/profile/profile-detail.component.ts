@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { Location }                 from '@angular/common';
+import {md5} from './md5';
 
 import { User } from '../../models/user';
 import { UserService } from '../../services/api/user.service';
@@ -16,6 +17,7 @@ import 'rxjs/add/operator/switchMap';
 export class ProfileDetailComponent implements OnInit {
     public user: User;
     public createdAt: string;
+    public gravatar: string;
 
     constructor(
         private _userService: UserService,
@@ -30,6 +32,7 @@ export class ProfileDetailComponent implements OnInit {
             this._userService.get(id).then(user => {
                 this.user = user;
                 this.createdAt = user.createdAt.substr(0, 10);
+                this.gravatar = md5(this.user.email);
 
                 if (!this.user.hasOwnProperty("friends"))
                     this.user.friends = [];
