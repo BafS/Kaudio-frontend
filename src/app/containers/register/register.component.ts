@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/api/user.service';
 import { Router } from '@angular/router';
 
 import { MessageService } from '../../services/api/message.service';
+import { UserService } from '../../services/api/user.service';
 import { User } from '../../models/user';
 
 @Component({
