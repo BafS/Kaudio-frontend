@@ -1,9 +1,13 @@
+import { State } from './../../reducers/index';
+import { ActionTypes } from './../../reducers/messages';
+import { Store } from '@ngrx/store';
 import { MessageService } from './../../services/api/message.service';
 import { ApiSearchService } from './../../services/api/api-search.service';
 import { Track } from './../../models/track';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import * as PlaylistRedux from './../../reducers/playlists';
 
 @Component({
   selector: 'app-search',
@@ -18,6 +22,7 @@ export class ApiSearchComponent implements OnInit, OnDestroy {
   searchTerm = new BehaviorSubject<string>('');
 
   constructor(
+   private store:Store<any>,
     private _apiSearchService: ApiSearchService,
   ) {}
 
@@ -37,5 +42,13 @@ export class ApiSearchComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.searchTerm.unsubscribe();
+  }
+  OnSelectTrack(track){
+    //TODO add selected track to current playlist
+    // this.store.select('selectedPlaylist').do(sp => {
+    //   sp.[track.id]=track;
+    //     this.store.dispatch({type: PlaylistRedux.ActionTypes.UPDATE_PLAYLIST,payload:sp})
+    // })
+
   }
 }
