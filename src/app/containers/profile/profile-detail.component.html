@@ -1,38 +1,36 @@
 <div class="wrapper">
   <div class="container">
-
-    <div *ngIf="user">
-    <h2>Profile : {{user.email}}</h2>
-    <table>
-      <span class="title">INFOS</span>
-      <tr>
-        <th>Age</th><td>{{user.age || "Undefined"}}</td>
-      </tr>
-      <tr>
-        <th>Country</th><td>{{user.country || "Undefined"}}</td>
-      </tr>
-      <tr>
-        <th>City</th><td>{{user.city || "Undefined"}}</td>
-      </tr>
-      <tr>
-        <th>Picture</th><td>
-          <a href="http://www.gravatar.com/avatar/{{gravatar}}"><img height="100" src="http://www.gravatar.com/avatar/{{gravatar}}" alt="User picture" /></a>
-        </td>
-      </tr>
-      <tr>
-        <th>Member since</th><td>{{createdAt || "Undefined"}}</td>
-      </tr>
-      <tr>
-        <th>Friends</th>
-        <td>
-          <span *ngFor="let friend of user.friends">
-              <a routerLink="/profile/{{friend._id}}">{{friend.email}}</a><br />
-          </span>
-        </td>
-      </tr>
-      
+    <table *ngIf="user" class="table">
+      <thead class="thead-default">
+        <th colspan="2" class="title">{{user.email}} profile</th>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Age</th><td>{{user.age || "Undefined"}}</td>
+        </tr>
+        <tr>
+          <th>Country</th><td>{{user.country || "Undefined"}}</td>
+        </tr>
+        <tr>
+          <th>City</th><td>{{user.city || "Undefined"}}</td>
+        </tr>
+        <tr>
+          <th>Picture</th><td>
+            <a href="http://www.gravatar.com/avatar/{{gravatar}}"><img height="100" src="http://www.gravatar.com/avatar/{{gravatar}}" alt="User picture" /></a>
+          </td>
+        </tr>
+        <tr>
+          <th>Member since</th><td>{{createdAt || "Undefined"}}</td>
+        </tr>
+        <tr>
+          <th>Friends</th>
+          <td>
+            <span *ngFor="let friend of user.friends">
+                <a routerLink="/profile/{{friend._id}}">{{friend.email}}</a><br />
+            </span>
+          </td>
+        </tr>
+      </tbody>
     </table>
-    </div>
-
   </div>
 </div>

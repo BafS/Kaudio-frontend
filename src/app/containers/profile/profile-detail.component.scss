@@ -4,7 +4,12 @@ table, td, th {
 
 table {
     margin-top: 20px;
-    background-color: #F5F5F5;
+    // background-color: #F5F5F5;
+
+    .title {
+      text-align: left;
+      font-size: 110%;
+    }
 }
 
 td, th {
@@ -13,15 +18,4 @@ td, th {
 
 th {
     text-align: right;
-}
-
-tr {
-    border-top: 1px dotted #CDCBCB;
-}
-
-.title {
-    color: #FF4000;
-    display: block;
-    padding: 10px;
-    font-weight: bold;
 }

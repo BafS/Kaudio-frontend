@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { TypeaheadMatch } from 'ng2-bootstrap/components/typeahead';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { md5 } from './md5';
 import 'rxjs/add/observable/of';
 import 'dropzone';
 
@@ -31,6 +32,7 @@ export class ProfileComponent implements OnInit {
   public asyncSelected: string = '';
   public typeaheadLoading: boolean = false;
   public typeaheadNoResults: boolean = false;
+  public gravatar: string;
 
   constructor(
     private _userService: UserService,
@@ -60,7 +62,10 @@ export class ProfileComponent implements OnInit {
       this.connected = true;
       this._userService.get(this.userId).then(user => {
         this.user = user;
-        // this.user.password = "123";
+
+        if (this.user.email) {
+          this.gravatar = md5(this.user.email);
+        }
 
         if (!this.user.hasOwnProperty('friends')) {
           this.user.friends = [];

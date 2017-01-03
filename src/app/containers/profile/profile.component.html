@@ -1,92 +1,124 @@
 <div class="wrapper">
-  <div class="container">
-    <h2>Profile</h2>
+  <div class="container pb-2">
+    <div class="row">
+      <h2>Profile</h2>
 
-    <div *ngIf="!connected">
-      Please connect to edit your profile.
+      <div *ngIf="!connected">
+        Please connect to edit your profile.
+      </div>
+    </div>
+
+    <div class="clearfix mb-1">
+    <div class="float-xs-right">
+      <a class="btn btn-outline-primary" routerLink="/profile/{{userId}}">
+        View public profile
+      </a>
+
+      <a href="http://www.gravatar.com/avatar/{{gravatar}}">
+        <img class="rounded-circle" height="100" src="http://www.gravatar.com/avatar/{{gravatar}}" alt="User picture" />
+      </a>
+    </div>
     </div>
 
     <form *ngIf="user" (ngSubmit)="onSubmit()" #userForm="ngForm">
-      <a routerLink="/profile/{{userId}}">Click here to see your public profile!</a>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email"
-                ngControl="email"
-                required
-                autofocus
-                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                [(ngModel)]="user.email" name="email"
-                #email="ngModel">
-        <alert [hidden]="email.valid || email.pristine">
-          Email is required
-        </alert>
+      <div class="form-group row">
+        <label for="email" class="col-xs-3 col-form-label">Email</label>
+        <div class="col-xs-9">
+          <input type="email" class="form-control" id="email"
+                  ngControl="email"
+                  required
+                  autofocus
+                  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                  [(ngModel)]="user.email" name="email"
+                  #email="ngModel">
+          <alert [hidden]="email.valid || email.pristine">
+            Email is required
+          </alert>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password"
-                minlength="3"
-                placeholder="Let empty if you dont want to edit"
-                [(ngModel)]="user.password" name="password"
-                #password="ngModel">
-        <alert
-          [hidden]="password.valid || password.pristine">
-          A password longer than 3 characters is required.
-        </alert>
+      <div class="form-group row">
+        <label for="password" class="col-xs-3 col-form-label">Password</label>
+        <div class="col-xs-9">
+          <input type="password" class="form-control" id="password"
+                  minlength="3"
+                  placeholder="Let empty if you dont want to edit"
+                  [(ngModel)]="user.password" name="password"
+                  #password="ngModel">
+          <alert
+            [hidden]="password.valid || password.pristine">
+            A password longer than 3 characters is required.
+          </alert>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="age">Age</label>
-        <input type="text" class="form-control" id="age"
+      <div class="form-group row">
+        <label for="age" class="col-xs-3 col-form-label">Age</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control" id="age"
                 [(ngModel)]="user.age" name="age"
                 #age="ngModel">
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="country">Country</label>
-        <input type="text" class="form-control" id="country"
+      <div class="form-group row">
+        <label for="country" class="col-xs-3 col-form-label">Country</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control" id="country"
                 [(ngModel)]="user.country" name="country"
                 #country="ngModel">
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" class="form-control" id="city"
+      <div class="form-group row">
+        <label for="city" class="col-xs-3 col-form-label">City</label>
+        <div class="col-xs-9">
+          <input type="text" class="form-control" id="city"
                 [(ngModel)]="user.city" name="city"
                 #city="ngModel">
-      </div>
-
-      <div class="form-group">
-        <label for="picture">Picture</label>
-        Please use <a href="http://www.gravatar.com">Gravatar</a> for your profile picture!
-      </div>
-
-      <div class="form-group mb-3">
-        <label for="friends">Friends</label>
-        <ul *ngFor="let friend of user.friends">
-            <li><a routerLink="/profile/{{friend._id}}">{{friend.email}}</a> <a class="remove" title="Remove" href="#" (click)="onRemove(friend)">X</a></li>
-        </ul>
-        <input [(ngModel)]="asyncSelected"
-              [typeahead]="dataSource"
-              [typeaheadWaitMs]="100"
-              (typeaheadLoading)="changeTypeaheadLoading($event)"
-              (typeaheadNoResults)="changeTypeaheadNoResults($event)"
-              (typeaheadOnSelect)="typeaheadOnSelect($event)"
-              [typeaheadOptionsLimit]="7"
-              [typeaheadOptionField]="'email'"
-              class="form-control"
-              placeholder="Search for your friends e-mail here"
-              name="friends">
-        <div *ngIf="typeaheadLoading===true">
-          <i class="glyphicon glyphicon-refresh ng-hide" style=""></i>
-        </div>
-        <div *ngIf="typeaheadNoResults===true" class="" style="">
-          <i class="glyphicon glyphicon-remove"></i> No Results Found
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary">Update</button>
-      <button class="btn btn-default-outline" (click)="onLogout()">Cancel</button>
+      <div class="form-group row">
+        <label for="picture" class="col-xs-3 col-form-label">Picture</label>
+        <div class="col-xs-9">
+          <p class="form-control">
+            Please use <a href="http://www.gravatar.com">Gravatar</a> for your profile picture!
+          </p>
+        </div>
+      </div>
+
+      <div class="form-group row mb-3">
+        <label for="friends" class="col-xs-3 col-form-label">Friends</label>
+        <div class="col-xs-9">
+          <ul class="list-group pl-2">
+              <li *ngFor="let friend of user.friends">
+                <a routerLink="/profile/{{friend._id}}">{{friend.email}}</a>
+                <a class="remove tag tag-pill tag-danger" title="Remove" href="#" (click)="onRemove(friend)">X</a>
+              </li>
+          </ul>
+          <input [(ngModel)]="asyncSelected"
+                [typeahead]="dataSource"
+                [typeaheadWaitMs]="100"
+                (typeaheadLoading)="changeTypeaheadLoading($event)"
+                (typeaheadNoResults)="changeTypeaheadNoResults($event)"
+                (typeaheadOnSelect)="typeaheadOnSelect($event)"
+                [typeaheadOptionsLimit]="7"
+                [typeaheadOptionField]="'email'"
+                class="form-control mt-1"
+                placeholder="Search for your friends e-mail here"
+                name="friends">
+          <div *ngIf="typeaheadLoading===true">
+            <i class="glyphicon glyphicon-refresh ng-hide"></i>
+          </div>
+          <div *ngIf="typeaheadNoResults===true">
+            <i class="glyphicon glyphicon-remove"></i> No Results Found
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Update profile</button>
+      <button class="btn btn-secondary" (click)="onLogout()">Cancel</button>
     </form>
   </div>
 </div>
