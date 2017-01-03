@@ -2,7 +2,7 @@
   <div class="container">
     <table *ngIf="user" class="table">
       <thead class="thead-default">
-        <th colspan="2" class="title">{{user.email}} profile</th>
+        <th colspan="2" class="title">{{user.email}} profile <a *ngIf="viewedUserId == connectedUserId" class="edit" routerLink="/profile">(edit)</a></th>
       </thead>
       <tbody>
         <tr>

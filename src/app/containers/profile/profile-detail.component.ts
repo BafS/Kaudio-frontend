@@ -17,6 +17,8 @@ export class ProfileDetailComponent implements OnInit {
     public user: User;
     public createdAt: string;
     public gravatar: string;
+    public connectedUserId: string;
+    public viewedUserId: string;
 
     constructor(
         private _userService: UserService,
@@ -26,9 +28,10 @@ export class ProfileDetailComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {
-            const id = params['id'];
+            this.connectedUserId = window.localStorage.getItem('userId');
+            this.viewedUserId = params['id'];
 
-            this._userService.get(id).then(user => {
+            this._userService.get(this.viewedUserId).then(user => {
                 this.user = user;
                 this.createdAt = user.createdAt.substr(0, 10);
                 this.gravatar = md5(this.user.email);
