@@ -107,10 +107,7 @@ export class ProfileComponent implements OnInit {
 
   // Updates the user in the database.
   onSubmit(event) {
-    console.log("User updated: ")
-    console.log(this.user);
     this.user.friends_ref = [];
-
     
     for (var i = 0; i < this.user.friends.length; i++)
       this.user.friends_ref[i] = this.user.friends[i]["_id"];

@@ -1,12 +1,27 @@
 table, td, th {
-    border: 1px solid black;
     border-collapse: collapse;
 }
 
 table {
     margin-top: 20px;
+    background-color: #F5F5F5;
 }
 
 td, th {
-    padding: 10px 5px;
+    padding: 10px;
+}
+
+th {
+    text-align: right;
+}
+
+tr {
+    border-top: 1px dotted #CDCBCB;
+}
+
+.title {
+    color: #FF4000;
+    display: block;
+    padding: 10px;
+    font-weight: bold;
 }
