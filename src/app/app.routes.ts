@@ -5,7 +5,7 @@ import { LoginComponent } from './containers/login/login.component';
 import { RegisterComponent } from './containers/register/register.component';
 import { ProfileComponent } from './containers/profile/profile.component';
 import { ProfileDetailComponent } from './containers/profile/profile-detail.component';
-// import { PageNotFoundComponent } from './page-not-found-component';
+ import { PageNotFoundComponent } from './containers/page-not-found/page-not-found.component';
 
 export const ROUTES: Routes = [
   { path: '',           component: HomeComponent },
@@ -16,5 +16,5 @@ export const ROUTES: Routes = [
   { path: 'register',   component: RegisterComponent },
   { path: 'profile',    component: ProfileComponent },
   { path: 'profile/:id', component: ProfileDetailComponent },
-  // { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent }
 ];

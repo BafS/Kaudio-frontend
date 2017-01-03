@@ -46,6 +46,7 @@ import { SearchboxComponent } from './components/searchbox/searchbox.component';
 import { SearchresultsComponent } from './components/searchresults/searchresults.component';
 import { PlaylistDialogComponent } from './components/playlist-dialog/playlist-dialog.component';
 import { LivefeedComponent } from './components/livefeed/livefeed.component';
+import { PageNotFoundComponent } from './containers/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { LivefeedComponent } from './components/livefeed/livefeed.component';
     SearchresultsComponent,
     PlaylistDialogComponent,
     LivefeedComponent,
+    PageNotFoundComponent,
   ],
   entryComponents: [
     PlaylistDialogComponent,
