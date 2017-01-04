@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { AudioFile } from './../../models';
 
@@ -12,10 +13,11 @@ declare let plyr: any;
   templateUrl: './audiobar.component.html',
   styleUrls: ['./audiobar.component.scss']
 })
-export class AudiobarComponent implements OnInit {
+export class AudiobarComponent implements OnInit, OnDestroy {
 
   // private _player;
   player: Observable<AudioFile>;
+  _playerSubscription: Subscription;
 
   constructor(
     private _store: Store<any>
@@ -28,16 +30,25 @@ export class AudiobarComponent implements OnInit {
       volume: 9
     })[0];
 
-    this.player.take(1).subscribe(r => {
-      console.log(inst);
+    const token = window.localStorage.getItem('feathers-jwt');
 
-      inst.source({
-        type: 'audio',
-        sources: [{
-          src: 'http://localhost:3030/audios/585142ef3e7d5324e8f61b78',
-          type: 'audio/mp3'
-        }]
-      })
+// .take(1)
+    this._playerSubscription = this.player.subscribe((player: AudioFile) => {
+
+      if (player) {
+        console.info('Update player source file !');
+        console.info(inst);
+
+        inst.source({
+          type: 'audio',
+          sources: [{
+            // 586d552315672421864793f2
+            // 586d55231567242186479409
+            src: `http://localhost:3030/audios/${player.filepath}?token=${token}`,
+            type: 'audio/mp3'
+          }]
+        })
+      }
     })
 
 // let config = {
@@ -53,8 +64,8 @@ export class AudiobarComponent implements OnInit {
 //     hlsc.loadSource('http://www.streambox.fr/playlists/test_001/stream.m3u8');
 //     hlsc.attachMedia(video);
 //     hlsc.on(Hls.Events.MANIFEST_PARSED, function() {
-      
-      
+
+
 //   });
 //  }
 
@@ -74,5 +85,9 @@ export class AudiobarComponent implements OnInit {
     // //     type:     'audio/ogg'
     // //   }]
     // });
+  }
+
+  ngOnDestroy() {
+    this._playerSubscription.unsubscribe();
   }
 }

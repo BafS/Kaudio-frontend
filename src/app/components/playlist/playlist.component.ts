@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { Track, AudioFile } from '../../models';
+import { Track } from '../../models';
 import { ActionTypes as PlayerActionTypes } from './../../reducers/player';
 
 import { MdDialogRef, MdDialogConfig, MdDialog } from '@angular/material';
@@ -45,7 +45,7 @@ export class PlaylistComponent {
     console.log('Sort Event', event);
   }
 
-  updatePlaylist() {  //TODO Can change to send a playlist and not 5 single element
+  updatePlaylist() {  // TODO Can change to send a playlist and not 5 single element
     this.dialogRef = this.dialog.open(PlaylistDialogComponent, <MdDialogConfig>{
       // width: '500px',
       disableClose: false
@@ -59,9 +59,9 @@ export class PlaylistComponent {
   }
 
   deletePlaylist() {
-    this._playlistService.remove(this.playlist._id, '').then((result) => {
+    this._playlistService.remove(this.playlist._id, '').then(result => {
       console.log('Playlist : ' + this.playlist.name + ' delete', result);
-    }).catch((error) => {
+    }).catch(error => {
       console.error('Error Delete Playlist : ' + this.playlist.name , error);
     });
   }
@@ -73,9 +73,7 @@ export class PlaylistComponent {
 
       this._store.dispatch({
         type: PlayerActionTypes.LOAD_SONG,
-        payload: <AudioFile> {
-          filepath: 'test.mp3'
-        }
+        payload:  row._id
       });
     }
   }
