@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { MessageService } from './../../services/api/message.service';
 import { AuthenticationService } from './../../services/api/authentication.service';
 import { User } from '../../models/user';
+import { ActionTypes as LoginActionTypes } from './../../reducers/login';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,8 @@ export class LoginComponent implements OnInit {
   constructor (
     private _messageService: MessageService,
     private _authService: AuthenticationService,
-    private _router: Router
+    private _router: Router,
+    private _store: Store<any>
   ) {
     this._messageService = _messageService;
     this._authService = _authService;
@@ -51,6 +54,10 @@ export class LoginComponent implements OnInit {
 
       this.error = '';
 
+      this._store.dispatch({
+        type: LoginActionTypes.CONNECTED
+      });
+
       this._messageService.create({
         message: `User ${this.user.email} is logged (or try to...)`
       });
@@ -68,5 +75,9 @@ export class LoginComponent implements OnInit {
   onLogout() {
     this._authService.logout();
     this.token = null;
+
+    this._store.dispatch({
+      type: LoginActionTypes.DISCONNECTED
+    });
   }
 }
