@@ -1,7 +1,8 @@
 import { ActionReducer, Action } from '@ngrx/store';
 
 export const ActionTypes = {
-  CONNECTED: 'CONNECTED'
+  CONNECTED: 'CONNECTED',
+  DISCONNECTED: 'DISCONNECTED'
 };
 
 export interface State {
@@ -18,6 +19,11 @@ export function reducer(state = initialState, action: Action): State {
       return <State> {
         connected: true
       };
+
+    case ActionTypes.DISCONNECTED:
+      return <State> {
+        connected: false
+      }
 
     default:
       return state;

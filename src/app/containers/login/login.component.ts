@@ -75,5 +75,9 @@ export class LoginComponent implements OnInit {
   onLogout() {
     this._authService.logout();
     this.token = null;
+
+    this._store.dispatch({
+      type: LoginActionTypes.DISCONNECTED
+    });
   }
 }
