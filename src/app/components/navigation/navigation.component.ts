@@ -14,7 +14,6 @@ export class NavigationComponent implements OnInit {
     private _store: Store<any>
   ) {
     this.login$ = _store.select(s => s.login);
-    console.log(this.login$);
    }
 
   ngOnInit() {
