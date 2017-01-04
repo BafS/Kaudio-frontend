@@ -23,7 +23,7 @@ export function reducer(state = initialState, action: Action): State {
     case ActionTypes.DISCONNECTED:
       return <State> {
         connected: false
-      }
+      };
 
     default:
       return state;

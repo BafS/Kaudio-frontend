@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { ActionReducer, Action, Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-navigation',
@@ -6,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
+  public login$: Observable<boolean>;
 
-  constructor() { }
+  constructor(
+    private _store: Store<any>
+  ) {
+    this.login$ = _store.select(s => s.login);
+   }
 
   ngOnInit() {
   }
