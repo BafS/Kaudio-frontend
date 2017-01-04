@@ -1,5 +1,7 @@
 <div class="playlists">
   <div class="sidebar">
+    <app-livefeed></app-livefeed>
+
     <app-sidebar
       [playlists]="playlistsEntitiesStore"
       (selectPlaylist)="selectPlaylist($event)"
@@ -8,8 +10,6 @@
     <button md-button (click)="addPlaylist()">
       <md-icon class="md-24">add</md-icon>
     </button>
-
-    <app-livefeed></app-livefeed>
   </div>
 
   <div class="main">

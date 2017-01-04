@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
@@ -12,7 +12,8 @@ import { ActionTypes as MessagesActionTypes } from './../../reducers/messages';
   styleUrls: ['./livefeed.component.scss'],
   providers: [ MessageService ]
 })
-export class LivefeedComponent {
+export class LivefeedComponent implements AfterViewChecked {
+  @ViewChild('feed') private feedContainer: ElementRef;
   public messages$: Observable<Message[]>;
 
   constructor(
@@ -20,6 +21,13 @@ export class LivefeedComponent {
     private _store: Store<any>
   ) {
     this.messages$ = _store.select(s => s.messages);
+  }
+
+  /**
+   * Scroll to the bottom of the live each time there is a new message
+   */
+  ngAfterViewChecked() {
+    this.feedContainer.nativeElement.scrollTop = this.feedContainer.nativeElement.scrollHeight;
   }
 
   onPingButton() {
