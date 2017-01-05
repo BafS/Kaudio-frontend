@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { RestService } from './../rest.service';
-// import { SocketService } from './../socket.service';
+import { SocketService } from './../socket.service';
 
 @Injectable()
 export class AuthenticationService {
   constructor(
-    private _rest: RestService
+    private _rest: SocketService
   ) { }
 
-  auth(email: string, password: string): Promise<any> {
+  auth(email: string, password: string) {
     return this._rest.getApp().authenticate({
         type: 'local',
         email: email,
