@@ -9,7 +9,7 @@
     </div>
 
     <div *ngIf="user" class="clearfix mb-1">
-    <div class="float-xs-right">
+    <div class="float-right">
       <a class="btn btn-outline-primary" routerLink="/profile/{{userId}}">
         View public profile
       </a>
@@ -22,8 +22,8 @@
 
     <form *ngIf="user" (ngSubmit)="onSubmit()" #userForm="ngForm">
       <div class="form-group row">
-        <label for="email" class="col-xs-3 col-form-label">Email</label>
-        <div class="col-xs-9">
+        <label for="email" class="col-3 col-form-label">Email</label>
+        <div class="col-9">
           <input type="email" class="form-control" id="email"
                   ngControl="email"
                   required
@@ -38,8 +38,8 @@
       </div>
 
       <div class="form-group row">
-        <label for="password" class="col-xs-3 col-form-label">Password</label>
-        <div class="col-xs-9">
+        <label for="password" class="col-3 col-form-label">Password</label>
+        <div class="col-9">
           <input type="password" class="form-control" id="password"
                   minlength="3"
                   placeholder="Let empty if you dont want to edit"
@@ -53,8 +53,8 @@
       </div>
 
       <div class="form-group row">
-        <label for="age" class="col-xs-3 col-form-label">Age</label>
-        <div class="col-xs-9">
+        <label for="age" class="col-3 col-form-label">Age</label>
+        <div class="col-9">
           <input type="text" class="form-control" id="age"
                 [(ngModel)]="user.age" name="age"
                 #age="ngModel">
@@ -62,8 +62,8 @@
       </div>
 
       <div class="form-group row">
-        <label for="country" class="col-xs-3 col-form-label">Country</label>
-        <div class="col-xs-9">
+        <label for="country" class="col-3 col-form-label">Country</label>
+        <div class="col-9">
           <input type="text" class="form-control" id="country"
                 [(ngModel)]="user.country" name="country"
                 #country="ngModel">
@@ -71,8 +71,8 @@
       </div>
 
       <div class="form-group row">
-        <label for="city" class="col-xs-3 col-form-label">City</label>
-        <div class="col-xs-9">
+        <label for="city" class="col-3 col-form-label">City</label>
+        <div class="col-9">
           <input type="text" class="form-control" id="city"
                 [(ngModel)]="user.city" name="city"
                 #city="ngModel">
@@ -80,8 +80,8 @@
       </div>
 
       <div class="form-group row">
-        <label for="picture" class="col-xs-3 col-form-label">Picture</label>
-        <div class="col-xs-9">
+        <label for="picture" class="col-3 col-form-label">Picture</label>
+        <div class="col-9">
           <p class="form-control">
             Please use <a href="http://www.gravatar.com">Gravatar</a> for your profile picture!
           </p>
@@ -89,12 +89,12 @@
       </div>
 
       <div class="form-group row mb-3">
-        <label for="friends" class="col-xs-3 col-form-label">Friends</label>
-        <div class="col-xs-9">
+        <label for="friends" class="col-3 col-form-label">Friends</label>
+        <div class="col-9">
           <ul class="list-group pl-2">
               <li *ngFor="let friend of user.friends">
                 <a routerLink="/profile/{{friend._id}}">{{friend.email}}</a>
-                <a class="remove tag tag-pill tag-danger" title="Remove" href="#" (click)="onRemove(friend)">X</a>
+                <a class="remove badge badge-pill badge-danger" title="Remove" href="#" (click)="onRemove(friend)">X</a>
               </li>
           </ul>
           <input [(ngModel)]="asyncSelected"
