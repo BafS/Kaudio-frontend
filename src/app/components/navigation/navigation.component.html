@@ -16,6 +16,9 @@
     <li *ngIf="(login$ | async).connected" class="nav-item">
       <a class="nav-link" routerLink="/profile" routerLinkActive="active">Profile</a>
     </li>
+    <li *ngIf="(login$ | async).connected" class="nav-item">
+      <a (click)="onLogout()" class="nav-link" href="#">Logout</a>
+    </li>
   </ul>
   <app-search class="search"></app-search>
   <!--<app-searchbox class="search" [term]="searchTerm"></app-searchbox>-->
