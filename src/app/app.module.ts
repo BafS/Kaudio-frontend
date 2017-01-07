@@ -23,10 +23,11 @@ import { KeysPipe } from './pipes/keys';
 import { RestService } from './services/rest.service';
 import { SocketService } from './services/socket.service';
 import { MessageService } from './services/api/message.service';
-// import { PlaylistService } from './services/api/playlist.service';
+import { PlaylistService } from './services/api/playlist.service';
 
 // Effects
 import { MessageEffects } from './effects/messages';
+import { PlaylistEffects } from './effects/playlist';
 
 // Components
 import { AppComponent } from './app.component';
@@ -77,6 +78,7 @@ import { PageNotFoundComponent } from './containers/page-not-found/page-not-foun
     BrowserModule,
     StoreModule.provideStore(reducers),
     EffectsModule.run(MessageEffects),
+    EffectsModule.run(PlaylistEffects),
     StoreDevtoolsModule.instrumentOnlyWithExtension(), // Dev tool
     FormsModule,
     RouterModule.forRoot(ROUTES),
@@ -90,7 +92,8 @@ import { PageNotFoundComponent } from './containers/page-not-found/page-not-foun
   providers: [
     SocketService,
     RestService,
-    MessageService
+    MessageService,
+    PlaylistService
   ],
   bootstrap: [AppComponent]
 })

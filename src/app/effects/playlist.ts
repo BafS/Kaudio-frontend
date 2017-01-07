@@ -1,5 +1,7 @@
 import * as Playlist from './../reducers/playlists';
+import { Playlist as PlaylistModel } from './../models';
 import { PlaylistService } from './../services/api/playlist.service';
+import { ActionTypes as PlaylistsActionTypes } from '../reducers/playlists';
 
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
@@ -14,35 +16,65 @@ import { Observable } from 'rxjs/Observable';
 import { empty } from 'rxjs/observable/empty';
 import { of } from 'rxjs/observable/of';
 
-
-/**
- * Effects offer a way to isolate and easily test side-effects within your
- * application. StateUpdates is an observable of the latest state and
- * dispatched action. The `toPayload` helper function returns just
- * the payload of the currently dispatched action, useful in
- * instances where the current state is not necessary.
- *
- * If you are unfamiliar with the operators being used in these examples, please
- * check out the sources below:
- *
- * Official Docs: http://reactivex.io/rxjs/manual/overview.html#categories-of-operators
- * RxJS 5 Operators By Example: https://gist.github.com/btroncone/d6cf141d6f2c00dc6b35
- */
-
 @Injectable()
 export class PlaylistEffects {
-  constructor(private actions$: Actions, private playlistService: PlaylistService) { }
 
-@Effect()
-  search$: Observable<Action> = this.actions$
+  constructor(
+    private _actions$: Actions,
+    private _playlistService: PlaylistService
+  ) { }
 
-    .ofType(Playlist.ActionTypes.UPDATE_PLAYLIST)
-    .map(action => action.payload)
-    .switchMap(playlist => {
-      return this.playlistService.update(playlist.id, playlist)
-        .map(updatePlaylist => {
-          return {type: Playlist.ActionTypes.UPDATE_PLAYLIST_SUCCESS, payload: updatePlaylist};
-        })
-        .catch(() => of({type: Playlist.ActionTypes.UPDATE_PLAYLIST_FAIL}));
-    });
+  @Effect({ dispatch: false })
+  playlistsAction$: Observable<Action> = this._actions$
+    .ofType(PlaylistsActionTypes.ADD_PLAYLIST)
+    .map((action) => action.payload)
+    .do((playlist: PlaylistModel) => {
+      // Create in DB
+      console.info('Create new playlist', playlist);
+      this._playlistService.create(playlist).then(result => {
+        console.log('Added Playlist : ' + playlist.name, result);
+
+      }).catch((error) => {
+        console.error('Error Add Playlist : ' + playlist.name + error);
+      });
+    })
+
+      // .mergeMap(playlist =>
+      //   console.log(playlist)
+      //     // this.db.insert('books', [ book ])
+      //     // .map(() => new collection.AddBookSuccessAction(book))
+      //     // .catch(() => of(new collection.AddBookFailAction(book)))
+      // )
+        /*
+      .do(() => {
+        // Create in DB
+        console.info('TRY TO CREATE IN DB');
+        this._playlistService.create(this.playlist).then(result => {
+          console.log('Added Playlist : ' + this.playlist.name, result);
+
+        }).catch((error) => {
+          console.error('Error Add Playlist : ' + this.playlist.name + error);
+        });
+      })
+      */
+      // .do
+      // .startWith(new collection.LoadAction())
+      // .switchMap(() =>
+      //   this.db.query('books')
+      //     .toArray()
+      //     .map((books: Book[]) => new collection.LoadSuccessAction(books))
+      //     .catch(error => of(new collection.LoadFailAction(error)))
+      // );
+
+  // @Effect()
+  // search$: Observable<Action> = this._actions$
+  //   .ofType(Playlist.ActionTypes.UPDATE_PLAYLIST)
+  //   .map(action => action.payload)
+  //   .switchMap(playlist => {
+  //     return this._playlistService.update(playlist.id, playlist)
+  //       .map(updatePlaylist => {
+  //         return {type: Playlist.ActionTypes.UPDATE_PLAYLIST_SUCCESS, payload: updatePlaylist};
+  //       })
+  //       .catch(() => of({type: Playlist.ActionTypes.UPDATE_PLAYLIST_FAIL}));
+  //   });
 }

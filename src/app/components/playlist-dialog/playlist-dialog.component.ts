@@ -35,21 +35,12 @@ export class PlaylistDialogComponent {
   }
 
   addPlaylist() {
-    //new playlist
+    // New playlist
     this.playlist = <Playlist>{
       name: this.title,
       description: this.description,
       public: this.public
     };
-
-    //create in DB
-    this._playlistService.create(this.playlist
-    ).then((result) => {
-      console.log('Added Playlist : ' + this.playlist.name, result);
-
-    }).catch((error) => {
-      console.error('Error Add Playlist : ' + this.playlist.name + error);
-    });
 
     this._store.dispatch({
         type: PlaylistActionTypes.ADD_PLAYLIST,
