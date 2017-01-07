@@ -3,6 +3,9 @@ import { MdDialogRef } from '@angular/material';
 
 import { Playlist } from '../../models/playlist';
 import { PlaylistService } from '../../services/api/playlist.service';
+import { Store } from '@ngrx/store';
+import { ActionTypes as PlaylistActionTypes } from './../../reducers/playlists';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-playlist-dialog',
@@ -17,11 +20,14 @@ export class PlaylistDialogComponent {
   public description?: string;
   public public?: boolean;
   private playlist: Playlist;
+  public player: Observable<any>;
 
   constructor(
     public dialogRef: MdDialogRef<PlaylistDialogComponent>,
-    private _playlistService: PlaylistService
+    private _playlistService: PlaylistService,
+    private _store: Store<any>
   ) {
+    this.player = _store.select(s => s.player);
     //By default the playlist is public
     if (true === !this.new) {
       this.public = true;
@@ -43,6 +49,11 @@ export class PlaylistDialogComponent {
 
     }).catch((error) => {
       console.error('Error Add Playlist : ' + this.playlist.name + error);
+    });
+
+    this._store.dispatch({
+        type: PlaylistActionTypes.ADD_PLAYLIST,
+        payload: this.playlist
     });
   }
 
