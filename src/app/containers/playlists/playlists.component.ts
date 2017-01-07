@@ -15,6 +15,10 @@ import {
 
 import * as fromPlaylists from '../../reducers/playlists';
 
+import { MdDialogRef, MdDialogConfig, MdDialog } from '@angular/material';
+import { PlaylistDialogComponent} from '../../components/playlist-dialog/playlist-dialog.component';
+
+
 @Component({
   selector: 'app-playlists',
   templateUrl: './playlists.component.html',
@@ -28,10 +32,13 @@ export class PlaylistsComponent implements OnInit, OnDestroy {
   public playlistsEntitiesStore: Observable<Playlist[]>;
 
   private _playlistSelectSubscription: Subscription;
+  //To add playlist dialog
+  private dialogRef: MdDialogRef<PlaylistDialogComponent>;
 
   constructor(
     private _playlistService: PlaylistService,
-    private _store: Store<any>
+    private _store: Store<any>,
+    public dialog: MdDialog
   ) {
     this.playlistsStore = _store.select(s => s.playlists);
     this.playlistsEntitiesStore = _store.select(s => s.playlists.entities);
@@ -85,5 +92,15 @@ export class PlaylistsComponent implements OnInit, OnDestroy {
       type: fromPlaylists.ActionTypes.SELECT_PLAYLIST,
       payload: id
     });
+  }
+
+  /**
+   * Call add playlist dialog
+   */
+  addPlaylist() {
+    this.dialogRef = this.dialog.open(PlaylistDialogComponent, <MdDialogConfig>{
+      disableClose: true
+    });
+    this.dialogRef.componentInstance.new = true;
   }
 }

@@ -63,20 +63,16 @@ export class MessageService {
     return this._socket.remove(id, query);
   }
 
-  // TODO dev
   public observe(trigger: string): Observable<any> {
-    let observable = new Observable(observer => {
+    return new Observable(observer => {
       this._socket.on(trigger, data => {
         console.log('(message service) Got new message');
         observer.next(data);
       });
       return () => {
         console.log('(message service) Disconnect');
-        this._socket.disconnect();
+        // this._socket.disconnect();
       };
     });
-
-    return observable;
-    // return this.socket.emit// .on(trigger, callback);
   }
 }

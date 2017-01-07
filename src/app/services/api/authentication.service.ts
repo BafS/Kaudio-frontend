@@ -5,7 +5,7 @@ import { SocketService } from './../socket.service';
 @Injectable()
 export class AuthenticationService {
   constructor(
-    private _rest: SocketService
+    private _rest: RestService
   ) { }
 
   auth(email: string, password: string) {
