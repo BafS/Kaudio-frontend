@@ -19,25 +19,31 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class PlaylistEffects {
 
+  @Effect()
+  playlistsAction$: Observable<Action> = this._actions$
+    .ofType(PlaylistsActionTypes.ADD_PLAYLIST)
+    .map(action => action.payload)
+    .switchMap((playlist: PlaylistModel) => {
+      return new Observable(observer => {
+        // Create new playlist in DB
+        this._playlistService.create(playlist).then(result => {
+          console.log('Added Playlist : ' + playlist.name, result);
+          observer.next(<Action>{
+            type: PlaylistsActionTypes.ADD_PLAYLIST_SUCCESS
+          });
+        }).catch((error) => {
+          console.error('Error Add Playlist : ' + playlist.name + error);
+          observer.next(<Action>{
+            type: PlaylistsActionTypes.ADD_PLAYLIST_FAIL
+          });
+        });
+      });
+    });
+
   constructor(
     private _actions$: Actions,
     private _playlistService: PlaylistService
   ) { }
-
-  @Effect({ dispatch: false })
-  playlistsAction$: Observable<Action> = this._actions$
-    .ofType(PlaylistsActionTypes.ADD_PLAYLIST)
-    .map((action) => action.payload)
-    .do((playlist: PlaylistModel) => {
-      // Create in DB
-      console.info('Create new playlist', playlist);
-      this._playlistService.create(playlist).then(result => {
-        console.log('Added Playlist : ' + playlist.name, result);
-
-      }).catch((error) => {
-        console.error('Error Add Playlist : ' + playlist.name + error);
-      });
-    })
 
       // .mergeMap(playlist =>
       //   console.log(playlist)
