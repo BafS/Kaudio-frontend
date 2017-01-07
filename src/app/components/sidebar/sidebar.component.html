@@ -7,6 +7,6 @@
     (click)="selectPlaylist(playlist.value._id)"
     [class.active]="playlist.value._id === currentPlaylistId"
   >
-    {{playlist.value.name}} <span class="tag" *ngIf="!playlist.value.public">private</span>
+    {{playlist.value.name}} <span class="badge" *ngIf="!playlist.value.public">private</span>
   </a>
 </nav>
