@@ -19,8 +19,9 @@ import { of } from 'rxjs/observable/of';
 @Injectable()
 export class PlaylistEffects {
 
+  // Create a new playlist
   @Effect()
-  playlistsAction$: Observable<Action> = this._actions$
+  newPlaylistsAction$: Observable<Action> = this._actions$
     .ofType(PlaylistsActionTypes.ADD_PLAYLIST)
     .map(action => action.payload)
     .switchMap((playlist: PlaylistModel) => {
@@ -31,12 +32,37 @@ export class PlaylistEffects {
           observer.next(<Action>{
             type: PlaylistsActionTypes.ADD_PLAYLIST_SUCCESS
           });
-        }).catch((error) => {
+        }).catch(error => {
           console.error('Error Add Playlist : ' + playlist.name + error);
           observer.next(<Action>{
             type: PlaylistsActionTypes.ADD_PLAYLIST_FAIL
           });
         });
+      });
+    });
+
+  // Update a playlist
+  @Effect()
+  addPlaylistsAction$: Observable<Action> = this._actions$
+    .ofType(PlaylistsActionTypes.UPDATE_PLAYLIST)
+    .map(action => action.payload)
+    .switchMap(payload => {
+      return new Observable(observer => {
+        // let track = payload.track;
+        // let playlistID = payload.playlistID;
+
+        // // Create new playlist in DB
+        // this._playlistService.update(playlistID, playlist).then(result => {
+        //   console.log('Added Playlist : ' + playlist.name, result);
+        //   observer.next(<Action>{
+        //     type: PlaylistsActionTypes.UPDATE_PLAYLIST_SUCCESS
+        //   });
+        // }).catch(error => {
+        //   console.error('Error Add Playlist : ' + playlist.name + error);
+        //   observer.next(<Action>{
+        //     type: PlaylistsActionTypes.UPDATE_PLAYLIST_FAIL
+        //   });
+        // });
       });
     });
 
@@ -63,15 +89,6 @@ export class PlaylistEffects {
         });
       })
       */
-      // .do
-      // .startWith(new collection.LoadAction())
-      // .switchMap(() =>
-      //   this.db.query('books')
-      //     .toArray()
-      //     .map((books: Book[]) => new collection.LoadSuccessAction(books))
-      //     .catch(error => of(new collection.LoadFailAction(error)))
-      // );
-
   // @Effect()
   // search$: Observable<Action> = this._actions$
   //   .ofType(Playlist.ActionTypes.UPDATE_PLAYLIST)
