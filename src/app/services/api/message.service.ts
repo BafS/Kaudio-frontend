@@ -35,16 +35,6 @@ export class MessageService {
     // this._subscription = this.observe('created').subscribe(); // TODO
   }
 
-  dispatch(data) {
-      console.info('> New Message (LivefeedComponent) [socket]'); // DEV TODO
-      this._store.dispatch({
-        type: MessagesActionTypes.ADD_MESSAGE,
-        payload: <Message> {
-          title: data
-        }
-      });
-  }
-
   find(query?: any) {
     return this._rest.find(query);
   }

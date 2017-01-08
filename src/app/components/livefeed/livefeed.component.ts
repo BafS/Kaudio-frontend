@@ -30,9 +30,9 @@ export class LivefeedComponent implements AfterViewChecked {
     this.feedContainer.nativeElement.scrollTop = this.feedContainer.nativeElement.scrollHeight;
   }
 
-  onPingButton() {
+  sendMessage(message: string) {
     this._messageService.create({
-      message: 'PING !'  + (Math.random() * 1000).toFixed(0)
+      message
     });
   }
 }

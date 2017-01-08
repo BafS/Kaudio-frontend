@@ -1,10 +1,19 @@
-<button class="btn btn-sm btn-outline-default float-xs-right" (click)="onPingButton()">Ping</button>
-<h5 class="title">Livefeed</h5>
+<h5 class="title pt-1">Livefeed</h5>
+
+<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+  <button class="btn btn-secondary" (click)="sendMessage('😃')">😃</button>
+  <button class="btn btn-secondary" (click)="sendMessage('🌟')">🌟</button>
+  <button class="btn btn-secondary" (click)="sendMessage('👍')">👍</button>
+  <button class="btn btn-secondary" (click)="sendMessage('👌')">👌</button>
+  <button class="btn btn-secondary" (click)="sendMessage('🎶')">🎶</button>
+  <button class="btn btn-secondary" (click)="sendMessage('🎧')">🎧</button>
+  <button class="btn btn-secondary" (click)="sendMessage('🎤')">🎤</button>
+</div>
 
 <div class="list-group feed" #feed>
-  <div class="list-group-item list-group-item-action" *ngFor="let message of messages$ | async">
-    <h6 class="list-group-item-heading">{{message.title}}</h6>
-    <p class="list-group-item-text">
+  <div class="list-group-item justify-content-between" *ngFor="let message of messages$ | async">
+    <h6 class="">{{message.title}}</h6>
+    <p class="">
       <span>{{message.description}}</span>
     </p>
   </div>
