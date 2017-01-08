@@ -47,7 +47,8 @@ html {
 }
 
 .wrapper {
-  // padding-top: 54px;
+  // flex: 1;
+  padding-top: 54px;
   min-height: 100%;
   height: 100%;
   width: 100%;
@@ -60,4 +61,10 @@ html {
   background: transparent;
   color: #fbfbfb;
   border: none;
+}
+
+// Datatables customization
+.datatable.material {
+  box-shadow: none;
+  border: 1px solid rgba(0,0,0,.05);
 }
