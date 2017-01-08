@@ -21,6 +21,9 @@ export const ActionTypes = {
   UPDATE_PLAYLIST_FAIL: 'UPDATE_PLAYLIST_FAIL',
 
   REMOVE_PLAYLIST: 'REMOVE_PLAYLIST',
+  REMOVE_PLAYLIST_SUCCESS: 'REMOVE_PLAYLIST_SUCCESS',
+  REMOVE_PLAYLIST_FAIL: 'REMOVE_PLAYLIST_FAIL',
+
   RESET_PLAYLISTS: 'RESET'
 };
 
@@ -78,7 +81,7 @@ export function reducer(state: State = initialState, action: Action): State {
       const playlist: Playlist = action.payload;
 
       console.log('test: ' + state.entities);
-      return {  
+      return {
         //TODO fix return actual list + new playlist
         //Now return only the new playlist
         entities: Object.assign({}, state.entities, {

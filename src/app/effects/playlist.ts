@@ -66,6 +66,25 @@ export class PlaylistEffects {
       });
     });
 
+  // Remove a playlist
+  @Effect()
+  removePlaylistsAction$: Observable<Action> = this._actions$
+    .ofType(PlaylistsActionTypes.REMOVE_PLAYLIST)
+    .map(action => action.payload)
+    .switchMap(id => {
+      return new Observable(observer => {
+        this._playlistService.remove(id).then(result => {
+          observer.next(<Action>{
+            type: PlaylistsActionTypes.REMOVE_PLAYLIST_SUCCESS
+          });
+        }).catch(error => {
+          observer.next(<Action>{
+            type: PlaylistsActionTypes.REMOVE_PLAYLIST_FAIL
+          });
+        });
+      });
+    });
+
   constructor(
     private _actions$: Actions,
     private _playlistService: PlaylistService

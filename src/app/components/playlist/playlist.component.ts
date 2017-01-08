@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { Track } from '../../models';
 import { ActionTypes as PlayerActionTypes } from './../../reducers/player';
+import { ActionTypes as PlaylistsActionTypes } from './../../reducers/playlists';
 
 import { MdDialogRef, MdDialogConfig, MdDialog } from '@angular/material';
 import { Playlist } from '../../models/playlist';
@@ -59,10 +60,9 @@ export class PlaylistComponent {
   }
 
   deletePlaylist() {
-    this._playlistService.remove(this.playlist._id, '').then(result => {
-      console.log('Playlist : ' + this.playlist.name + ' delete', result);
-    }).catch(error => {
-      console.error('Error Delete Playlist : ' + this.playlist.name , error);
+    this._store.dispatch({
+      type: PlaylistsActionTypes.REMOVE_PLAYLIST,
+      payload: this.playlist._id
     });
   }
 
