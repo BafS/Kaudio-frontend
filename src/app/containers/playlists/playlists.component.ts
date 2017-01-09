@@ -62,7 +62,10 @@ export class PlaylistsComponent implements OnInit, OnDestroy {
         }
     });
 
-    this._playlistService.find().then(playlists => {
+    this._playlistService.find({query: {
+        $limit: 100
+      }
+    }).then(playlists => {
       console.info(playlists);
 
       // If a playslist exists
