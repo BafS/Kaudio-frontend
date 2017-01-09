@@ -1,5 +1,7 @@
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { Track } from './../../models';
 import { ActionTypes as PlaylistsActionTypes } from './../../reducers/playlists';
@@ -9,22 +11,39 @@ import { ActionTypes as PlaylistsActionTypes } from './../../reducers/playlists'
   templateUrl: './searchresults.component.html',
   styleUrls: ['./searchresults.component.scss']
 })
-export class SearchresultsComponent {
+export class SearchresultsComponent implements OnInit, OnDestroy {
   @Input() tracks: Track[];
   @Output()('SelectTrack') trackToAdd = new EventEmitter<Track>();
+  private _playlists: Observable<any>;
+  private _selectedPlaylist: string;
+  private _subscriber: Subscription;
 
   constructor(
     private _store: Store<any>
   ) {
+    this._playlists = _store.select(s => s.playlists);
   }
 
-  addTrack(track: Track) {
-    console.info('track', track);
+  ngOnInit() {
+    this._subscriber = this._playlists.subscribe(v => {
+      this._selectedPlaylist = v.selectedPlaylistId;
+    });
+  }
 
-    // TODO
-    // this._store.dispatch({
-    //   type: PlaylistsActionTypes.UPDATE_PLAYLIST,
-    //   payload: track
-    // });
+  ngOnDestroy() {
+    this._subscriber.unsubscribe();
+  }
+
+  /**
+   * Add the selected track to the selected playlist
+   */
+  addTrack(track: Track): void {
+    this._store.dispatch({
+      type: PlaylistsActionTypes.ADD_SONG_PLAYLIST,
+      payload: {
+        track,
+        selectedPlaylist: this._selectedPlaylist,
+      }
+    });
   }
 }

@@ -1,5 +1,8 @@
 import * as Playlist from './../reducers/playlists';
-import { Playlist as PlaylistModel } from './../models';
+import {
+  Playlist as PlaylistModel,
+  Track as TrackModel
+} from './../models';
 import { PlaylistService } from './../services/api/playlist.service';
 import { ActionTypes as PlaylistsActionTypes } from '../reducers/playlists';
 
@@ -29,7 +32,7 @@ export class PlaylistEffects {
         // Create new playlist in DB
         this._playlistService.create(playlist).then(result => {
           console.log('Added Playlist : ' + playlist.name, result);
-          observer.next(<Action>{
+          observer.next(<Action> {
             type: PlaylistsActionTypes.ADD_PLAYLIST_SUCCESS,
             payload: result
           });
@@ -39,7 +42,7 @@ export class PlaylistEffects {
           // });
         }).catch(error => {
           console.error('Error Add Playlist : ' + playlist.name + error);
-          observer.next(<Action>{
+          observer.next(<Action> {
             type: PlaylistsActionTypes.ADD_PLAYLIST_FAIL
           });
         });
@@ -52,6 +55,8 @@ export class PlaylistEffects {
     .ofType(PlaylistsActionTypes.UPDATE_PLAYLIST)
     .map(action => action.payload)
     .switchMap(payload => {
+      console.log(payload);
+
       return new Observable(observer => {
         // let track = payload.track;
         // let playlistID = payload.playlistID;
@@ -68,6 +73,41 @@ export class PlaylistEffects {
         //     type: PlaylistsActionTypes.UPDATE_PLAYLIST_FAIL
         //   });
         // });
+      });
+    });
+
+
+  // Update a playlist
+  @Effect()
+  addPlaylistSongAction$: Observable<Action> = this._actions$
+    .ofType(PlaylistsActionTypes.ADD_SONG_PLAYLIST)
+    .map(action => action.payload)
+    .switchMap(payload => {
+      return new Observable(observer => {
+        let trackId: string = payload.track._id;
+        let playlistID: string = payload.selectedPlaylist;
+
+        // Patch the DB to add a new song
+        this._playlistService.patch(playlistID, {
+          op: 'add',
+          path: '/tracks_ref',
+          value: trackId,
+        }).then((result: PlaylistModel) => {
+          console.log('PATCH OK ', result);
+
+          observer.next(<Action> {
+            type: PlaylistsActionTypes.ADD_SONG_PLAYLIST_SUCCESS,
+            payload: {
+              playlistID,
+              track: <TrackModel> payload.track,
+            }
+          });
+        }).catch(error => {
+          console.error(error);
+          observer.next(<Action> {
+            type: PlaylistsActionTypes.ADD_SONG_PLAYLIST_FAIL
+          });
+        });
       });
     });
 

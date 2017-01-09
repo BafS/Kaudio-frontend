@@ -1,6 +1,6 @@
 import { ActionReducer, Action } from '@ngrx/store';
 import { createSelector } from 'reselect';
-import { Playlist } from './../models/playlist';
+import { Playlist, Track } from './../models';
 
 export const ActionTypes = {
   LOAD_PLAYLIST: 'LOAD_PLAYLIST',
@@ -23,6 +23,10 @@ export const ActionTypes = {
   REMOVE_PLAYLIST: 'REMOVE_PLAYLIST',
   REMOVE_PLAYLIST_SUCCESS: 'REMOVE_PLAYLIST_SUCCESS',
   REMOVE_PLAYLIST_FAIL: 'REMOVE_PLAYLIST_FAIL',
+
+  ADD_SONG_PLAYLIST: 'ADD_SONG_PLAYLIST',
+  ADD_SONG_PLAYLIST_SUCCESS: 'ADD_SONG_PLAYLIST_SUCCESS',
+  ADD_SONG_PLAYLIST_FAIL: 'ADD_SONG_PLAYLIST_FAIL',
 
   RESET_PLAYLISTS: 'RESET'
 };
@@ -103,6 +107,18 @@ export function reducer(state: State = initialState, action: Action): State {
         };
     }
 
+    case ActionTypes.ADD_SONG_PLAYLIST_SUCCESS: {
+      const playlistID: string = action.payload.playlistID;
+      const newTrack: Track = action.payload.track;
+
+      const newEntities: { [id: string]: Playlist } = state.entities;
+      newEntities[playlistID].tracks.push(newTrack);
+
+      return {
+          entities: newEntities,
+          selectedPlaylistId: state.selectedPlaylistId,
+        };
+    }
 
     default:
       return state;
