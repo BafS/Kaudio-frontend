@@ -30,8 +30,13 @@ export class PlaylistEffects {
         this._playlistService.create(playlist).then(result => {
           console.log('Added Playlist : ' + playlist.name, result);
           observer.next(<Action>{
-            type: PlaylistsActionTypes.ADD_PLAYLIST_SUCCESS
+            type: PlaylistsActionTypes.ADD_PLAYLIST_SUCCESS,
+            payload: result
           });
+          // observer.next(<Action>{
+          //   type: PlaylistsActionTypes.SELECT_PLAYLIST,
+          //   payload: result._id
+          // });
         }).catch(error => {
           console.error('Error Add Playlist : ' + playlist.name + error);
           observer.next(<Action>{

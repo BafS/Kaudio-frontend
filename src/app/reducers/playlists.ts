@@ -77,13 +77,11 @@ export function reducer(state: State = initialState, action: Action): State {
       };
     }
 
-    case ActionTypes.ADD_PLAYLIST: {
+    case ActionTypes.ADD_PLAYLIST_SUCCESS: {
       const playlist: Playlist = action.payload;
 
       console.log('test: ' + state.entities);
       return {
-        //TODO fix return actual list + new playlist
-        //Now return only the new playlist
         entities: Object.assign({}, state.entities, {
           [playlist._id]: playlist
         }),
