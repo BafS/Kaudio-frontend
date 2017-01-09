@@ -1,13 +1,13 @@
 import { Component, Input } from '@angular/core';
+import { MdDialogRef, MdDialogConfig, MdDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { Track } from '../../models';
-import { ActionTypes as PlayerActionTypes } from './../../reducers/player';
-import { ActionTypes as PlaylistsActionTypes } from './../../reducers/playlists';
 
-import { MdDialogRef, MdDialogConfig, MdDialog } from '@angular/material';
 import { Playlist } from '../../models/playlist';
 import { PlaylistService } from '../../services/api/playlist.service';
+import { ActionTypes as PlayerActionTypes } from './../../reducers/player';
+import { ActionTypes as PlaylistsActionTypes } from './../../reducers/playlists';
 import { PlaylistDialogComponent} from '../playlist-dialog/playlist-dialog.component';
 
 @Component({
@@ -19,17 +19,13 @@ import { PlaylistDialogComponent} from '../playlist-dialog/playlist-dialog.compo
 export class PlaylistComponent {
   @Input() playlist: Playlist;
 
-  private rows = [];
-
-  private selected = [];
+  private dialogRef: MdDialogRef<PlaylistDialogComponent>;
 
   private columns = [
     { name: 'Song', prop: 'title', comparator: false },
     { name: 'Album', prop: 'album.title' },
     { name: 'Artist', prop: 'album.artist.name' }
   ];
-
-  private dialogRef: MdDialogRef<PlaylistDialogComponent>;
 
   public player: Observable<any>;
 
