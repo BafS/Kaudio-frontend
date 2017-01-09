@@ -12,11 +12,13 @@
     [rows]="playlist.tracks"
     [columns]="columns"
     [columnMode]="'force'"
-    [headerHeight]="40"
+    [headerHeight]="42"
+    [footerHeight]="35"
     (sort)="onSort($event)"
     [selected]="selected"
     [selectionType]="'single'"
     (activate)="onActivate($event)"
+    [limit]="20"
   ></ngx-datatable>
 </div>
 <div *ngIf="playlist">
