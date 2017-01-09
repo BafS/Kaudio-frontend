@@ -6,6 +6,9 @@
       </thead>
       <tbody>
         <tr>
+          <th>Name</th><td>{{user.name || "Undefined"}}</td>
+        </tr>
+        <tr>
           <th>Age</th><td>{{user.age || "Undefined"}}</td>
         </tr>
         <tr>
@@ -29,6 +32,9 @@
                 <a routerLink="/profile/{{friend._id}}">{{friend.email}}</a><br />
             </span>
           </td>
+        </tr>
+        <tr>
+          <th>Status</th><td>{{user.status || "Undefined"}}</td>
         </tr>
       </tbody>
     </table>

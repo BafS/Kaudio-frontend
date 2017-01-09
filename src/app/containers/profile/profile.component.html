@@ -53,6 +53,15 @@
       </div>
 
       <div class="form-group row">
+        <label for="name" class="col-3 col-form-label">Name</label>
+        <div class="col-9">
+          <input type="text" class="form-control" id="name"
+                [(ngModel)]="user.name" name="name"
+                #name="ngModel">
+        </div>
+      </div>
+
+      <div class="form-group row">
         <label for="age" class="col-3 col-form-label">Age</label>
         <div class="col-9">
           <input type="text" class="form-control" id="age"
@@ -114,6 +123,17 @@
           <div *ngIf="typeaheadNoResults===true">
             <i class="glyphicon glyphicon-remove"></i> No Results Found
           </div>
+        </div>
+      </div>
+
+      
+
+      <div class="form-group row">
+        <label for="status" class="col-3 col-form-label">Status</label>
+        <div class="col-9">
+          <input type="text" class="form-control" id="status"
+                [(ngModel)]="user.status" name="status"
+                #status="ngModel">
         </div>
       </div>
 

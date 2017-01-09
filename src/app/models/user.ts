@@ -8,6 +8,8 @@ export class User {
     public picture?: string,
     public friends?: string[],
     public friends_ref?: string[],
-    public createdAt?: string
+    public createdAt?: string,
+    public status?: string,
+    public name?: string,
   ) {  }
 }
