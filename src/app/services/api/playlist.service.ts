@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { SocketService } from './../socket.service';
+// import { SocketService } from './../socket.service';
+import { RestService } from './../rest.service';
 import { Track, Playlist } from '../../models';
 
 @Injectable()
@@ -7,7 +8,7 @@ export class PlaylistService {
   private _service;
 
   constructor(
-    private _restService: SocketService
+    private _restService: RestService
   ) {
     this._service = _restService.getService('playlists');
   }
@@ -34,5 +35,9 @@ export class PlaylistService {
 
   remove(name: string, query?: any) {
     return this._service.remove(name, query);
+  }
+
+  patch(name: string, data: Object, query?: any) {
+    return this._service.patch(name, data, query);
   }
 }
