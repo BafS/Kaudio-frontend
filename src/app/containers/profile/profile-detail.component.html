@@ -2,20 +2,23 @@
   <div class="container">
     <table *ngIf="user" class="table">
       <thead class="thead-default">
-        <th colspan="2" class="title">{{user.email}} profile <a *ngIf="viewedUserId == connectedUserId" class="edit" routerLink="/profile">(edit)</a></th>
+        <th colspan="2" class="title">
+          {{user.email}} profile
+          <a *ngIf="viewedUserId == connectedUserId" class="btn btn-sm btn-primary float-right" routerLink="/profile">edit my profile</a>
+        </th>
       </thead>
       <tbody>
         <tr>
-          <th>Name</th><td>{{user.name || "Undefined"}}</td>
+          <th>Name</th><td>{{user.name || "-"}}</td>
         </tr>
         <tr>
-          <th>Age</th><td>{{user.age || "Undefined"}}</td>
+          <th>Age</th><td>{{user.age || "-"}}</td>
         </tr>
         <tr>
-          <th>Country</th><td>{{user.country || "Undefined"}}</td>
+          <th>Country</th><td>{{user.country || "-"}}</td>
         </tr>
         <tr>
-          <th>City</th><td>{{user.city || "Undefined"}}</td>
+          <th>City</th><td>{{user.city || "-"}}</td>
         </tr>
         <tr>
           <th>Picture</th><td>
@@ -23,7 +26,7 @@
           </td>
         </tr>
         <tr>
-          <th>Member since</th><td>{{createdAt || "Undefined"}}</td>
+          <th>Member since</th><td>{{createdAt || "-"}}</td>
         </tr>
         <tr>
           <th>Friends</th>
@@ -34,7 +37,7 @@
           </td>
         </tr>
         <tr>
-          <th>Status</th><td>{{user.status || "Undefined"}}</td>
+          <th>Status</th><td>{{user.status || "-"}}</td>
         </tr>
       </tbody>
     </table>

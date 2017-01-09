@@ -5,7 +5,7 @@ table, td, th {
 table {
     margin-left: auto;
     margin-right: auto;
-    width: 500px;
+    max-width: 550px;
     margin-top: 20px;
     background-color: #FAFAFA;
 
@@ -25,8 +25,4 @@ th {
 
 thead th {
     color: #485155;
-}
-
-.edit {
-    color: #B52D30 !important;
 }

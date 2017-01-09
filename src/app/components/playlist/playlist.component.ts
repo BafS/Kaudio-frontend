@@ -20,7 +20,7 @@ export class PlaylistComponent {
   @Input() playlist: Playlist;
 
   private dialogRef: MdDialogRef<PlaylistDialogComponent>;
-
+  private selected = [];
   private columns = [
     { name: 'Song', prop: 'title', comparator: false },
     { name: 'Album', prop: 'album.title' },
