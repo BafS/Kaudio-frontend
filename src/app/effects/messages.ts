@@ -12,24 +12,24 @@ import { ActionTypes as MessageActionTypes } from '../reducers/messages';
 @Injectable()
 export class MessageEffects {
 
-  constructor(
-    private _messageService: MessageService,
-    private actions$: Actions,
-    private _store: Store<any>
-  ) {
-  }
-
   @Effect({ dispatch: false })
   messageActions$: Observable<Action> = this._messageService.observe('created')
-    .do(message => {
+    .do((message: Message) => {
       console.info('(MessageEffects) Got a new message, dispatch it', message); // dev
       this._store.next(<Action> {
         type: MessageActionTypes.ADD_MESSAGE,
-        payload: <Message> {
-          title: message.message
-        }
-      })
+        payload: message
+      });
     });
+
+  constructor(
+    private _messageService: MessageService,
+    private _pushNotifications: PushNotificationsService,
+    private actions$: Actions,
+    private _store: Store<any>
+  ) {
+    this._pushNotifications.requestPermission();
+  }
 
   // @Effect()
   // messageActions2$: Observable<Action> = this._messageService.observe('created').do(message => {

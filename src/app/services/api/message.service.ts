@@ -43,9 +43,7 @@ export class MessageService {
     return this._rest.get(id, query);
   }
 
-  create(message: any) {
-    // console.log('Create a new message ', message);
-    // app.get('token')
+  create(message: Message) {
     return this._socket.create(message);
   }
 
@@ -55,7 +53,7 @@ export class MessageService {
 
   public observe(trigger: string): Observable<any> {
     return new Observable(observer => {
-      this._socket.on(trigger, data => {
+      this._socket.on(trigger, (data: Message) => {
         console.log('(message service) Got new message');
         observer.next(data);
       });
