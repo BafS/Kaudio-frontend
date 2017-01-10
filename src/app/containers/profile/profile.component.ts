@@ -7,9 +7,9 @@ import { md5 } from './md5';
 import 'rxjs/add/observable/of';
 import 'dropzone';
 
-import { User } from '../../models';
+import { User, Message } from '../../models';
 import { UserService } from '../../services/api/user.service';
-// import { MessageService } from '../../services/api/message.service'; TODO
+import { MessageService } from '../../services/api/message.service';
 
 @Component({
   selector: 'app-profile',
@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private _userService: UserService,
+    private _messageService: MessageService,
     private _router: Router,
   ) {
     this.dataSource = Observable.create(observer => {
@@ -112,7 +113,12 @@ export class ProfileComponent implements OnInit {
 
     // Saves the user and redirects to public profile view.
     this._userService.update(this.userId, userClone).then(() => {
-      this._router.navigate(['profile', this.userId]);
+      this._messageService.create(<Message> {
+        title: 'Profile updated !',
+        description: `${this.user.email} just updated his profile`
+      }).then(() => {
+        this._router.navigate(['profile', this.userId]);
+      });
     });
   }
 
