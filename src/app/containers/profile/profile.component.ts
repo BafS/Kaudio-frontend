@@ -7,9 +7,9 @@ import { md5 } from './md5';
 import 'rxjs/add/observable/of';
 import 'dropzone';
 
-import { User } from '../../models';
+import { User, Message } from '../../models';
 import { UserService } from '../../services/api/user.service';
-// import { MessageService } from '../../services/api/message.service'; TODO
+import { MessageService } from '../../services/api/message.service';
 
 @Component({
   selector: 'app-profile',
@@ -36,7 +36,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private _userService: UserService,
-    private router: Router,
+    private _messageService: MessageService,
+    private _router: Router,
   ) {
     this.dataSource = Observable.create(observer => {
       // Updates autocomplete of friends list.
@@ -72,8 +73,6 @@ export class ProfileComponent implements OnInit {
           this.user.friends = [];
         }
       });
-    } else {
-      console.log('ERROR');
     }
   }
 
@@ -89,23 +88,9 @@ export class ProfileComponent implements OnInit {
    * Called when the user clicks on an entry of the autocomplete list.
    */
   public typeaheadOnSelect(e: TypeaheadMatch): void {
-    let alreadyIn = false;
-
-    // Determines if the selected friend is already part
-    // of the users friends list.
-    for (let i = 0; i < this.user.friends.length; i++) {
-      if (this.user.friends[i]['_id'] === e.item._id) {
-        alreadyIn = true;
-        break;
-      }
-    }
-
-    // Adds the friend if it's not already in the list.
-    if (!alreadyIn) {
+    if (this.user.friends.filter(f => e.item._id === f['_id']).length === 0) {
       this.user.friends.push(e.item);
     }
-
-    // Empties the autocomplete field.
     this.asyncSelected = '';
   }
 
@@ -113,36 +98,35 @@ export class ProfileComponent implements OnInit {
    * If thes user cancels, he is redirect to his public profile view.
    */
   onLogout() {
-    this.router.navigateByUrl('profile/' + this.userId);
+    this._router.navigate(['profile', this.userId]);
   }
 
   /**
    * Updates the user in the database.
    */
   onSubmit() {
-    this.user.friends_ref = [];
+    // Clone user
+    const userClone = Object.assign({}, this.user);
 
-    for (let i = 0; i < this.user.friends.length; i++) {
-      this.user.friends_ref[i] = this.user.friends[i]['_id'];
-    }
+    userClone.friends_ref = this.user.friends.map(f => f['_id']);
+    delete userClone.friends;
 
     // Saves the user and redirects to public profile view.
-    this._userService.update(this.userId, this.user);
-    this.router.navigateByUrl('profile/' + this.userId);
+    this._userService.update(this.userId, userClone).then(() => {
+      this._messageService.create(<Message> {
+        title: 'Profile updated !',
+        description: `${this.user.email} just updated his profile`
+      }).then(() => {
+        this._router.navigate(['profile', this.userId]);
+      });
+    });
   }
 
   /**
    * Called when a user wants to delete a friend from the list.
    */
   onRemove(user) {
-    // Deletes the selected friend by iterating through the list
-    // of friends and checking if the friend to remove is in it.
-    for (let i = 0; i < this.user.friends.length; i++) {
-      if (this.user.friends[i] === user) {
-        this.user.friends.splice(i, 1);
-      }
-    }
-
-    return false;
+    // Deletes the selected friend filtering the list.
+    this.user.friends = this.user.friends.filter(f => f !== user);
   }
 }
