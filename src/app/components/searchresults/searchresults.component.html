@@ -1,22 +1,26 @@
 <div *ngIf="(tracks | async)?.length > 0" class="card search-results">
-  <table style="width: 100%" class="table table-sm">
-    <thead class="thead-default">
-      <tr>
-        <th></th>
-        <th>Title</th>
-        <th>Album</th>
-        <th>Artist</th>
-      </tr>
-    </thead>
-    <tr *ngFor="let track of tracks | async">
-      <td>
-        <button (click)="addTrack(track)" class="btn btn-sm btn-primary">
+  <table style="width: 100%" class="table table-sm" [hidden]="hideTable">
+<thead class="thead-default">
+  <tr>
+    <th></th>
+    <th>Title</th>
+    <th>Album</th>
+    <th>Artist</th>
+  </tr>
+</thead>
+<tr *ngFor="let track of tracks | async">
+  <td>
+    <button (click)="addTrack(track)" class="btn btn-sm btn-primary">
           +
         </button>
-      </td>
-      <td>{{track.title}}</td>
-      <td>{{track.album.title}}</td>
-      <td>{{track.album.artist.name}}</td>
-    </tr>
-  </table>
+  </td>
+  <td>{{track.title}}</td>
+  <td>{{track.album.title}}</td>
+  <td>{{track.album.artist.name}}</td>
+</tr>
+<div class="modal-footer">
+        <button (click)="closeTable()" type="button" class="btn btn-default" >Close</button>
+</div>
+
+</table>
 </div>

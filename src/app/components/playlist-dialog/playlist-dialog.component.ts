@@ -46,6 +46,8 @@ export class PlaylistDialogComponent {
         type: PlaylistActionTypes.ADD_PLAYLIST,
         payload: this.playlist
     });
+
+    this.dialogRef.close();
   }
 
   editPlaylist() {

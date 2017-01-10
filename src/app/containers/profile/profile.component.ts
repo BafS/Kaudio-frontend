@@ -58,6 +58,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.userId = window.localStorage.getItem('userId');
 
+    // Check if the user is connected and has a valid ID.
     if (this.userId && this.userId.length > 6) {
       this.connected = true;
       this._userService.get(this.userId).then(user => {
