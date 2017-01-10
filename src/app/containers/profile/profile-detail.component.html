@@ -39,6 +39,14 @@
         <tr>
           <th>Status</th><td>{{user.status || "-"}}</td>
         </tr>
+        <tr>
+          <th>Playlists</th>
+          <td>
+            <span *ngFor="let playlist of playlists">
+                {{playlist.name}}<br />
+            </span>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
