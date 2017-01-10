@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AlertModule, TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { Ng2UploaderModule } from 'ng2-uploader/ng2-uploader';
 import { MaterialModule } from '@angular/material';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'; // Dev tool
+// import { Ng2UploaderModule } from 'ng2-uploader/ng2-uploader';
+import { PushNotificationsModule } from 'angular2-notifications';
 import 'hammerjs';
 import 'dropzone';
 
@@ -87,7 +88,8 @@ import { PageNotFoundComponent } from './containers/page-not-found/page-not-foun
     TypeaheadModule,
     ReactiveFormsModule,
     MaterialModule.forRoot(),
-    Ng2UploaderModule,
+    // Ng2UploaderModule,
+    PushNotificationsModule
   ],
   providers: [
     SocketService,

@@ -31,8 +31,8 @@ export class LivefeedComponent implements AfterViewChecked {
   }
 
   sendMessage(message: string) {
-    this._messageService.create({
-      message
+    this._messageService.create(<Message> {
+      title: message
     });
   }
 }

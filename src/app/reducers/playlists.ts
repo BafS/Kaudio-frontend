@@ -93,12 +93,9 @@ export function reducer(state: State = initialState, action: Action): State {
       };
     }
 
-    case ActionTypes.REMOVE_PLAYLIST:
-      // TODO
-      return state;
-
-    case ActionTypes.UPDATE_PLAYLIST_SUCCESS:{
+    case ActionTypes.UPDATE_PLAYLIST_SUCCESS: {
       const playlist: Playlist = action.payload;
+
       return {
           entities: Object.assign({}, state.entities, {
             [playlist._id]: playlist

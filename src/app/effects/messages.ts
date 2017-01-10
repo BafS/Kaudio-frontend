@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-// import { defer } from 'rxjs/observable/defer';
+import { PushNotificationsService } from 'angular2-notifications';
 
 import { Message } from './../models';
 import { MessageService } from '../services/api/message.service';
@@ -12,24 +12,30 @@ import { ActionTypes as MessageActionTypes } from '../reducers/messages';
 @Injectable()
 export class MessageEffects {
 
-  constructor(
-    private _messageService: MessageService,
-    private actions$: Actions,
-    private _store: Store<any>
-  ) {
-  }
-
   @Effect({ dispatch: false })
   messageActions$: Observable<Action> = this._messageService.observe('created')
-    .do(message => {
+    .do((message: Message) => {
+      this._pushNotifications.create(`Kaudio - ${message.title}`, {
+        body: message.description || ''
+      }).subscribe(
+            res => console.log(res),
+            err => console.error(err)
+      );
       console.info('(MessageEffects) Got a new message, dispatch it', message); // dev
       this._store.next(<Action> {
         type: MessageActionTypes.ADD_MESSAGE,
-        payload: <Message> {
-          title: message.message
-        }
-      })
+        payload: message
+      });
     });
+
+  constructor(
+    private _messageService: MessageService,
+    private _pushNotifications: PushNotificationsService,
+    private actions$: Actions,
+    private _store: Store<any>
+  ) {
+    this._pushNotifications.requestPermission();
+  }
 
   // @Effect()
   // messageActions2$: Observable<Action> = this._messageService.observe('created').do(message => {
