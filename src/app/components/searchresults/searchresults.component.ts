@@ -27,6 +27,7 @@ export class SearchresultsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._subscriber = this._playlists.subscribe(v => {
       this._selectedPlaylist = v.selectedPlaylistId;
+      this.hideTable = false;
     });
   }
 
@@ -46,4 +47,14 @@ export class SearchresultsComponent implements OnInit, OnDestroy {
       }
     });
   }
+  private hideTable: boolean = false;
+
+    closeTable(){
+
+            this.hideTable = true;
+            //this.tracks = [];
+            //this.hideTable =false;
+
+    }
 }
+
