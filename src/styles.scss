@@ -68,3 +68,10 @@ html {
   box-shadow: none;
   border: 1px solid rgba(0,0,0,.05);
 }
+
+.datatable-body-cell-label {
+  font-size: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
