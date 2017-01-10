@@ -54,7 +54,7 @@ export class MessageService {
   public observe(trigger: string): Observable<any> {
     return new Observable(observer => {
       this._socket.on(trigger, (data: Message) => {
-        console.log('(message service) Got new message');
+        // console.log('(message service) Got new message');
         observer.next(data);
       });
       return () => {

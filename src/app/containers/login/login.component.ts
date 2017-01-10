@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { MessageService } from './../../services/api/message.service';
 import { AuthenticationService } from './../../services/api/authentication.service';
-import { User } from '../../models/user';
+import { User, Message } from '../../models';
 import { ActionTypes as LoginActionTypes } from './../../reducers/login';
 
 @Component({
@@ -17,7 +17,6 @@ import { ActionTypes as LoginActionTypes } from './../../reducers/login';
 export class LoginComponent implements OnInit {
   private _messages: any[] = [];
   private error: string;
-  // private _messageService: MessageService;
   user = new User('super@admin.com', 'adminPwd');
   token: string;
 
@@ -58,8 +57,9 @@ export class LoginComponent implements OnInit {
         type: LoginActionTypes.CONNECTED
       });
 
-      this._messageService.create({
-        message: `User ${this.user.email} is logged (or try to...)`
+      this._messageService.create(<Message> {
+        title: `${this.user.email} is logged`,
+        description: `User ${this.user.email} just logged in ! (or try to...)`
       });
 
       this._router.navigate(['/']);

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { MessageService } from '../../services/api/message.service';
 import { UserService } from '../../services/api/user.service';
-import { User } from '../../models/user';
+import { User, Message } from '../../models';
 
 @Component({
   selector: 'app-register',
@@ -35,8 +35,9 @@ export class RegisterComponent implements OnInit {
     this._userService.create(this.user).then(result => {
       console.log('Registered!', result);
 
-      this._messageService.create({
-        message: `User ${this.user.email} is registered (or try to...)`
+      this._messageService.create(<Message> {
+        title: `Welcome to ${this.user.email}`,
+        description: `User ${this.user.email} is registered (or try to...)`
       });
 
       // Redirect to login page
