@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private _userService: UserService,
-    private router: Router,
+    private _router: Router,
   ) {
     this.dataSource = Observable.create(observer => {
       // Updates autocomplete of friends list.
@@ -71,8 +71,6 @@ export class ProfileComponent implements OnInit {
           this.user.friends = [];
         }
       });
-    } else {
-      console.log('ERROR');
     }
   }
 
@@ -112,22 +110,22 @@ export class ProfileComponent implements OnInit {
    * If thes user cancels, he is redirect to his public profile view.
    */
   onLogout() {
-    this.router.navigateByUrl('profile/' + this.userId);
+    this._router.navigate(['profile', this.userId]);
   }
 
   /**
    * Updates the user in the database.
    */
   onSubmit() {
-    this.user.friends_ref = [];
+    // Clone user
+    const userClone = Object.assign({}, this.user);
 
-    for (let i = 0; i < this.user.friends.length; i++) {
-      this.user.friends_ref[i] = this.user.friends[i]['_id'];
-    }
+    userClone.friends_ref = this.user.friends.map(f => f['_id']);
+    delete userClone.friends;
 
     // Saves the user and redirects to public profile view.
-    this._userService.update(this.userId, this.user);
-    this.router.navigateByUrl('profile/' + this.userId);
+    this._userService.update(this.userId, userClone);
+    this._router.navigate(['profile', this.userId]);
   }
 
   /**
