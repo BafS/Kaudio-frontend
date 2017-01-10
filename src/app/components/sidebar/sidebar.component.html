@@ -1,12 +1,14 @@
 <nav class="nav nav-pills flex-column">
   <span class="nav-link disabled title">Playlists</span>
   <!--TODO add active to the current one-->
-  <a
-    class="nav-link"
-    *ngFor="let playlist of playlistsList | async | keys; let i=index"
-    (click)="selectPlaylist(playlist.value._id)"
-    [class.active]="playlist.value._id === currentPlaylistId"
-  >
+  <div *ngIf="(login$ | async).connected">
+    <a
+      class="nav-link"
+      *ngFor="let playlist of playlistsList | async | keys; let i=index"
+      (click)="selectPlaylist(playlist.value._id)"
+      [class.active]="playlist.value._id === currentPlaylistId"
+    >
     {{playlist.value.name}} <span class="badge" *ngIf="!playlist.value.public">private</span>
-  </a>
+    </a>
+  </div>
 </nav>
