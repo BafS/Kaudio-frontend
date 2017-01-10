@@ -1,6 +1,6 @@
-<h5 class="title pt-1">Livefeed</h5>
+<span class="title ml-2 pt-1 text-muted">Livefeed</span>
 
-<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+<div class="btn-group btn-group-sm ml-2" role="group" aria-label="Basic example">
   <button class="btn btn-secondary" (click)="sendMessage('😃')">😃</button>
   <button class="btn btn-secondary" (click)="sendMessage('🌟')">🌟</button>
   <button class="btn btn-secondary" (click)="sendMessage('👍')">👍</button>
@@ -11,7 +11,7 @@
 </div>
 
 <div class="list-group feed" #feed>
-  <div class="list-group-item justify-content-between" *ngFor="let message of messages$ | async">
+  <div class="list-group-item list-group-item-action justify-content-between" *ngFor="let message of messages$ | async">
     <h6 class="">{{message.title}}</h6>
     <p class="">
       <span>{{message.description}}</span>

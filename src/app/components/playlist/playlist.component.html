@@ -22,10 +22,12 @@
     [limit]="20"
   ></ngx-datatable>
 
-  <button md-button (click)="updatePlaylist()">
-    <md-icon class="md-24">edit</md-icon>
-  </button>
-  <button md-button (click)="deletePlaylist()">
-    <md-icon class="md-24">delete</md-icon>
-  </button>
+  <div class="btn-group btn-group-sm float-right mr-1 mt-1" role="group" aria-label="Playlist edition">
+    <button class="btn btn-secondary" (click)="updatePlaylist()">
+      <md-icon class="md-24">edit</md-icon>
+    </button>
+    <button class="btn btn-secondary" (click)="deletePlaylist()">
+      <md-icon class="md-24">delete</md-icon>
+    </button>
+  </div>
 </div>
