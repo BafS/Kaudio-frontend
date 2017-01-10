@@ -6,7 +6,7 @@ export class User {
     public country?: string,
     public city?: string,
     public picture?: string,
-    public friends?: string[],
+    public friends?: any[],
     public friends_ref?: string[],
     public createdAt?: string,
     public status?: string,

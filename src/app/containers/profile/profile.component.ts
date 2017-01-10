@@ -87,23 +87,9 @@ export class ProfileComponent implements OnInit {
    * Called when the user clicks on an entry of the autocomplete list.
    */
   public typeaheadOnSelect(e: TypeaheadMatch): void {
-    let alreadyIn = false;
-
-    // Determines if the selected friend is already part
-    // of the users friends list.
-    for (let i = 0; i < this.user.friends.length; i++) {
-      if (this.user.friends[i]['_id'] === e.item._id) {
-        alreadyIn = true;
-        break;
-      }
-    }
-
-    // Adds the friend if it's not already in the list.
-    if (!alreadyIn) {
+    if (this.user.friends.filter(f => e.item._id === f['_id']).length === 0) {
       this.user.friends.push(e.item);
     }
-
-    // Empties the autocomplete field.
     this.asyncSelected = '';
   }
 
@@ -125,22 +111,16 @@ export class ProfileComponent implements OnInit {
     delete userClone.friends;
 
     // Saves the user and redirects to public profile view.
-    this._userService.update(this.userId, userClone);
-    this._router.navigate(['profile', this.userId]);
+    this._userService.update(this.userId, userClone).then(() => {
+      this._router.navigate(['profile', this.userId]);
+    });
   }
 
   /**
    * Called when a user wants to delete a friend from the list.
    */
   onRemove(user) {
-    // Deletes the selected friend by iterating through the list
-    // of friends and checking if the friend to remove is in it.
-    for (let i = 0; i < this.user.friends.length; i++) {
-      if (this.user.friends[i] === user) {
-        this.user.friends.splice(i, 1);
-      }
-    }
-
-    return false;
+    // Deletes the selected friend filtering the list.
+    this.user.friends = this.user.friends.filter(f => f !== user);
   }
 }
