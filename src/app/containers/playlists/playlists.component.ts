@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { MdDialogRef, MdDialogConfig, MdDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { Store } from '@ngrx/store';
@@ -6,18 +7,13 @@ import { createSelector } from 'reselect';
 
 import { PlaylistService } from './../../services/api/playlist.service';
 import { State, getPlaylistState } from './../../reducers';
-
 import {
   Playlist,
   Track,
   App
 } from '../../models';
-
 import * as fromPlaylists from '../../reducers/playlists';
-
-import { MdDialogRef, MdDialogConfig, MdDialog } from '@angular/material';
-import { PlaylistDialogComponent} from '../../components/playlist-dialog/playlist-dialog.component';
-
+import { PlaylistDialogComponent } from '../../components/playlist-dialog/playlist-dialog.component';
 
 @Component({
   selector: 'app-playlists',

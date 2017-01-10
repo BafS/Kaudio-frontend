@@ -1,3 +1,12 @@
+import { Injectable } from '@angular/core';
+import { Action } from '@ngrx/store';
+import { Effect, Actions } from '@ngrx/effects';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import { Observable } from 'rxjs/Observable';
+import { empty } from 'rxjs/observable/empty';
+import { of } from 'rxjs/observable/of';
+
 import * as Playlist from './../reducers/playlists';
 import {
   Playlist as PlaylistModel,
@@ -5,19 +14,6 @@ import {
 } from './../models';
 import { PlaylistService } from './../services/api/playlist.service';
 import { ActionTypes as PlaylistsActionTypes } from '../reducers/playlists';
-
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/skip';
-import 'rxjs/add/operator/takeUntil';
-import { Injectable } from '@angular/core';
-import { Effect, Actions } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { empty } from 'rxjs/observable/empty';
-import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class PlaylistEffects {
@@ -36,10 +32,6 @@ export class PlaylistEffects {
             type: PlaylistsActionTypes.ADD_PLAYLIST_SUCCESS,
             payload: result
           });
-          // observer.next(<Action>{
-          //   type: PlaylistsActionTypes.SELECT_PLAYLIST,
-          //   payload: result._id
-          // });
         }).catch(error => {
           console.error('Error Add Playlist : ' + playlist.name + error);
           observer.next(<Action> {
@@ -75,7 +67,6 @@ export class PlaylistEffects {
         // });
       });
     });
-
 
   // Update a playlist
   @Effect()
@@ -135,24 +126,6 @@ export class PlaylistEffects {
     private _playlistService: PlaylistService
   ) { }
 
-      // .mergeMap(playlist =>
-      //   console.log(playlist)
-      //     // this.db.insert('books', [ book ])
-      //     // .map(() => new collection.AddBookSuccessAction(book))
-      //     // .catch(() => of(new collection.AddBookFailAction(book)))
-      // )
-        /*
-      .do(() => {
-        // Create in DB
-        console.info('TRY TO CREATE IN DB');
-        this._playlistService.create(this.playlist).then(result => {
-          console.log('Added Playlist : ' + this.playlist.name, result);
-
-        }).catch((error) => {
-          console.error('Error Add Playlist : ' + this.playlist.name + error);
-        });
-      })
-      */
   // @Effect()
   // search$: Observable<Action> = this._actions$
   //   .ofType(Playlist.ActionTypes.UPDATE_PLAYLIST)
