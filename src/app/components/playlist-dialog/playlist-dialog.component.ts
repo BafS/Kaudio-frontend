@@ -49,8 +49,6 @@ export class PlaylistDialogComponent {
       public: this.public
     };
 
-    console.log("name: " + this.title + ", public:" + this.public);
-
     this._store.dispatch({
         type: PlaylistActionTypes.ADD_PLAYLIST,
         payload: this.playlist
@@ -60,17 +58,21 @@ export class PlaylistDialogComponent {
   }
 
   editPlaylist() {
-    //playlist to edit
-    /*this.playlist = <Playlist>{
+    this.playlist = <Playlist>{
       _id: this.id,
       name: this.title,
       description: this.description,
       public: this.public
-    };*/
-
+    };
+    console.log("Dialog before dispatch update, id: " + this.playlist.description);
     this._store.dispatch({
         type: PlaylistActionTypes.UPDATE_PLAYLIST,
-        payload: this.playlist
+        payload: {
+          id: this.playlist._id,
+          name: this.playlist.name,
+          description: this.playlist.description,
+          public: this.playlist.public
+        }
     });
 
     this.dialogRef.close();

@@ -81,10 +81,9 @@ export function reducer(state: State = initialState, action: Action): State {
       };
     }
 
+    case ActionTypes.UPDATE_PLAYLIST_SUCCESS:
     case ActionTypes.ADD_PLAYLIST_SUCCESS: {
       const playlist: Playlist = action.payload;
-
-      console.log('test: ' + state.entities);
       return {
         entities: Object.assign({}, state.entities, {
           [playlist._id]: playlist
@@ -93,16 +92,18 @@ export function reducer(state: State = initialState, action: Action): State {
       };
     }
 
-    case ActionTypes.UPDATE_PLAYLIST_SUCCESS: {
+    /*case ActionTypes.UPDATE_PLAYLIST_SUCCESS: {
       const playlist: Playlist = action.payload;
-      console.log("Reducer name: " + this.playlist.name + ", public:" + this.playlist.public);
+
+      console.log("Reducer name: " + playlist.description);
+
       return {
           entities: Object.assign({}, state.entities, {
             [playlist._id]: playlist
           }),
           selectedPlaylistId: state.selectedPlaylistId,
         };
-    }
+    }*/
 
     case ActionTypes.REMOVE_PLAYLIST_SUCCESS: {
       const id: string = action.payload;
