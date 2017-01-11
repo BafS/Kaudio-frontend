@@ -104,6 +104,18 @@ export function reducer(state: State = initialState, action: Action): State {
         };
     }
 
+    case ActionTypes.REMOVE_PLAYLIST_SUCCESS: {
+      const id: string = action.payload;
+
+      let entitiesClone = Object.assign({}, state.entities);
+      delete entitiesClone[id];
+
+      return {
+        entities: entitiesClone,
+        selectedPlaylistId: null,
+      };
+    }
+
     case ActionTypes.ADD_SONG_PLAYLIST_SUCCESS: {
       const playlistID: string = action.payload.playlistID;
       const newTrack: Track = action.payload.track;

@@ -114,7 +114,8 @@ export class PlaylistEffects {
       return new Observable(observer => {
         this._playlistService.remove(id).then(result => {
           observer.next(<Action>{
-            type: PlaylistsActionTypes.REMOVE_PLAYLIST_SUCCESS
+            type: PlaylistsActionTypes.REMOVE_PLAYLIST_SUCCESS,
+            payload: id
           });
         }).catch(error => {
           observer.next(<Action>{

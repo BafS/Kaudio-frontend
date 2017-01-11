@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -35,7 +35,7 @@ export class SearchresultsComponent implements OnInit, OnDestroy {
       if (t.length > 0) {
         this.close = false;
       }
-    })
+    });
   }
 
   ngOnDestroy() {
