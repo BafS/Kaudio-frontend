@@ -1,3 +1,4 @@
+import { Uploadervice } from './../../services/api/upload.service';
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TypeaheadMatch } from 'ng2-bootstrap/components/typeahead';
@@ -37,6 +38,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private _messageService: MessageService,
+    private _uploadService: Uploadervice,
     private _router: Router,
   ) {
     this.dataSource = Observable.create(observer => {
@@ -128,5 +130,8 @@ export class ProfileComponent implements OnInit {
   onRemove(user) {
     // Deletes the selected friend filtering the list.
     this.user.friends = this.user.friends.filter(f => f !== user);
+  }
+  uploadMusic(){
+    //this._uploadService.create();
   }
 }

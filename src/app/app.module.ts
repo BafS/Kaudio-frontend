@@ -1,3 +1,4 @@
+import { Uploadervice } from './services/api/upload.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -50,6 +51,7 @@ import { PlaylistDialogComponent } from './components/playlist-dialog/playlist-d
 import { LivefeedComponent } from './components/livefeed/livefeed.component';
 import { PageNotFoundComponent } from './containers/page-not-found/page-not-found.component';
 
+
 @NgModule({
   declarations: [
     KeysPipe,
@@ -95,7 +97,8 @@ import { PageNotFoundComponent } from './containers/page-not-found/page-not-foun
     SocketService,
     RestService,
     MessageService,
-    PlaylistService
+    PlaylistService,
+    Uploadervice,
   ],
   bootstrap: [AppComponent]
 })

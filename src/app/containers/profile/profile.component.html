@@ -9,28 +9,32 @@
     </div>
 
     <div *ngIf="user" class="clearfix mb-1">
-    <div class="float-right">
-      <a class="btn btn-outline-primary" routerLink="/profile/{{userId}}">
+      <div class="float-rigth">
+        <a class="btn btn-outline-primary"(click)="uploadMusic()">
+        Upload music
+      </a>
+
+      </div>
+      <div class="float-right">
+        <a class="btn btn-outline-primary" routerLink="/profile/{{userId}}">
         View public profile
       </a>
 
-      <a href="http://www.gravatar.com/avatar/{{gravatar}}">
-        <img class="rounded-circle" height="100" src="http://www.gravatar.com/avatar/{{gravatar}}" alt="User picture" />
-      </a>
+        <a href="http://www.gravatar.com/avatar/{{gravatar}}">
+          <img class="rounded-circle" height="100" src="http://www.gravatar.com/avatar/{{gravatar}}" alt="User picture" />
+        </a>
+      </div>
+
     </div>
-    </div>
+
+
 
     <form *ngIf="user" (ngSubmit)="onSubmit()" #userForm="ngForm">
       <div class="form-group row">
         <label for="email" class="col-3 col-form-label">Email</label>
         <div class="col-9">
-          <input type="email" class="form-control" id="email"
-                  ngControl="email"
-                  required
-                  autofocus
-                  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                  [(ngModel)]="user.email" name="email"
-                  #email="ngModel">
+          <input type="email" class="form-control" id="email" ngControl="email" required autofocus pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+            [(ngModel)]="user.email" name="email" #email="ngModel">
           <alert [hidden]="email.valid || email.pristine">
             Email is required.
           </alert>
@@ -40,13 +44,9 @@
       <div class="form-group row">
         <label for="password" class="col-3 col-form-label">Password</label>
         <div class="col-9">
-          <input type="password" class="form-control" id="password"
-                  minlength="3"
-                  placeholder="Leave empty if you don't want to edit"
-                  [(ngModel)]="user.password" name="password"
-                  #password="ngModel">
-          <alert
-            [hidden]="password.valid || password.pristine">
+          <input type="password" class="form-control" id="password" minlength="3" placeholder="Leave empty if you don't want to edit"
+            [(ngModel)]="user.password" name="password" #password="ngModel">
+          <alert [hidden]="password.valid || password.pristine">
             A password longer than 3 characters is required.
           </alert>
         </div>
@@ -55,18 +55,14 @@
       <div class="form-group row">
         <label for="name" class="col-3 col-form-label">Name</label>
         <div class="col-9">
-          <input type="text" class="form-control" id="name"
-                [(ngModel)]="user.name" name="name"
-                #name="ngModel">
+          <input type="text" class="form-control" id="name" [(ngModel)]="user.name" name="name" #name="ngModel">
         </div>
       </div>
 
       <div class="form-group row">
         <label for="age" class="col-3 col-form-label">Age</label>
         <div class="col-9">
-          <input type="number" min="1" max="120" class="form-control" id="age"
-                [(ngModel)]="user.age" name="age"
-                #age="ngModel">
+          <input type="number" min="1" max="120" class="form-control" id="age" [(ngModel)]="user.age" name="age" #age="ngModel">
         </div>
       </div>
 
@@ -330,9 +326,7 @@
       <div class="form-group row">
         <label for="city" class="col-3 col-form-label">City</label>
         <div class="col-9">
-          <input type="text" class="form-control" id="city"
-                [(ngModel)]="user.city" name="city"
-                #city="ngModel">
+          <input type="text" class="form-control" id="city" [(ngModel)]="user.city" name="city" #city="ngModel">
         </div>
       </div>
 
@@ -349,22 +343,14 @@
         <label for="friends" class="col-3 col-form-label">Friends</label>
         <div class="col-9">
           <div class="list-group pl-2">
-              <span *ngFor="let friend of user.friends">
+            <span *ngFor="let friend of user.friends">
                 <a routerLink="/profile/{{friend._id}}">{{friend.email}}</a>
                 <a class="remove badge badge-pill badge-danger" title="Remove" href="#" (click)="onRemove(friend)">X</a>
               </span>
           </div><br />
-          <input [(ngModel)]="asyncSelected"
-                [typeahead]="dataSource"
-                [typeaheadWaitMs]="100"
-                (typeaheadLoading)="changeTypeaheadLoading($event)"
-                (typeaheadNoResults)="changeTypeaheadNoResults($event)"
-                (typeaheadOnSelect)="typeaheadOnSelect($event)"
-                [typeaheadOptionsLimit]="7"
-                [typeaheadOptionField]="'email'"
-                class="form-control mt-1"
-                placeholder="Search for your friends e-mail here"
-                name="friends">
+          <input [(ngModel)]="asyncSelected" [typeahead]="dataSource" [typeaheadWaitMs]="100" (typeaheadLoading)="changeTypeaheadLoading($event)"
+            (typeaheadNoResults)="changeTypeaheadNoResults($event)" (typeaheadOnSelect)="typeaheadOnSelect($event)" [typeaheadOptionsLimit]="7"
+            [typeaheadOptionField]="'email'" class="form-control mt-1" placeholder="Search for your friends e-mail here" name="friends">
           <div *ngIf="typeaheadLoading===true">
             <i class="glyphicon glyphicon-refresh ng-hide"></i>
           </div>
@@ -379,9 +365,7 @@
       <div class="form-group row">
         <label for="status" class="col-3 col-form-label">Status</label>
         <div class="col-9">
-          <input type="text" class="form-control" id="status"
-                [(ngModel)]="user.status" name="status"
-                #status="ngModel">
+          <input type="text" class="form-control" id="status" [(ngModel)]="user.status" name="status" #status="ngModel">
         </div>
       </div>
 
