@@ -22,7 +22,7 @@ export class PlaylistDialogComponent {
   private playlist: Playlist;
 
   constructor(
-    public dialogRef: MdDialogRef<PlaylistDialogComponent>,
+    private _dialogRef: MdDialogRef<PlaylistDialogComponent>,
     private _playlistService: PlaylistService,
     private _store: Store<any>
   ) {
@@ -54,7 +54,7 @@ export class PlaylistDialogComponent {
         payload: this.playlist
     });
 
-    this.dialogRef.close();
+    this._dialogRef.close();
   }
 
   editPlaylist() {
@@ -74,6 +74,6 @@ export class PlaylistDialogComponent {
           public: this.playlist.public
         }
     });
-    this.dialogRef.close();
+    this._dialogRef.close();
   }
 }
