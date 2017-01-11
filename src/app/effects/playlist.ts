@@ -52,19 +52,19 @@ export class PlaylistEffects {
         let playlistNewName: string = payload.name;
         let playlistNewDescription: string = payload.description;
         let playlistNewState: string = payload.public;
-        console.log("Effect update, id: " + playlistNewDescription);
-        // Patch the DB to add a new song
+
+        // Patch the DB to update playlist
         this._playlistService.patch(playlistID,
           {name: playlistNewName, description: playlistNewDescription, public: playlistNewState}
         ).then((result: PlaylistModel) => {
-          console.log('PATCH OK ', result);
-          console.log("Effect update after patch, id: " + playlistNewDescription);
+          console.log('Updated Playlist : ', result);
+
           observer.next(<Action> {
             type: PlaylistsActionTypes.UPDATE_PLAYLIST_SUCCESS,
             payload: result
           });
         }).catch(error => {
-          console.error(error);
+          console.error('Error Update Playlist : ' + error);
           observer.next(<Action> {
             type: PlaylistsActionTypes.UPDATE_PLAYLIST_FAIL
           });
@@ -129,16 +129,4 @@ export class PlaylistEffects {
     private _actions$: Actions,
     private _playlistService: PlaylistService
   ) { }
-
-  // @Effect()
-  // search$: Observable<Action> = this._actions$
-  //   .ofType(Playlist.ActionTypes.UPDATE_PLAYLIST)
-  //   .map(action => action.payload)
-  //   .switchMap(playlist => {
-  //     return this._playlistService.update(playlist.id, playlist)
-  //       .map(updatePlaylist => {
-  //         return {type: Playlist.ActionTypes.UPDATE_PLAYLIST_SUCCESS, payload: updatePlaylist};
-  //       })
-  //       .catch(() => of({type: Playlist.ActionTypes.UPDATE_PLAYLIST_FAIL}));
-  //   });
 }

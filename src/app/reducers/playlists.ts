@@ -4,8 +4,6 @@ import { Playlist, Track } from './../models';
 
 export const ActionTypes = {
   LOAD_PLAYLIST: 'LOAD_PLAYLIST',
-  // LOAD_SUCCESS: 'LOAD_SUCCESS',
-
   SELECT_PLAYLIST: 'SELECT_PLAYLIST',
 
   INDEX_PLAYLISTS: 'INDEX_PLAYLISTS',
@@ -45,7 +43,6 @@ export function reducer(state: State = initialState, action: Action): State {
   switch (action.type) {
     case ActionTypes.INDEX_PLAYLISTS:
       const playlists: any[] = action.payload;
-      // console.log(playlists.reduce((prev, curr) => [...prev, ...curr._id]));
 
       return {
         entities: playlists.reduce((map, obj) => {
@@ -91,19 +88,6 @@ export function reducer(state: State = initialState, action: Action): State {
         selectedPlaylistId: state.selectedPlaylistId,
       };
     }
-
-    /*case ActionTypes.UPDATE_PLAYLIST_SUCCESS: {
-      const playlist: Playlist = action.payload;
-
-      console.log("Reducer name: " + playlist.description);
-
-      return {
-          entities: Object.assign({}, state.entities, {
-            [playlist._id]: playlist
-          }),
-          selectedPlaylistId: state.selectedPlaylistId,
-        };
-    }*/
 
     case ActionTypes.REMOVE_PLAYLIST_SUCCESS: {
       const id: string = action.payload;

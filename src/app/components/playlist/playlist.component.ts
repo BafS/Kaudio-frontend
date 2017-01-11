@@ -42,17 +42,11 @@ export class PlaylistComponent {
     console.log('Sort Event', event);
   }
 
-  updatePlaylist() {  // TODO Can change to send a playlist and not 5 single element
+  updatePlaylist() {
     this.dialogRef = this.dialog.open(PlaylistDialogComponent, <MdDialogConfig>{
       disableClose: false, //for use esc to close dialog
     });
     this.dialogRef.componentInstance.new = false;
-    // TODO
-    // this.dialogRef.componentInstance.new = false;
-    // this.dialogRef.componentInstance.title = this.title;
-    // this.dialogRef.componentInstance.description = this.description;
-    // this.dialogRef.componentInstance.public = this.public;
-    // this.dialogRef.componentInstance.id = this.playlist;
   }
 
   deletePlaylist() {

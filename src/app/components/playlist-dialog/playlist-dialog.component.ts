@@ -64,7 +64,7 @@ export class PlaylistDialogComponent {
       description: this.description,
       public: this.public
     };
-    console.log("Dialog before dispatch update, id: " + this.playlist.description);
+
     this._store.dispatch({
         type: PlaylistActionTypes.UPDATE_PLAYLIST,
         payload: {
@@ -74,7 +74,6 @@ export class PlaylistDialogComponent {
           public: this.playlist.public
         }
     });
-
     this.dialogRef.close();
   }
 }
