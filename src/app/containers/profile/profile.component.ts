@@ -88,7 +88,8 @@ export class ProfileComponent implements OnInit {
    * Called when the user clicks on an entry of the autocomplete list.
    */
   public typeaheadOnSelect(e: TypeaheadMatch): void {
-    if (this.user.friends.filter(f => e.item._id === f['_id']).length === 0) {
+    if (e.item._id !== this.userId &&
+      this.user.friends.filter(f => e.item._id === f['_id']).length === 0) {
       this.user.friends.push(e.item);
     }
     this.asyncSelected = '';
