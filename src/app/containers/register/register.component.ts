@@ -27,8 +27,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(window.localStorage.getItem('userId'));
-    this.connected = window.localStorage.getItem('userId').length > 9;
+    this.connected = window.localStorage.getItem('userId') && window.localStorage.getItem('userId').length > 9;
   }
 
   onSubmit(): void {
@@ -45,8 +44,5 @@ export class RegisterComponent implements OnInit {
     }).catch((error) => {
       console.error('Error registration!', error);
     });
-
-    // TODO
-    // if not logged, alert message
   }
 }
