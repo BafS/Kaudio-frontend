@@ -322,6 +322,16 @@
           </select>
         </div>
       </div>
+      <div class="form-group row">
+        <label for="isAdmin" class="col-3 col-form-label">Admin</label>
+        <div class="col-9">
+
+          <select class="form-control" id="admin" [(ngModel)]="user.admin" name="admin" #admin="ngModel">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+               </select>
+        </div>
+      </div>
 
       <div class="form-group row">
         <label for="city" class="col-3 col-form-label">City</label>
