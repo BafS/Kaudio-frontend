@@ -44,9 +44,9 @@ export class PlaylistComponent {
 
   updatePlaylist() {  // TODO Can change to send a playlist and not 5 single element
     this.dialogRef = this.dialog.open(PlaylistDialogComponent, <MdDialogConfig>{
-      // width: '500px',
-      disableClose: false
+      disableClose: false, //for use esc to close dialog
     });
+    this.dialogRef.componentInstance.new = false;
     // TODO
     // this.dialogRef.componentInstance.new = false;
     // this.dialogRef.componentInstance.title = this.title;

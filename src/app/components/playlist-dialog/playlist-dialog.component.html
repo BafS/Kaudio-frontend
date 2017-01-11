@@ -5,7 +5,7 @@
   <div>
     <md-input placeholder="Name" style="width: 100%" [(ngModel)]="title"></md-input>
     <md-input placeholder="Description" style="width: 100%" [(ngModel)]="description"></md-input>
-    <md-slide-toggle [checked]="public">
+    <md-slide-toggle [(ngModel)]="public">
       Public
     </md-slide-toggle>
   </div>
