@@ -52,7 +52,10 @@ export class PlaylistEffects {
       return new Observable(observer => {
         // let track = payload.track;
         // let playlistID = payload.playlistID;
-
+        console.log('Effect update');
+        observer.next(<Action>{
+             type: PlaylistsActionTypes.UPDATE_PLAYLIST_SUCCESS
+        });
         // // Create new playlist in DB
         // this._playlistService.update(playlistID, playlist).then(result => {
         //   console.log('Added Playlist : ' + playlist.name, result);

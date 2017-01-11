@@ -95,7 +95,7 @@ export function reducer(state: State = initialState, action: Action): State {
 
     case ActionTypes.UPDATE_PLAYLIST_SUCCESS: {
       const playlist: Playlist = action.payload;
-
+      console.log("Reducer name: " + this.playlist.name + ", public:" + this.playlist.public);
       return {
           entities: Object.assign({}, state.entities, {
             [playlist._id]: playlist
