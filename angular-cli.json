@@ -1,6 +1,6 @@
 {
   "project": {
-    "version": "1.0.0-beta.22-1",
+    "version": "1.0.0-beta.24",
     "name": "kaudio"
   },
   "apps": [
@@ -22,8 +22,7 @@
         "styles.scss"
       ],
       "scripts": [
-        "../node_modules/plyr/dist/plyr.js",
-        "../node_modules/dropzone/dist/dropzone.js"
+        "../node_modules/plyr/dist/plyr.js"
       ],
       "environments": {
         "source": "environments/environment.ts",
