@@ -30,13 +30,6 @@ export class LoginComponent implements OnInit {
     this._authService = _authService;
   }
 
-  // constructor(fb: FormBuilder) {
-    // this.loginForm = fb.group({
-    //   email: ["", Validators.required],
-    //   password: ["", Validators.required]
-    // });
-  // }
-
   ngOnInit() {
     this.token = this._authService.getToken();
   }
@@ -63,7 +56,7 @@ export class LoginComponent implements OnInit {
       });
 
       this._router.navigate(['/']);
-    }).catch((error) => {
+    }).catch(error => {
       console.error('Error authenticating!', error);
       this.error = 'Invalid login or password.';
     });

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from './services/api/authentication.service';
 import { Store } from '@ngrx/store';
+
+import { AuthenticationService } from './services/api/authentication.service';
 import { ActionTypes as LoginActionTypes } from './reducers/login';
 
 @Component({

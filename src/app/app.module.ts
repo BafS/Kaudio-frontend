@@ -81,7 +81,7 @@ import { PageNotFoundComponent } from './containers/page-not-found/page-not-foun
     EffectsModule.run(PlaylistEffects),
     StoreDevtoolsModule.instrumentOnlyWithExtension(), // Dev tool
     FormsModule,
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(ROUTES, { useHash: true }),
     AlertModule,
     NgxDatatableModule,
     TypeaheadModule,
