@@ -1,8 +1,2 @@
 <app-searchbox [term]="searchTerm"></app-searchbox>
 <app-searchresults [tracks]="tracks" (selectTrack)= OnSelectTrack($event) ></app-searchresults>
-
-<!--TODO hide table when there are no results, it can't be hidden perhaps since tracks is Observable
-    <div class="no-results" *ngIf="tracks.length===0">
-    We couldn’t find any code matching {{searchTerm}}
-    </div>
-    <div class="with-results" *ngIf="tracks.length>0">-->

@@ -31,7 +31,6 @@ export class ProfileDetailComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        // TODO unsubscribe
         this.route.params.subscribe(params => {
             this.connectedUserId = window.localStorage.getItem('userId');
             this.viewedUserId = params['id'];

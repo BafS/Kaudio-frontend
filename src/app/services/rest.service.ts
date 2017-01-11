@@ -19,7 +19,6 @@ export class RestService extends FeathersService {
       .configure(hooks())
       .configure(authentication({ storage: window.localStorage }));
 
-    // TODO workaround
     if (window.localStorage.getItem('feathers-jwt')) {
       this._app.set('token', window.localStorage.getItem('feathers-jwt'));
     }

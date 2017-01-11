@@ -67,9 +67,6 @@ export class LoginComponent implements OnInit {
       console.error('Error authenticating!', error);
       this.error = 'Invalid login or password.';
     });
-
-    // TODO
-    // if not logged, alert message
   }
 
   onLogout() {

@@ -24,15 +24,10 @@ export class MessageService {
     private _restService: RestService,
     private _store: Store<any>
   ) {
-    // TODO use socket only for feed ?
     this._rest = _restService.getService('messages');
     this._socket = _socketService.getService('messages');
 
     this._messages$ = _store.select(s => s.messages);
-
-    // this.messages$ = new Observable(observer => this.messagesObserver = observer).share();
-    // this._socket.on('created', message => this.dispatch(message.message));
-    // this._subscription = this.observe('created').subscribe(); // TODO
   }
 
   find(query?: any) {

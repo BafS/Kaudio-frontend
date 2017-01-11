@@ -39,11 +39,9 @@ export class SocketService extends FeathersService {
     });
   }
 
-  // TODO clean this class and this method
   private authenticateIfPossible() {
     console.log('-> authenticateIfPossible');
 
-    // TODO workaround
     if (window.localStorage.getItem('feathers-jwt')) {
       this._app.set('token', window.localStorage.getItem('feathers-jwt'));
       console.log(
@@ -61,10 +59,8 @@ export class SocketService extends FeathersService {
         console.error('Error ' + error);
       });
     }
-    // TODO If no token -> redirection to login
   }
 
-  // TODO WIP -> use observer
   public on(trigger: string, callback: Function) {
     this.socket.on(trigger, callback);
   }

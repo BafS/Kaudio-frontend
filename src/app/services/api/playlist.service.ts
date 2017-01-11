@@ -16,8 +16,6 @@ export class PlaylistService {
   find(query?: any) {
     return this._service.find(query);
   }
-
-  // TODO Get by name or id ?
   get(name: string, query?: any) {
     return this._service.get(name, query);
   }
@@ -27,7 +25,6 @@ export class PlaylistService {
     return this._service.create(playlist);
   }
 
-  // TODO change object to playlist... marche dans app playlist comme ça mais si on change Object ne marche plus
   update(id: string, playlist: Object) {
     // app.get('token')
     return this._service.update(id, playlist);

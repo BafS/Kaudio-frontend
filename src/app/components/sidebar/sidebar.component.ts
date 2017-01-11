@@ -10,7 +10,6 @@ import { Playlist } from '../../models/playlist';
   styleUrls: ['./sidebar.component.scss'],
 })
 
-// TODO Verifier si après 5 ou plus playlists elles s'affichent dans le sidebar...
 export class SidebarComponent {
   public login$: Observable<boolean>;
 

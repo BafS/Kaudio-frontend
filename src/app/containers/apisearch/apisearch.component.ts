@@ -32,7 +32,6 @@ export class ApiSearchComponent implements OnInit, OnDestroy {
         ? this._apiSearchService.search(term).then((res: any) => res.data)
         : Observable.of([]))
       .catch(error => {
-        // TODO: real error handling
         console.error(this.tracks);
         return Observable.of<Track[]>([]);
       });
