@@ -7,10 +7,6 @@ import { Track } from './../../models';
 import { ActionTypes as PlaylistsActionTypes } from './../../reducers/playlists';
 
 @Component({
-  host:
-  {
-    '(document:click)': 'onClick($event)',
-  },
   selector: 'app-searchresults',
   templateUrl: './searchresults.component.html',
   styleUrls: ['./searchresults.component.scss']
@@ -18,24 +14,33 @@ import { ActionTypes as PlaylistsActionTypes } from './../../reducers/playlists'
 export class SearchresultsComponent implements OnInit, OnDestroy {
   @Input() tracks: Observable<Track[]>;
   @Output()('SelectTrack') trackToAdd = new EventEmitter<Track>();
+  close = false;
   private _playlists: Observable<any>;
   private _selectedPlaylist: string;
-  private _subscriber: Subscription;
+  private _playlistsSubscriber: Subscription;
+  private _tracksSubscriber: Subscription;
 
-  constructor(private _eref: ElementRef,
+  constructor(
     private _store: Store<any>,
   ) {
     this._playlists = _store.select(s => s.playlists);
   }
 
   ngOnInit() {
-    this._subscriber = this._playlists.subscribe(v => {
+    this._playlistsSubscriber = this._playlists.subscribe(v => {
       this._selectedPlaylist = v.selectedPlaylistId;
     });
+
+    this._tracksSubscriber = this.tracks.subscribe(t => {
+      if (t.length > 0) {
+        this.close = false;
+      }
+    })
   }
 
   ngOnDestroy() {
-    this._subscriber.unsubscribe();
+    this._playlistsSubscriber.unsubscribe();
+    this._tracksSubscriber.unsubscribe();
   }
 
   /**
@@ -50,14 +55,9 @@ export class SearchresultsComponent implements OnInit, OnDestroy {
       }
     });
   }
-  onClick(event) {
-    if (!this._eref.nativeElement.contains(event.target))
-      this.hideTable = false;
-  }
-  private hideTable: boolean = false;
 
-  closeTable() {
-    this.hideTable = true;
+  onClose() {
+    this.close = true;
   }
 }
 
