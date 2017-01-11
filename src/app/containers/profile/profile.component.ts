@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
   private _messages: any[] = [];
   private userId: string;
   private connected: boolean = false;
+  private music_path: string = "/music";
   public user: User;
   public myForm: FormGroup = new FormGroup({
     state: this.stateCtrl
@@ -132,7 +133,12 @@ export class ProfileComponent implements OnInit {
     // Deletes the selected friend filtering the list.
     this.user.friends = this.user.friends.filter(f => f !== user);
   }
-  uploadMusic(){
-    //this._uploadService.create();
+  uploadMusic() {
+    this._uploadService.create({
+      query: {
+        path: this.music_path
+      }
+
+    });
   }
 }

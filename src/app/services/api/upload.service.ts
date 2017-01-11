@@ -13,31 +13,10 @@ export class Uploadervice {
     this._service = _restService.getService('/localuploads');
   }
 
-  find(query?: any) {
-    return this._service.find(query);
-  }
 
-  // TODO Get by name or id ?
-  get(name: string, query?: any) {
-    return this._service.get(name, query);
-  }
-
-  create(playlist: Playlist) {
+  create(query: any) {
     // app.get('token')
-    return this._service.create(playlist);
+    return this._service.create(query);
   }
 
-  // TODO change object to playlist... marche dans app playlist comme ça mais si on change Object ne marche plus
-  update(id: string, playlist: Object) {
-    // app.get('token')
-    return this._service.update(id, playlist);
-  }
-
-  remove(name: string, query?: any) {
-    return this._service.remove(name, query);
-  }
-
-  patch(name: string, data: Object, query?: any) {
-    return this._service.patch(name, data, query);
-  }
 }
