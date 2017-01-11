@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
 
       // Redirect to login page
       this._router.navigate(['/login']);
-    }).catch((error) => {
+    }).catch(error => {
       console.error('Error registration!', error);
     });
   }
