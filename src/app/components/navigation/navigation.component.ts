@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ActionReducer, Action, Store } from '@ngrx/store';
 import { AuthenticationService } from './../../services/api/authentication.service';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navigation.component.scss'],
   providers: [ AuthenticationService ]
 })
-export class NavigationComponent implements OnInit {
+export class NavigationComponent {
   public login$: Observable<boolean>;
 
   constructor(
@@ -23,9 +23,6 @@ export class NavigationComponent implements OnInit {
     this._authService = _authService;
    }
 
-  ngOnInit() {
-  }
-
   onLogout() {
     this._authService.logout();
 
@@ -33,7 +30,7 @@ export class NavigationComponent implements OnInit {
       type: LoginActionTypes.DISCONNECTED
     });
 
-    this._router.navigate(['/']);
+    this._router.navigate(['login']);
   }
 
 }

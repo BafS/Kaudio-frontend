@@ -69,5 +69,7 @@ export class LoginComponent implements OnInit {
     this._store.dispatch({
       type: LoginActionTypes.DISCONNECTED
     });
+
+    this._router.navigate(['login']);
   }
 }
