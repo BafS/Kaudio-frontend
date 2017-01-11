@@ -87,8 +87,6 @@ export class PlaylistEffects {
           path: '/tracks_ref',
           value: trackId,
         }).then((result: PlaylistModel) => {
-          console.log('PATCH OK ', result);
-
           observer.next(<Action> {
             type: PlaylistsActionTypes.ADD_SONG_PLAYLIST_SUCCESS,
             payload: {
@@ -100,6 +98,37 @@ export class PlaylistEffects {
           console.error(error);
           observer.next(<Action> {
             type: PlaylistsActionTypes.ADD_SONG_PLAYLIST_FAIL
+          });
+        });
+      });
+    });
+
+  @Effect()
+  removePlaylistSongAction$: Observable<Action> = this._actions$
+    .ofType(PlaylistsActionTypes.REMOVE_SONG_PLAYLIST)
+    .map(action => action.payload)
+    .switchMap(payload => {
+      return new Observable(observer => {
+        let trackID: string = payload.trackID;
+        let playlistID: string = payload.playlistID;
+
+        // Patch the DB to remove a new song
+        this._playlistService.patch(playlistID, {
+          op: 'remove',
+          path: '/tracks_ref',
+          value: trackID,
+        }).then((result: PlaylistModel) => {
+          observer.next(<Action> {
+            type: PlaylistsActionTypes.REMOVE_SONG_PLAYLIST_SUCCESS,
+            payload: {
+              playlistID,
+              trackID,
+            }
+          });
+        }).catch(error => {
+          console.error(error);
+          observer.next(<Action> {
+            type: PlaylistsActionTypes.REMOVE_SONG_PLAYLIST_FAIL
           });
         });
       });

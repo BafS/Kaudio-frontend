@@ -75,3 +75,7 @@ html {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.datatable.material.single-selection .datatable-body-row.active .datatable-row-group {
+  background: $brand-primary;
+}

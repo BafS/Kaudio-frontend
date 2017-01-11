@@ -26,6 +26,10 @@ export const ActionTypes = {
   ADD_SONG_PLAYLIST_SUCCESS: 'ADD_SONG_PLAYLIST_SUCCESS',
   ADD_SONG_PLAYLIST_FAIL: 'ADD_SONG_PLAYLIST_FAIL',
 
+  REMOVE_SONG_PLAYLIST: 'REMOVE_SONG_PLAYLIST',
+  REMOVE_SONG_PLAYLIST_SUCCESS: 'REMOVE_SONG_PLAYLIST_SUCCESS',
+  REMOVE_SONG_PLAYLIST_FAIL: 'REMOVE_SONG_PLAYLIST_FAIL',
+
   RESET_PLAYLISTS: 'RESET'
 };
 
@@ -92,7 +96,7 @@ export function reducer(state: State = initialState, action: Action): State {
     case ActionTypes.REMOVE_PLAYLIST_SUCCESS: {
       const id: string = action.payload;
 
-      let entitiesClone = Object.assign({}, state.entities);
+      let entitiesClone: { [id: string]: Playlist } = Object.assign({}, state.entities);
       delete entitiesClone[id];
 
       return {
@@ -105,13 +109,29 @@ export function reducer(state: State = initialState, action: Action): State {
       const playlistID: string = action.payload.playlistID;
       const newTrack: Track = action.payload.track;
 
-      const newEntities: { [id: string]: Playlist } = state.entities;
-      newEntities[playlistID].tracks.push(newTrack);
+      let entitiesClone: { [id: string]: Playlist } = Object.assign({}, state.entities);
+      entitiesClone[playlistID].tracks.push(newTrack);
 
       return {
-          entities: newEntities,
-          selectedPlaylistId: state.selectedPlaylistId,
-        };
+        entities: entitiesClone,
+        selectedPlaylistId: state.selectedPlaylistId,
+      };
+    }
+
+    case ActionTypes.REMOVE_SONG_PLAYLIST_SUCCESS: {
+      const playlistID: string = action.payload.playlistID;
+      const oldTrackID: string = action.payload.trackID;
+
+      // Clone the playlist where to remove the track
+      const playlistClone = Object.assign({}, state.entities[playlistID]);
+      playlistClone.tracks = state.entities[playlistID].tracks.filter(t => t['_id'] !== oldTrackID);
+
+      return {
+        entities: Object.assign({}, state.entities, {
+          [playlistID]: playlistClone
+        }),
+        selectedPlaylistId: state.selectedPlaylistId,
+      };
     }
 
     default:

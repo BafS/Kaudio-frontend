@@ -56,7 +56,25 @@ export class PlaylistComponent {
     });
   }
 
+  deleteSelectedSong() {
+    if (this.selected.length === 0) {
+      return;
+    }
+
+    this._store.dispatch({
+      type: PlaylistsActionTypes.REMOVE_SONG_PLAYLIST,
+      payload: {
+        playlistID: this.playlist._id,
+        trackID: this.selected[0]._id // We can only select one song
+      }
+    });
+  }
+
   onActivate(event) {
+    if (event.type === 'click') {
+      console.log(event);
+    }
+
     if (event.type === 'dblclick') {
       let row = event.row;
       console.log('This id will be played', row._id);
