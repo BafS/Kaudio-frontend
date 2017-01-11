@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
 
 import { Playlist } from '../../models/playlist';
@@ -20,17 +20,24 @@ export class PlaylistDialogComponent {
   public description?: string;
   public public?: boolean;
   private playlist: Playlist;
-  public player: Observable<any>;
 
   constructor(
     public dialogRef: MdDialogRef<PlaylistDialogComponent>,
     private _playlistService: PlaylistService,
     private _store: Store<any>
   ) {
-    this.player = _store.select(s => s.player);
+  }
+
+  ngOnInit(){
     //By default the playlist is public
-    if (true === !this.new) {
+    if (this.new) {
       this.public = true;
+    } else if (!this.new) {
+      this._store.select(s => s.playlists.selectedPlaylistId).subscribe((id: string) => {this.id = id});
+      this._store.select(s => s.playlists.entities[this.id]).subscribe((playlist: Playlist) => {this.playlist = playlist});
+      this.title = this.playlist.name;
+      this.description = this.playlist.description;
+      this.public = this.playlist.public;
     }
   }
 
@@ -51,7 +58,6 @@ export class PlaylistDialogComponent {
   }
 
   editPlaylist() {
-    //playlist to edit
     this.playlist = <Playlist>{
       _id: this.id,
       name: this.title,
@@ -59,13 +65,15 @@ export class PlaylistDialogComponent {
       public: this.public
     };
 
-    //update in DB
-    this._playlistService.update(this.playlist._id, this.playlist)
-    .then((result) => {
-      console.log('Update Playlist : ' + this.playlist, result);
-
-    }).catch((error) => {
-      console.error('Error Add Playlist : ' + this.playlist.name, error);
+    this._store.dispatch({
+        type: PlaylistActionTypes.UPDATE_PLAYLIST,
+        payload: {
+          id: this.playlist._id,
+          name: this.playlist.name,
+          description: this.playlist.description,
+          public: this.playlist.public
+        }
     });
+    this.dialogRef.close();
   }
 }

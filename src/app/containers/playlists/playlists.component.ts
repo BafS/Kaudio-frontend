@@ -93,12 +93,10 @@ export class PlaylistsComponent implements OnInit, OnDestroy {
     });
   }
 
-  /**
-   * Call add playlist dialog
-   */
+  //Call add playlist dialog
   addPlaylist() {
     this.dialogRef = this.dialog.open(PlaylistDialogComponent, <MdDialogConfig>{
-      disableClose: true
+      disableClose: false, //for use esc to close dialog
     });
     this.dialogRef.componentInstance.new = true;
   }

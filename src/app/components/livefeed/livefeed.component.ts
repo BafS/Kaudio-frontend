@@ -1,6 +1,6 @@
 import { Component, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
+import { Store, Action } from '@ngrx/store';
 
 import { MessageService } from './../../services/api/message.service';
 import { Message } from './../../models';
@@ -31,8 +31,15 @@ export class LivefeedComponent implements AfterViewChecked {
   }
 
   sendMessage(message: string) {
-    this._messageService.create(<Message> {
+    const messageO = <Message> {
       title: message
+    };
+
+    this._messageService.create(messageO);
+
+    this._store.dispatch({
+      type: MessagesActionTypes.ADD_MESSAGE,
+      payload: messageO
     });
   }
 }

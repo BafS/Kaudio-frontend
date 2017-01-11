@@ -47,28 +47,31 @@ export class PlaylistEffects {
     .ofType(PlaylistsActionTypes.UPDATE_PLAYLIST)
     .map(action => action.payload)
     .switchMap(payload => {
-      console.log(payload);
-
       return new Observable(observer => {
-        // let track = payload.track;
-        // let playlistID = payload.playlistID;
+        let playlistID: string = payload.id;
+        let playlistNewName: string = payload.name;
+        let playlistNewDescription: string = payload.description;
+        let playlistNewState: string = payload.public;
 
-        // // Create new playlist in DB
-        // this._playlistService.update(playlistID, playlist).then(result => {
-        //   console.log('Added Playlist : ' + playlist.name, result);
-        //   observer.next(<Action>{
-        //     type: PlaylistsActionTypes.UPDATE_PLAYLIST_SUCCESS
-        //   });
-        // }).catch(error => {
-        //   console.error('Error Add Playlist : ' + playlist.name + error);
-        //   observer.next(<Action>{
-        //     type: PlaylistsActionTypes.UPDATE_PLAYLIST_FAIL
-        //   });
-        // });
+        // Patch the DB to update playlist
+        this._playlistService.patch(playlistID,
+          {name: playlistNewName, description: playlistNewDescription, public: playlistNewState}
+        ).then((result: PlaylistModel) => {
+          console.log('Updated Playlist : ', result);
+
+          observer.next(<Action> {
+            type: PlaylistsActionTypes.UPDATE_PLAYLIST_SUCCESS,
+            payload: result
+          });
+        }).catch(error => {
+          console.error('Error Update Playlist : ' + error);
+          observer.next(<Action> {
+            type: PlaylistsActionTypes.UPDATE_PLAYLIST_FAIL
+          });
+        });
       });
     });
 
-  // Update a playlist
   @Effect()
   addPlaylistSongAction$: Observable<Action> = this._actions$
     .ofType(PlaylistsActionTypes.ADD_SONG_PLAYLIST)
@@ -111,7 +114,8 @@ export class PlaylistEffects {
       return new Observable(observer => {
         this._playlistService.remove(id).then(result => {
           observer.next(<Action>{
-            type: PlaylistsActionTypes.REMOVE_PLAYLIST_SUCCESS
+            type: PlaylistsActionTypes.REMOVE_PLAYLIST_SUCCESS,
+            payload: id
           });
         }).catch(error => {
           observer.next(<Action>{
@@ -125,16 +129,4 @@ export class PlaylistEffects {
     private _actions$: Actions,
     private _playlistService: PlaylistService
   ) { }
-
-  // @Effect()
-  // search$: Observable<Action> = this._actions$
-  //   .ofType(Playlist.ActionTypes.UPDATE_PLAYLIST)
-  //   .map(action => action.payload)
-  //   .switchMap(playlist => {
-  //     return this._playlistService.update(playlist.id, playlist)
-  //       .map(updatePlaylist => {
-  //         return {type: Playlist.ActionTypes.UPDATE_PLAYLIST_SUCCESS, payload: updatePlaylist};
-  //       })
-  //       .catch(() => of({type: Playlist.ActionTypes.UPDATE_PLAYLIST_FAIL}));
-  //   });
 }

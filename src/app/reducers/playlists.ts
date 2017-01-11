@@ -4,8 +4,6 @@ import { Playlist, Track } from './../models';
 
 export const ActionTypes = {
   LOAD_PLAYLIST: 'LOAD_PLAYLIST',
-  // LOAD_SUCCESS: 'LOAD_SUCCESS',
-
   SELECT_PLAYLIST: 'SELECT_PLAYLIST',
 
   INDEX_PLAYLISTS: 'INDEX_PLAYLISTS',
@@ -45,7 +43,6 @@ export function reducer(state: State = initialState, action: Action): State {
   switch (action.type) {
     case ActionTypes.INDEX_PLAYLISTS:
       const playlists: any[] = action.payload;
-      // console.log(playlists.reduce((prev, curr) => [...prev, ...curr._id]));
 
       return {
         entities: playlists.reduce((map, obj) => {
@@ -81,10 +78,9 @@ export function reducer(state: State = initialState, action: Action): State {
       };
     }
 
+    case ActionTypes.UPDATE_PLAYLIST_SUCCESS:
     case ActionTypes.ADD_PLAYLIST_SUCCESS: {
       const playlist: Playlist = action.payload;
-
-      console.log('test: ' + state.entities);
       return {
         entities: Object.assign({}, state.entities, {
           [playlist._id]: playlist
@@ -93,15 +89,16 @@ export function reducer(state: State = initialState, action: Action): State {
       };
     }
 
-    case ActionTypes.UPDATE_PLAYLIST_SUCCESS: {
-      const playlist: Playlist = action.payload;
+    case ActionTypes.REMOVE_PLAYLIST_SUCCESS: {
+      const id: string = action.payload;
+
+      let entitiesClone = Object.assign({}, state.entities);
+      delete entitiesClone[id];
 
       return {
-          entities: Object.assign({}, state.entities, {
-            [playlist._id]: playlist
-          }),
-          selectedPlaylistId: state.selectedPlaylistId,
-        };
+        entities: entitiesClone,
+        selectedPlaylistId: null,
+      };
     }
 
     case ActionTypes.ADD_SONG_PLAYLIST_SUCCESS: {

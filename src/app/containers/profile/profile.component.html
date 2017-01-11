@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="container">
+  <div class="container mb-3 mt-3">
     <div class="row">
       <h2>Profile</h2>
 
@@ -345,7 +345,7 @@
           <div class="list-group pl-2">
             <span *ngFor="let friend of user.friends">
                 <a routerLink="/profile/{{friend._id}}">{{friend.email}}</a>
-                <a class="remove badge badge-pill badge-danger" title="Remove" href="#" (click)="onRemove(friend)">X</a>
+                <span class="remove badge badge-pill badge-danger" title="Remove" (click)="onRemove(friend)">X</span>
               </span>
           </div><br />
           <input [(ngModel)]="asyncSelected" [typeahead]="dataSource" [typeaheadWaitMs]="100" (typeaheadLoading)="changeTypeaheadLoading($event)"
