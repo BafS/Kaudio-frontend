@@ -25,8 +25,8 @@ export class AuthenticationService {
   }
 
   logout() {
-    window.localStorage.setItem('userId', null);
-    window.localStorage.setItem('playlist-key', null);
+    window.localStorage.removeItem('userId');
+    window.localStorage.removeItem('playlist-key');
     return this._rest.getApp().logout();
   }
 }

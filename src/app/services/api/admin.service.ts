@@ -4,7 +4,7 @@ import { RestService } from './../rest.service';
 import { Track, Playlist } from '../../models';
 
 @Injectable()
-export class Uploadervice {
+export class AdminService {
   private _service;
 
   constructor(
@@ -13,10 +13,7 @@ export class Uploadervice {
     this._service = _restService.getService('/localuploads');
   }
 
-
   create(query: any) {
-    // app.get('token')
     return this._service.create(query);
   }
-
 }

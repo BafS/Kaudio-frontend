@@ -1,4 +1,3 @@
-import { Uploadervice } from './../../services/api/upload.service';
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TypeaheadMatch } from 'ng2-bootstrap/components/typeahead';
@@ -6,17 +5,17 @@ import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { md5 } from './md5';
 import 'rxjs/add/observable/of';
-import 'dropzone';
 
 import { User, Message } from '../../models';
 import { UserService } from '../../services/api/user.service';
 import { MessageService } from '../../services/api/message.service';
+import { AdminService } from '../../services/api/admin.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
-  providers: [ UserService ]
+  providers: [ UserService, AdminService ]
 })
 export class ProfileComponent implements OnInit {
 
@@ -24,7 +23,7 @@ export class ProfileComponent implements OnInit {
   private _messages: any[] = [];
   private userId: string;
   private connected: boolean = false;
-  private music_path: string = "/music";
+  private musicPath: string = './music';
   public user: User;
   public myForm: FormGroup = new FormGroup({
     state: this.stateCtrl
@@ -35,11 +34,12 @@ export class ProfileComponent implements OnInit {
   public typeaheadLoading: boolean = false;
   public typeaheadNoResults: boolean = false;
   public gravatar: string;
+  public reindexed: number = -1;
 
   constructor(
     private _userService: UserService,
     private _messageService: MessageService,
-    private _uploadService: Uploadervice,
+    private _adminService: AdminService,
     private _router: Router,
   ) {
     this.dataSource = Observable.create(observer => {
@@ -133,12 +133,11 @@ export class ProfileComponent implements OnInit {
     // Deletes the selected friend filtering the list.
     this.user.friends = this.user.friends.filter(f => f !== user);
   }
-  uploadMusic() {
-    this._uploadService.create({
-      query: {
-        path: this.music_path
-      }
 
-    });
+  uploadMusic() {
+    this.reindexed = 0;
+    this._adminService.create({
+      path: this.musicPath
+    }).then(() => this.reindexed = 1);
   }
 }

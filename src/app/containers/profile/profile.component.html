@@ -9,12 +9,6 @@
     </div>
 
     <div *ngIf="user" class="clearfix mb-1">
-      <div *ngIf="user.admin"class="float-rigth">
-        <a class="btn btn-outline-primary"(click)="uploadMusic()">
-        Upload music
-      </a>
-
-      </div>
       <div class="float-right">
         <a class="btn btn-outline-primary" routerLink="/profile/{{userId}}">
         View public profile
@@ -24,9 +18,7 @@
           <img class="rounded-circle" height="100" src="http://www.gravatar.com/avatar/{{gravatar}}" alt="User picture" />
         </a>
       </div>
-
     </div>
-
 
 
     <form *ngIf="user" (ngSubmit)="onSubmit()" #userForm="ngForm">
@@ -56,6 +48,13 @@
         <label for="name" class="col-3 col-form-label">Name</label>
         <div class="col-9">
           <input type="text" class="form-control" id="name" [(ngModel)]="user.name" name="name" #name="ngModel">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="status" class="col-3 col-form-label">Status</label>
+        <div class="col-9">
+          <input type="text" class="form-control" id="status" [(ngModel)]="user.status" name="status" #status="ngModel">
         </div>
       </div>
 
@@ -322,30 +321,11 @@
           </select>
         </div>
       </div>
-      <div class="form-group row">
-        <label for="isAdmin" class="col-3 col-form-label">Admin</label>
-        <div class="col-9">
-
-          <select class="form-control" id="admin" [(ngModel)]="user.admin" name="admin" #admin="ngModel">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-               </select>
-        </div>
-      </div>
 
       <div class="form-group row">
         <label for="city" class="col-3 col-form-label">City</label>
         <div class="col-9">
           <input type="text" class="form-control" id="city" [(ngModel)]="user.city" name="city" #city="ngModel">
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label for="picture" class="col-3 col-form-label">Picture</label>
-        <div class="col-9">
-          <p class="form-control">
-            Please use <a target="_blank" href="http://www.gravatar.com">Gravatar</a> for your profile picture!
-          </p>
         </div>
       </div>
 
@@ -370,12 +350,21 @@
         </div>
       </div>
 
-
-
       <div class="form-group row">
-        <label for="status" class="col-3 col-form-label">Status</label>
+        <label for="picture" class="col-3 col-form-label">Picture</label>
         <div class="col-9">
-          <input type="text" class="form-control" id="status" [(ngModel)]="user.status" name="status" #status="ngModel">
+          <p class="form-control">
+            Please use <a target="_blank" href="http://www.gravatar.com">Gravatar</a> for your profile picture!
+          </p>
+        </div>
+      </div>
+
+      <div class="form-group row" *ngIf="user.admin">
+        <div class="col-9 offset-3">
+          <button *ngIf="reindexed === -1 || reindexed === 1" class="btn btn-outline-warning float-right" (click)="uploadMusic()">
+            Reindex musics <span *ngIf="reindexed === 1" class="badge badge-pill badge-success">ok</span>
+          </button>
+          <md-progress-spinner *ngIf="reindexed === 0" mode="indeterminate" color="warn" class="float-right"></md-progress-spinner>
         </div>
       </div>
 
