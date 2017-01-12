@@ -1,8 +1,10 @@
 # Kaudio frontend
 
-<center>
-    <img src="http://i.imgur.com/oECtPvL.png" style="width:450px">
-</center>
+<p align="center">
+    <img src="http://i.imgur.com/oECtPvL.png" width="480">
+</p>
+
+![](http://i.imgur.com/jYGhHMA.png)
 
 ## Development server
 
