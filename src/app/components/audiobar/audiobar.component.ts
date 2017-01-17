@@ -44,7 +44,7 @@ export class AudiobarComponent implements OnInit, OnDestroy {
           sources: [{
             // 586d552315672421864793f2
             // 586d55231567242186479409
-            src: `http://localhost:3030/audios/${player.filepath}?token=${token}`,
+            src: `/audios/${player.filepath}?token=${token}`,
             type: 'audio/mp3'
           }]
         })
